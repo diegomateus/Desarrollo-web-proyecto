@@ -17844,7 +17844,7 @@
 											"top": 15,
 											"width": 766,
 											"height": 13,
-											"text": "Casos de uso"
+											"text": "Sistema"
 										},
 										{
 											"_type": "LabelView",
@@ -17893,7 +17893,7 @@
 							"left": 296,
 							"top": 8,
 							"width": 776,
-							"height": 1241,
+							"height": 1097,
 							"nameCompartment": {
 								"$ref": "AAAAAAF4hNGKezr564s="
 							}
@@ -24030,7 +24030,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF4hK2QCNrSndM="
 					},
-					"name": "Casos de uso"
+					"name": "Sistema"
 				},
 				{
 					"_type": "UMLUseCase",
