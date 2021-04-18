@@ -1,5 +1,7 @@
 package com.javeriana.web.project.Employees.Employee.Domain;
 
+import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.*;
+
 public class Employee {
     private EmployeeId employeeId;
     private EmployeeEmail employeeEmail;
