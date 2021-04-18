@@ -24,11 +24,4 @@ public class CustomUUID extends StringValueObject {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CustomUUID that = (CustomUUID) o;
-        return Objects.equals(value, that.value);
-    }
 }
