@@ -4,20 +4,15 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CustomUUID implements Serializable {
-    private String value;
+public class CustomUUID extends StringValueObject {
 
     public CustomUUID(String value) {
+        super(value);
         this.validate(value);
-        this.value = value;
     }
 
     private void validate(String value) {
-    this.validateUUIDFormatRule(value);
-    }
-
-    public String value() {
-        return value;
+        this.validateUUIDFormatRule(value);
     }
 
     private void validateUUIDFormatRule(String value) {

@@ -7,4 +7,5 @@ public class EmployeeId extends CustomUUID {
     public EmployeeId(String value) {
         super(value);
     }
+
 }
