@@ -16,7 +16,7 @@ public class EmployeeFirstName extends StringValueObject {
     }
 
     private void lengthRule(String value) {
-        if(value.length() < 3 || value.length() > 200) {
+        if(value.length() < 1 || value.length() > 200) {
             throw new InvalidLength("Invalid number of characters");
         }
     }

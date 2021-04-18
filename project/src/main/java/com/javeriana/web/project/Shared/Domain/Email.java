@@ -10,6 +10,7 @@ public class Email extends StringValueObject{
     }
 
     private void validate(String value) {
+        this.lengthRule(value);
         this.regexRule(value);
     }
 
@@ -18,6 +19,12 @@ public class Email extends StringValueObject{
         Matcher matcher = pattern.matcher(value);
         if(!matcher.matches()) {
             throw new InvalidEmail("Invalid email");
+        }
+    }
+
+    private void lengthRule(String value) {
+        if(value.length() < 5 || value.length() > 200) {
+            throw new InvalidLength("Invalid number of characters");
         }
     }
 }
