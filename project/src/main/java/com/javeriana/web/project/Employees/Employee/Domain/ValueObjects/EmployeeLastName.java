@@ -10,11 +10,11 @@ public class EmployeeLastName extends StringValueObject {
         this.validate(value);
     }
 
-    public void validate(String value) {
+    private void validate(String value) {
         this.lengthRule(value);
     }
 
-    public void lengthRule(String value) {
+    private void lengthRule(String value) {
         if(value.length() < 3 || value.length() > 200) {
             throw new InvalidLength("Invalid number of characters");
         }
