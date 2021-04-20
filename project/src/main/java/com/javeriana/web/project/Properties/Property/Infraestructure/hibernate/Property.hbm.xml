@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javeriana.web.project.Properties.Property.Domain.Property" table="properties">
+        <composite-id name="propertyId" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="address" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Address" access="field">
+            <property name="value" column="address" access="field" type="string"/>
+        </component>
+
+        <component name="propertyType" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyType" access="field">
+            <property name="value" column="property_type" access="field" type="string"/>
+        </component>
+
+        <component name="city" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.City" access="field">
+            <property name="value" column="city" access="field" type="string"/>
+        </component>
+
+        <component name="description" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Description" access="field">
+            <property name="value" column="description" access="field" type="string"/>
+        </component>
+
+        <component name="bedroomsNumber" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.BedroomsNumber" access="field">
+            <property name="value" column="bedrooms_number" access="field" type="int"/>
+        </component>
+
+        <component name="bathroomsNumber" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.BathroomsNumber" access="field">
+            <property name="value" column="bathrooms_number" access="field" type="int"/>
+        </component>
+
+        <component name="privateArea" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PrivateArea" access="field">
+            <property name="value" column="private_area" access="field" type="int"/>
+        </component>
+
+        <component name="builtArea" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.BuiltArea" access="field">
+            <property name="value" column="built_area" access="field" type="int"/>
+        </component>
+
+        <component name="serviceLevel" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.ServiceLevel" access="field">
+            <property name="value" column="service_level" access="field" type="int"/>
+        </component>
+
+        <component name="condition" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Condition" access="field">
+            <property name="value" column="private_area" access="field" type="string"/>
+        </component>
+
+        <component name="deliveryDate" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.DeliveryDate" access="field">
+            <property name="value" column="delivary_date" access="field" type="java.util.Calendar"/>
+        </component>
+
+        <component name="location" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Location" access="field">
+            <property name="value" column="location" access="field" type="string"/>
+        </component>
+
+        <component name="images" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Images" access="field">
+            <property name="value" column="images" access="field" type=""/>
+        </component>
+
+        <component name="serializedQuestions" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestions" access="field">
+            <property name="value" column="serialized_questions" access="field" type="serializable"/>
+        </component>
+
+        <component name="serializedOffers" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffers" access="field">
+            <property name="value" column="serialized_offer" access="field" type="serializable"/>
+        </component>
+    </class>
+</hibernate-mapping>
