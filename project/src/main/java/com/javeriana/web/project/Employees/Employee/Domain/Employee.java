@@ -25,4 +25,5 @@ public class Employee {
         this.employeeLastName = employeeLastName;
         this.employeeIsAdministrator = employeeIsAdministrator;
     }
+
 }
