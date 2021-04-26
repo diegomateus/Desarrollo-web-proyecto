@@ -62,4 +62,5 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 null, authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
+
 }
