@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate;
+package com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;

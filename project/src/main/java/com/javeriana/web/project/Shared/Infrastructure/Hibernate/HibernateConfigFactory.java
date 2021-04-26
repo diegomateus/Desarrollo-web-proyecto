@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Shared.Infrastructure;
+package com.javeriana.web.project.Shared.Infrastructure.Hibernate;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.cfg.AvailableSettings;
