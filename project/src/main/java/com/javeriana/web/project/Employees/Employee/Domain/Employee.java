@@ -12,6 +12,9 @@ public class Employee {
     private EmployeeLastName employeeLastName;
     private EmployeeIsAdministrator employeeIsAdministrator;
 
+    public Employee() {
+    }
+
     public Employee(
             EmployeeId employeeId,
             EmployeeEmail employeeEmail,
