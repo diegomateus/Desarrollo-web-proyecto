@@ -3,9 +3,9 @@ package com.javeriana.web.project.Questions.Question.Domain.ValueObjects;
 import com.javeriana.web.project.Shared.Domain.InvalidLength;
 import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
-public class Text extends StringValueObject {
+public class Answer extends StringValueObject {
 
-    public Text(String value){
+    public Answer(String value){
         super(value);
         this.validate(value);
     }
@@ -19,4 +19,5 @@ public class Text extends StringValueObject {
             throw new InvalidLength("Invalid number of characters");
         }
     }
+
 }

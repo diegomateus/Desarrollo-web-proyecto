@@ -1,4 +1,8 @@
 package com.javeriana.web.project.Questions.Question.Domain.ValueObjects;
 
-public class QuestionId {
+import com.javeriana.web.project.Shared.Domain.CustomUUID;
+
+public class QuestionId extends CustomUUID {
+
+    public QuestionId(String value){super(value);}
 }

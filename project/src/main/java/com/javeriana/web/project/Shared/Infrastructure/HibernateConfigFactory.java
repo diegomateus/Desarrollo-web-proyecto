@@ -42,15 +42,15 @@ public class HibernateConfigFactory {
     }
 
     private DataSource dataSource() {
-        String url = env.getProperty("datasource.url");
-        String userName = env.getProperty("datasource.username");
-        String password = env.getProperty("datasource.password");
+        String url = env.getProperty("spring.datasource.url");
+        String userName = env.getProperty("spring.datasource.username");
+        String password = env.getProperty("spring.datasource.password");
 
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://" + url);
+        dataSource.setUrl(url);
         dataSource.setUsername(userName);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return dataSource;
     }
 
