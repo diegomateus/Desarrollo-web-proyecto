@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CustomUUID extends StringValueObject {
+public class CustomUUID extends StringValueObject implements Serializable {
 
     public CustomUUID(String value) {
         super(value);
