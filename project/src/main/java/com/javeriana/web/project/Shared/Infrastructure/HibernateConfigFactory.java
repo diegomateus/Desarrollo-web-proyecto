@@ -10,7 +10,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
-
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -27,7 +26,7 @@ public class HibernateConfigFactory {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
 
-        FileSystemResource resource1 = new FileSystemResource(".\\src\\main\\java\\com\\javeriana\\web\\project\\Employees\\Employee\\Infrastructure\\hibernate\\Employee.hbm.xml");
+        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Employees/Employee/Infrastructure/hibernate/Employee.hbm.xml");
 
         sessionFactory.setMappingLocations(resource1);
         return sessionFactory;
@@ -42,15 +41,15 @@ public class HibernateConfigFactory {
     }
 
     private DataSource dataSource() {
-        String url = env.getProperty("datasource.url");
-        String userName = env.getProperty("datasource.username");
-        String password = env.getProperty("datasource.password");
+        String url = env.getProperty("spring.datasource.url");
+        String userName = env.getProperty("spring.datasource.username");
+        String password = env.getProperty("spring.datasource.password");
 
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://" + url);
+        dataSource.setUrl(url);
         dataSource.setUsername(userName);
         dataSource.setPassword(password);
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return dataSource;
     }
 

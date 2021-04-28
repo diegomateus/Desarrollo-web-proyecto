@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Properties.Property.Aplication.Create;
 
 import com.javeriana.web.project.Properties.Property.Domain.Property;
-import com.javeriana.web.project.Properties.Property.Domain.PropertyRepository;
+import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 
 public class PropertyCreator {
     private PropertyRepository repository;

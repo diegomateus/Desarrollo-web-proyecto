@@ -37,6 +37,23 @@ public class Property {
         this.questions = questions;
     }
 
+    public void updateProperty(String address, String propertyType, String city, String description, String bedroomsNumber, String bathroomsNumber, String privateArea, String builtArea, String serviceLevel, String condition, String deliveryDate, String location, String images, String questions){
+        this.address = address;
+        this.propertyType = propertyType;
+        this.city = city;
+        this.description = description;
+        this.bedroomsNumber = bedroomsNumber;
+        this.bathroomsNumber = bathroomsNumber;
+        this.privateArea = privateArea;
+        this.builtArea = builtArea;
+        this.serviceLevel = serviceLevel;
+        this.condition = condition;
+        this.deliveryDate = deliveryDate;
+        this.Location = location;
+        this.Images = images;
+        this.questions = questions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
