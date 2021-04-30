@@ -19,4 +19,20 @@ public class Offer implements Serializable {
         this.price = price;
         this.action = action;
     }
+
+    public OfferId getOfferId() {
+        return offerId;
+    }
+
+    public PropertyId getPropertyId() {
+        return propertyId;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public Action getAction() {
+        return action;
+    }
 }

@@ -96,4 +96,8 @@ public class Property {
         offersList.add(offer);
         this.serializedOffers=Optional.ofNullable(offersList);
     }
+
+    public void modifyOffer(SerializedOffer serializedOffer){
+
+    }
 }

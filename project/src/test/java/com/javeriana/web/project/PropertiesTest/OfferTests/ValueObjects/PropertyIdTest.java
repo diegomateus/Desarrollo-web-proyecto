@@ -1,4 +1,4 @@
-package com.javeriana.web.project.PropertiesTest.OfferTests;
+package com.javeriana.web.project.PropertiesTest.OfferTests.ValueObjects;
 
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
 import com.javeriana.web.project.Shared.Domain.InvalidUUID;

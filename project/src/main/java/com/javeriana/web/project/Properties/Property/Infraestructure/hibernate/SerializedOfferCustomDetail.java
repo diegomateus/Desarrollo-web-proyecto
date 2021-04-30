@@ -48,7 +48,8 @@ public class SerializedOfferCustomDetail implements UserType {
                 List<HashMap<String,Object>> objecs=new ObjectMapper().readValue(value.get(),List.class);
                 response=objecs.stream().map(serializedOffer ->
                         new SerializedOffer((String) serializedOffer.get("id"),
-                                (Offer) serializedOffer.get("offer"))).collect(Collectors.toList());
+                                (double) serializedOffer.get("price"),
+                                (String) serializedOffer.get("action"))).collect(Collectors.toList());
             }
         }catch (Exception e){
             throw new HibernateException("Error at reading map",e);

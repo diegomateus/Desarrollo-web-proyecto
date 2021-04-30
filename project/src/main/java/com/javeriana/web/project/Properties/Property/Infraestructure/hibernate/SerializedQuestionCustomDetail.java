@@ -48,8 +48,12 @@ public class SerializedQuestionCustomDetail implements UserType {
             if(value.isPresent()){
                 List<HashMap<String,Object>> objecs=new ObjectMapper().readValue(value.get(),List.class);
                 response=objecs.stream().map(serializedQuestion ->
-                        new SerializedQuestion((String) serializedQuestion.get("id"),
-                                (Question) serializedQuestion.get("question"))).collect(Collectors.toList());
+                        new SerializedQuestion((String) serializedQuestion.get("idQuestion"),
+                                (String) serializedQuestion.get("question"),
+                                (String) serializedQuestion.get("questionDate"),
+                                (String) serializedQuestion.get("answerId"),
+                                (String) serializedQuestion.get("answerDate"),
+                                (String) serializedQuestion.get("answer"))).collect(Collectors.toList());
             }
         }catch (Exception e){
             throw new HibernateException("Error at reading map",e);

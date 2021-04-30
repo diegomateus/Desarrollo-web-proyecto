@@ -1,6 +1,10 @@
 package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Price;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -8,24 +12,23 @@ import java.util.Objects;
 public class SerializedOffer {
 
     private String offerId;
-    private Offer offer;
+    private double price;
+    private String action;
 
     public SerializedOffer() {
     }
 
-    public SerializedOffer(String offerId, Offer offer) {
+    public SerializedOffer(String offerId, double price, String action) {
         this.offerId = offerId;
-        this.offer = offer;
-    }
-
-    public Offer value(){
-        return this.offer;
+        this.price = price;
+        this.action = action;
     }
 
     public HashMap<String,Object> data(){
         HashMap<String, Object> data= new HashMap<>(){{
             put("id",offerId);
-            put("offer",offer);
+            put("price",price);
+            put("action",action);
         }};
         return data;
     }
@@ -35,11 +38,23 @@ public class SerializedOffer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SerializedOffer that = (SerializedOffer) o;
-        return Objects.equals(offerId, that.offerId) && Objects.equals(offer, that.offer);
+        return Objects.equals(offerId, that.offerId) && Objects.equals(price, that.price) && Objects.equals(action, that.action);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(offerId, offer);
+        return Objects.hash(offerId, price,action);
+    }
+
+    public String getOfferId() {
+        return offerId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getAction() {
+        return action;
     }
 }
