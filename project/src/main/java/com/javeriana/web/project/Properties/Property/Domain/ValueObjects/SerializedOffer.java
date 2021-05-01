@@ -46,6 +46,10 @@ public class SerializedOffer {
         return Objects.hash(offerId, price,action);
     }
 
+    public boolean equalsSerializedOfferId(SerializedOffer serializedOffer){
+        return this.offerId.equals((serializedOffer.getOfferId()));
+    }
+
     public String getOfferId() {
         return offerId;
     }

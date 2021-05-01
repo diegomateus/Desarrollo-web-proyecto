@@ -98,6 +98,70 @@ public class Property {
     }
 
     public void modifyOffer(SerializedOffer serializedOffer){
+        List<SerializedOffer> offersList=this.serializedOffers.get();
+        SerializedOffer serializedOfferActual=offersList.stream().
+                filter(offer->offer.equalsSerializedOfferId(serializedOffer)).findFirst().get();
+        offersList.remove(serializedOfferActual);
+        offersList.add(serializedOffer);
+        this.serializedOffers=Optional.ofNullable(offersList);
+    }
 
+    public void deleteOffer(String offerId) {
+        List<SerializedOffer> offersList=this.serializedOffers.get();
+        SerializedOffer serializedOfferActual=offersList.stream().
+                filter(offer->offer.getOfferId().equals(offerId)).findFirst().get();
+        offersList.remove(serializedOfferActual);
+    }
+
+    public PropertyId getPropertyId() {
+        return propertyId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Description getDescription() {
+        return description;
+    }
+
+    public BedroomsNumber getBedroomsNumber() {
+        return bedroomsNumber;
+    }
+
+    public BathroomsNumber getBathroomsNumber() {
+        return bathroomsNumber;
+    }
+
+    public PrivateArea getPrivateArea() {
+        return privateArea;
+    }
+
+    public BuiltArea getBuiltArea() {
+        return builtArea;
+    }
+
+    public ServiceLevel getServiceLevel() {
+        return serviceLevel;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public DeliveryDate getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }

@@ -1,6 +1,6 @@
 package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 
-import com.javeriana.web.project.Shared.Domain.PropertyTypeEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
 
 public class PropertyType {
     private PropertyTypeEnum value;

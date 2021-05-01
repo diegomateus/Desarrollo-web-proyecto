@@ -34,11 +34,15 @@ public class HibernateOfferRepository implements OfferRepository {
     }
 
     @Override
-    public Offer update(Offer offer, OfferId offerId) {
-        sessionFactory.getCurrentSession().saveOrUpdate(offerId.toString(),offer);
+    public Offer update(String offerId,Offer offer) {
+        sessionFactory.getCurrentSession().saveOrUpdate(offerId,offer);
         return sessionFactory.getCurrentSession().byId(aggregateClass).load(offerId);
     }
 
+    @Override
+    public void delete(Offer offer) {
+        sessionFactory.getCurrentSession().delete(offer);
+    }
 
     //TODO: revisar manyToOne de propertyId dentro de Offer en hbm.xml
 

@@ -2,9 +2,14 @@ package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
 
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
+import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 @Transactional("transactional-manager")
 public class HibernatePropertyRepository  implements PropertyRepository {
@@ -23,4 +28,17 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }
+
+    @Override
+    public Optional<Property> find(String propertyId) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId));
+    }
+
+    @Override
+    public Property updateSerializedOffer(String propertyId, Property property) {
+        sessionFactory.getCurrentSession().saveOrUpdate(propertyId,property);
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId);
+    }
+
+
 }

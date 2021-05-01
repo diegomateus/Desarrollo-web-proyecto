@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface OfferRepository {
     void save(Offer offer);
     Optional<Offer> find(String offerId);
-    Offer update(Offer offer, OfferId offerId);
+    Offer update(String offerId,Offer offer);
+    void delete(Offer offer);
 
     //TODO: Add other methods
 }
