@@ -2,7 +2,7 @@ package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
 
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
+import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +38,18 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     public Property updateSerializedOffer(String propertyId, Property property) {
         sessionFactory.getCurrentSession().saveOrUpdate(propertyId,property);
         return sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId);
+    }
+
+    @Override
+    public List<Property> filter(BedroomsNumber bedroomsNumber,
+                                 BathroomsNumber bathroomsNumber,
+                                 BuiltArea builtArea,
+                                 Condition condition,
+                                 DeliveryDate deliveryDate,
+                                 Location location,
+                                 PrivateArea privateArea) {
+        //sessionFactory.getCurrentSession()
+        return null;
     }
 
 

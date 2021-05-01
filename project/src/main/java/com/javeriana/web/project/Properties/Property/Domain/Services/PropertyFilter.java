@@ -1,22 +1,18 @@
-package com.javeriana.web.project.Properties.Property.Application.FilterProperties;
+package com.javeriana.web.project.Properties.Property.Domain.Services;
 
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
-import com.javeriana.web.project.Properties.Property.Domain.Services.PropertyFilter;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 
 import java.util.List;
 
-public class FilterProperties {
+public class PropertyFilter {
 
     private PropertyRepository repository;
-    private PropertyFilter propertiesFilterer;
 
-    public FilterProperties(PropertyRepository repository, PropertyFilter
-            propertiesFilterer) {
+    public PropertyFilter(PropertyRepository repository) {
         this.repository = repository;
-        this.propertiesFilterer = propertiesFilterer;
     }
 
     public List<Property> execute(BedroomsNumber bedroomsNumber,
@@ -25,8 +21,13 @@ public class FilterProperties {
                                   Condition condition,
                                   DeliveryDate deliveryDate,
                                   Location location,
-                                  PrivateArea privateArea
-                                  ){
-        return propertiesFilterer.execute(bedroomsNumber,bathroomsNumber,builtArea,condition,deliveryDate,location,privateArea);
+                                  PrivateArea privateArea){
+        List<Property> properties = repository.filter(bedroomsNumber,bathroomsNumber,builtArea,condition,deliveryDate,location,privateArea);
+        if(properties.isEmpty()){
+            //TO DO
+            //Crear throw de no hay
+        }
+
+        return properties;
     }
 }
