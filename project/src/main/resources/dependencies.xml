@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="MemoryRepositoryProperty" class="com.javeriana.web.project.Properties.Property.Infraestructure.InMemoryPropertyRepository"/>
+    <bean id="PropertyFinder" class="com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinder">
+        <constructor-arg ref="MemoryRepositoryProperty"/>
+    </bean>
+    <bean id="PropertyCreator" class="com.javeriana.web.project.Properties.Property.Aplication.Create.PropertyCreator">
+        <constructor-arg ref="MemoryRepositoryProperty"/>
+    </bean>
+
+    <bean id="MemoryRepositoryEmployee" class="com.javeriana.web.project.Employees.Employee.Infrastructure.InMemoryEmployeeRepository"/>
+    <bean id="EmployeeFinder" class="com.javeriana.web.project.Employees.Employee.Aplication.Find.EmployeeFinder">
+        <constructor-arg ref="MemoryRepositoryEmployee"/>
+    </bean>
+    <bean id="EmployeeCreator" class="com.javeriana.web.project.Employees.Employee.Aplication.Create.EmployeeCreator">
+        <constructor-arg ref="MemoryRepositoryEmployee"/>
+    </bean>
+
+</beans>

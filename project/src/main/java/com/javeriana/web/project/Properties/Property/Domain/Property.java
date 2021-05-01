@@ -1,6 +1,5 @@
 package com.javeriana.web.project.Properties.Property.Domain;
 
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -51,7 +50,13 @@ public class Property {
         this.serializedOffers = Optional.ofNullable(serializedOffers);
     }
 
-    public void updateProperty(String address, String propertyType, String city, String description, String bedroomsNumber, String bathroomsNumber, String privateArea, String builtArea, String serviceLevel, String condition, String deliveryDate, String location, String images, String questions){
+    public void updateProperty(Address address, PropertyType propertyType,
+                               City city, Description description, BedroomsNumber bedroomsNumber,
+                               BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
+                               ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
+                               Location location, Optional<List<Image>> images,
+                               Optional<List<SerializedQuestion>> serializedQuestions,
+                               Optional<List<SerializedOffer>> serializedOffers){
         this.address = address;
         this.propertyType = propertyType;
         this.city = city;
@@ -65,8 +70,16 @@ public class Property {
         this.deliveryDate = deliveryDate;
         this.location = location;
         this.images = images;
-        this.serializedQuestions = questions;
-        this.serializedOffers = offers;
+        this.serializedQuestions = serializedQuestions;
+        this.serializedOffers = serializedOffers;
+    }
+
+    public String address(){
+        return this.address.value();
+    }
+
+    public boolean equalsById(String otherId){
+        return this.propertyId.equals(new PropertyId(otherId));
     }
 
     @Override
@@ -74,24 +87,7 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return Objects.equals(propertyId, property.propertyId) &&
-                Objects.equals(address, property.address) &&
-                Objects.equals(propertyType, property.propertyType) &&
-                Objects.equals(city, property.city) &&
-                Objects.equals(description, property.description) &&
-                Objects.equals(bedroomsNumber, property.bedroomsNumber) &&
-                Objects.equals(bathroomsNumber, property.bathroomsNumber) &&
-                Objects.equals(privateArea, property.privateArea) &&
-                Objects.equals(builtArea, property.builtArea) &&
-                Objects.equals(serviceLevel, property.serviceLevel) &&
-                Objects.equals(condition, property.condition) &&
-                Objects.equals(deliveryDate, property.deliveryDate) &&
-                Objects.equals(location, property.location) &&
-                Objects.equals(images, property.images) &&
-                Objects.equals(serializedQuestions, property.serializedQuestions);
-    }
-
-
+        return Objects.equals(propertyId, property.propertyId) && Objects.equals(address, property.address) && Objects.equals(propertyType, property.propertyType) && Objects.equals(city, property.city) && Objects.equals(description, property.description) && Objects.equals(bedroomsNumber, property.bedroomsNumber) && Objects.equals(bathroomsNumber, property.bathroomsNumber) && Objects.equals(privateArea, property.privateArea) && Objects.equals(builtArea, property.builtArea) && Objects.equals(serviceLevel, property.serviceLevel) && Objects.equals(condition, property.condition) && Objects.equals(deliveryDate, property.deliveryDate) && Objects.equals(location, property.location) && Objects.equals(images, property.images) && Objects.equals(serializedQuestions, property.serializedQuestions) && Objects.equals(serializedOffers, property.serializedOffers);
     }
 
     public Optional<List<HashMap<String,Object>>> getImages(){

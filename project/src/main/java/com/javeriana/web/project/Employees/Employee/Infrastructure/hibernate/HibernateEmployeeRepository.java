@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate;
+/*package com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
@@ -24,4 +24,4 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }
-}
+}*/

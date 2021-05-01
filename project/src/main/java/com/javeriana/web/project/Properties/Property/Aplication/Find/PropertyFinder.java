@@ -3,6 +3,8 @@ package com.javeriana.web.project.Properties.Property.Aplication.Find;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.PropertyDomainFinder;
+import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyId;
+
 import java.util.Optional;
 
 public class PropertyFinder {
@@ -14,7 +16,7 @@ public class PropertyFinder {
     }
 
     public Property execute (String propertyId){
-         Optional<Property> property = finder.execute(propertyId);
+         Optional<Property> property = finder.execute(new PropertyId(propertyId).value());
          return property.get();
     }
 }

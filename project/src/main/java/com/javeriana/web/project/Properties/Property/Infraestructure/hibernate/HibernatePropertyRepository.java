@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
+/*package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
 
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
@@ -24,3 +24,4 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         sessionFactory.getCurrentSession().clear();
     }
 }
+*/

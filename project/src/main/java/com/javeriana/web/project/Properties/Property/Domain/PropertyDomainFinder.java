@@ -1,7 +1,6 @@
 package com.javeriana.web.project.Properties.Property.Domain;
 
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
-
 import java.util.Optional;
 
 public class PropertyDomainFinder {
