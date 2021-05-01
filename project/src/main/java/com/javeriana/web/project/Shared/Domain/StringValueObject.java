@@ -9,6 +9,10 @@ public class StringValueObject {
         this.value = value;
     }
 
+    public StringValueObject() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

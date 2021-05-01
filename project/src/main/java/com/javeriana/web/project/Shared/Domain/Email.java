@@ -9,6 +9,10 @@ public class Email extends StringValueObject{
         this.validate(value);
     }
 
+    public Email() {
+        super();
+    }
+
     private void validate(String value) {
         this.lengthRule(value);
         this.regexRule(value);

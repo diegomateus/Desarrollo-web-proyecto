@@ -10,6 +10,9 @@ public class EmployeePassword extends StringValueObject {
         this.validate(value);
     }
 
+    public EmployeePassword() {
+    }
+
     private void validate(String value) {
         this.lengthRule(value);
     }

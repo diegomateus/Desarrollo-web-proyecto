@@ -6,6 +6,9 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class EmployeeFirstName extends StringValueObject {
 
+    public EmployeeFirstName(){
+    }
+
     public EmployeeFirstName(String value) {
         super(value);
         this.validate(value);

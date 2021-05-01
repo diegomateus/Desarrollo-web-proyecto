@@ -32,17 +32,21 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public boolean authenticate(String email, String password) {
+    public Optional<Employee> authenticate(String email, String password) {
         Optional<Employee> searchedEmployee = this.getByEmail(email);
         if (searchedEmployee.isPresent()) {
             Employee employee = searchedEmployee.get();
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(STRENGTH);
-            return encoder.matches(password, employee.data().get("password"));
+            //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(STRENGTH);
+            //if (encoder.matches(password, employee.data().get("password"))) {
+            if (password.equals(employee.data().get("password"))) {
+                return searchedEmployee;
+            }
         }
-        return false;
+        return Optional.ofNullable(null);
     }
 
-    private Optional<Employee> getByEmail(String email) {
+    @Override
+    public Optional<Employee> getByEmail(String email) {
         try {
             String sql = "SELECT * FROM EMPLOYEES WHERE email = :employee_email";
             NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);

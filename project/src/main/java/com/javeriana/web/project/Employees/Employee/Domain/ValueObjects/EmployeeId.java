@@ -8,4 +8,7 @@ public class EmployeeId extends CustomUUID {
         super(value);
     }
 
+    public EmployeeId() {
+    }
+
 }

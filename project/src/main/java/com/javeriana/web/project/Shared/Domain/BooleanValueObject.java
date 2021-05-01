@@ -10,6 +10,10 @@ public class BooleanValueObject {
         this.value = value;
     }
 
+    public BooleanValueObject() {
+
+    }
+
     public Boolean value() {
         return value;
     }
