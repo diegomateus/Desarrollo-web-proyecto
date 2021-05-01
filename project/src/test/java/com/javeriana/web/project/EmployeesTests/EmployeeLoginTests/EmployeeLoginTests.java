@@ -19,11 +19,10 @@ public class EmployeeLoginTests {
     @Test
     void should_return_token() {
         EmployeeRepository repository = mock(EmployeeRepository.class);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
         Employee employee = new Employee(
                 new EmployeeId("c6575120-a952-4bff-b999-a7e1827f8bb7"),
                 new EmployeeEmail("test@example.com"),
-                new EmployeePassword(encoder.encode("1234")),
+                new EmployeePassword("1234"),
                 new EmployeeFirstName("John"),
                 new EmployeeLastName("Doe"),
                 new EmployeeIsAdministrator(false));

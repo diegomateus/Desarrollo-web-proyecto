@@ -36,9 +36,8 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
         Optional<Employee> searchedEmployee = this.getByEmail(email);
         if (searchedEmployee.isPresent()) {
             Employee employee = searchedEmployee.get();
-            //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(STRENGTH);
-            //if (encoder.matches(password, employee.data().get("password"))) {
-            if (password.equals(employee.data().get("password"))) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(STRENGTH);
+            if (encoder.matches(password, employee.data().get("password"))) {
                 return searchedEmployee;
             }
         }
