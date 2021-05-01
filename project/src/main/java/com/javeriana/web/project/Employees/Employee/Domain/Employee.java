@@ -37,6 +37,7 @@ public class Employee {
             put("email", employeeEmail.value());
             put("first_name", employeeFirstName.value());
             put("last_name", employeeLastName.value());
+            put("password", employeePassword.value());
             put("is_admin", employeeIsAdministrator.value().toString());
         }};
         return data;
