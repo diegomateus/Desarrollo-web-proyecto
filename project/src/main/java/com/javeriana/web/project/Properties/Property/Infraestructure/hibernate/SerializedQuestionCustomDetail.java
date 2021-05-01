@@ -1,9 +1,7 @@
 package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestion;
-import com.javeriana.web.project.Questions.Question.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;

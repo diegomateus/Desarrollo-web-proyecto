@@ -5,7 +5,9 @@ import com.javeriana.web.project.Questions.Question.Domain.Ports.QuestionReposit
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional("transactional-manager")
 public class HibernateQuestionRepository implements QuestionRepository {
 
     protected final SessionFactory sessionFactory;
