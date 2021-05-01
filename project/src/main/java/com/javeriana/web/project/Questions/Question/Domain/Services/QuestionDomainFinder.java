@@ -19,7 +19,7 @@ public class QuestionDomainFinder {
     public Optional<Question> execute(String questionId){
         Optional<Question> question = repository.find(questionId);
         if(question.isEmpty()){
-            throw new OfferNotExist("Offer with id: "+questionId+" not exist");
+            throw new OfferNotExist("Question with id: "+questionId+" not exist");
         }
         return question;
     }

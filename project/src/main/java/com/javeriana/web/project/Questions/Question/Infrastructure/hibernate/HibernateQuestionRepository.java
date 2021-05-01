@@ -4,8 +4,12 @@ package com.javeriana.web.project.Questions.Question.Infrastructure.hibernate;
 import com.javeriana.web.project.Questions.Question.Domain.Ports.QuestionRepository;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Transactional("transactional-manager")
 public class HibernateQuestionRepository implements QuestionRepository {
@@ -24,6 +28,25 @@ public class HibernateQuestionRepository implements QuestionRepository {
         sessionFactory.getCurrentSession().save(question);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
+    }
+
+    @Override
+    public Optional<Question> find(String questionId) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(questionId));
+    }
+
+    @Override
+    public Question update(String questionId, Question question) {
+        sessionFactory.getCurrentSession().saveOrUpdate(questionId,question);
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(questionId);
+    }
+
+    @Override
+    public List findUnAnsweredQuestions() {
+        String hql = "FROM Question E WHERE E.answer IS NULL OR E.answer = ''";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        List results = query.list();
+        return results;
     }
 
 }

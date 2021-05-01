@@ -15,12 +15,16 @@ public class QuestionAnswerer {
     private QuestionDomainFinder questionDomainFinder;
     private EventBus eventBus;
 
-    public QuestionAnswerer (QuestionRepository repository){
+    public QuestionAnswerer(QuestionRepository repository, QuestionDomainFinder questionDomainFinder, EventBus eventBus) {
         this.repository = repository;
+        this.questionDomainFinder = questionDomainFinder;
+        this.eventBus = eventBus;
     }
 
-    public void execute(String questionId, String answer){
+    public Question execute(String questionId, String answer, Question question){
         Optional<Question> actualQuestion= questionDomainFinder.execute(questionId);
-
+        question.answerQuestion(question);
+        repository.update(questionId,question);
+        return question;
     }
 }

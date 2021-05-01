@@ -2,6 +2,7 @@ package com.javeriana.web.project.Questions.Question.Domain;
 
 import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.*;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
+import com.javeriana.web.project.Shared.Domain.Questions.QuestionAnswererDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Questions.QuestionAskerDomainEvent;
 
 import java.io.Serializable;
@@ -59,6 +60,6 @@ public class Question extends AggregateRoot implements Serializable {
     }
 
     public void answerQuestion(Question question){
-
+        question.record(new QuestionAnswererDomainEvent(this.questionId.value(),this.text.value(),this.propertyId.value(),this.date.value(),this.answer.value()));
     }
 }
