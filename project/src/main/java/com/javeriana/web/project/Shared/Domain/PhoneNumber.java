@@ -1,16 +1,18 @@
 package com.javeriana.web.project.Shared.Domain;
 
+import com.javeriana.web.project.Shared.InvalidPhoneNumber;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Email extends StringValueObject{
+public class PhoneNumber extends StringValueObject{
 
-    public Email(String value) {
+    public PhoneNumber(String value) {
         super(value);
-        this.validate(value);
+        validate(value);
     }
 
-    public Email() {
+    public PhoneNumber() {
     }
 
     private void validate(String value) {
@@ -19,16 +21,16 @@ public class Email extends StringValueObject{
     }
 
     private void regexRule(String value) {
-        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^[0-9]*$");
         Matcher matcher = pattern.matcher(value);
         if(!matcher.matches()) {
-            throw new InvalidEmail("Invalid email");
+            throw new InvalidPhoneNumber("Invalid phone number format");
         }
     }
 
     private void lengthRule(String value) {
-        if(value.length() < 5 || value.length() > 200) {
-            throw new InvalidLength("Invalid number of characters");
+        if (value.length() > 15 || value.length() < 7) {
+            throw new InvalidLength("Invalid phone number length");
         }
     }
 }
