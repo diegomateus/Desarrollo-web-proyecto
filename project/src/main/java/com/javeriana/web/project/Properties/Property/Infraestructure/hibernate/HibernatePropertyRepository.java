@@ -1,10 +1,12 @@
-/*package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
+package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
 
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Transactional("transactional-manager")
 public class HibernatePropertyRepository  implements PropertyRepository {
@@ -23,5 +25,14 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }
+
+    @Override
+    public Optional<Property> find(String propertyId) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId));
+    }
+
+    @Override
+    public void update(String propertyId, Property property) {
+
+    }
 }
-*/

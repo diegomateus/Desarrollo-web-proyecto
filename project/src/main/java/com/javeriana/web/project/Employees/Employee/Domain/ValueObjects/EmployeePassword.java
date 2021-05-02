@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class EmployeePassword extends StringValueObject {
 
+    private EmployeePassword(){
+        super("");
+    }
+
     public EmployeePassword(String value) {
         super(value);
         this.validate(value);

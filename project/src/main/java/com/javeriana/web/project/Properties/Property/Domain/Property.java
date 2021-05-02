@@ -22,16 +22,16 @@ public class Property {
     private Optional<List<SerializedQuestion>> serializedQuestions;
     private Optional<List<SerializedOffer>> serializedOffers;
 
-    public Property() {
+    private Property() {
     }
 
     public Property(PropertyId propertyId, Address address, PropertyType propertyType,
                     City city, Description description, BedroomsNumber bedroomsNumber,
                     BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
                     ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
-                    Location location, List<Image> images,
-                    List<SerializedQuestion> serializedQuestions,
-                    List<SerializedOffer> serializedOffers) {
+                    Location location, Optional<List<Image>> images,
+                    Optional<List<SerializedQuestion>> serializedQuestions,
+                    Optional<List<SerializedOffer>> serializedOffers) {
         this.propertyId = propertyId;
         this.address = address;
         this.propertyType = propertyType;
@@ -45,9 +45,26 @@ public class Property {
         this.condition = condition;
         this.deliveryDate = deliveryDate;
         this.location = location;
-        this.images = Optional.ofNullable(images);
-        this.serializedQuestions = Optional.ofNullable(serializedQuestions);
-        this.serializedOffers = Optional.ofNullable(serializedOffers);
+        this.images = images;
+        this.serializedQuestions = serializedQuestions;
+        this.serializedOffers = serializedOffers;
+    }
+    
+    public static Property create(PropertyId propertyId,
+                                  Address address,
+                                  PropertyType propertyType,
+                                  City city,
+                                  Description description,
+                                  BedroomsNumber bedroomsNumber,
+                                  BathroomsNumber bathroomsNumber,
+                                  PrivateArea privateArea,
+                                  BuiltArea builtArea,
+                                  ServiceLevel serviceLevel,
+                                  Condition condition,
+                                  DeliveryDate deliveryDate,
+                                  Location location){
+        return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,location,Optional.ofNullable(null),Optional.ofNullable(null),Optional.ofNullable(null));
+        
     }
 
     public void updateProperty(Address address, PropertyType propertyType,
@@ -74,8 +91,23 @@ public class Property {
         this.serializedOffers = serializedOffers;
     }
 
-    public String address(){
-        return this.address.value();
+    public HashMap<String,String> data(){
+        HashMap<String,String> data = new HashMap<String,String>(){{
+            put("id",propertyId.value());
+            put("address",address.value());
+            put("type",propertyType.value().toString());
+            put("city",city.value());
+            put("bedRooms",String.valueOf(bedroomsNumber.value()));
+            put("badRooms",String.valueOf(bathroomsNumber.value()));
+            put("privateArea",String.valueOf(privateArea.value()));
+            put("builtArea",String.valueOf(builtArea.value()));
+            put("serviceLevel",String.valueOf(serviceLevel.value()));
+            put("condition",condition.value().toString());
+            put("deliveryDate",deliveryDate.value().toString());
+
+        }};
+
+        return data;
     }
 
     public boolean equalsById(String otherId){

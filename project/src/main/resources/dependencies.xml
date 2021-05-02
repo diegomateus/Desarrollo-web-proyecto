@@ -3,20 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="MemoryRepositoryProperty" class="com.javeriana.web.project.Properties.Property.Infraestructure.InMemoryPropertyRepository"/>
-    <bean id="PropertyFinder" class="com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinder">
-        <constructor-arg ref="MemoryRepositoryProperty"/>
+    <bean id ="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate.HibernateEmployeeRepository"/>
+    <bean id ="hibernatePropertyRepository" class="com.javeriana.web.project.Properties.Property.Infraestructure.hibernate.HibernatePropertyRepository"/>
+
+    <bean id="propertyFinder" class="com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinder">
+        <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
-    <bean id="PropertyCreator" class="com.javeriana.web.project.Properties.Property.Aplication.Create.PropertyCreator">
-        <constructor-arg ref="MemoryRepositoryProperty"/>
+    <bean id="propertyCreator" class="com.javeriana.web.project.Properties.Property.Aplication.Create.PropertyCreator">
+        <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="MemoryRepositoryEmployee" class="com.javeriana.web.project.Employees.Employee.Infrastructure.InMemoryEmployeeRepository"/>
-    <bean id="EmployeeFinder" class="com.javeriana.web.project.Employees.Employee.Aplication.Find.EmployeeFinder">
-        <constructor-arg ref="MemoryRepositoryEmployee"/>
+    <bean id="employeeFinder" class="com.javeriana.web.project.Employees.Employee.Aplication.Find.EmployeeFinder">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
-    <bean id="EmployeeCreator" class="com.javeriana.web.project.Employees.Employee.Aplication.Create.EmployeeCreator">
-        <constructor-arg ref="MemoryRepositoryEmployee"/>
+    <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Aplication.Create.EmployeeCreator">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
 
 </beans>

@@ -2,6 +2,7 @@ package com.javeriana.web.project.Employees.Employee.Domain;
 
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.*;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Employee {
@@ -12,9 +13,7 @@ public class Employee {
     private EmployeeLastName employeeLastName;
     private EmployeeIsAdministrator employeeIsAdministrator;
 
-    public Employee(){
-
-    }
+    private Employee(){ }
 
     public Employee(
             EmployeeId employeeId,
@@ -44,8 +43,22 @@ public class Employee {
         this.employeeIsAdministrator = employeeIsAdministrator;
     }
 
-    public String email(){
-        return this.employeeEmail.value();
+    public HashMap<String,String> data(){
+        HashMap<String,String> data = new HashMap<String,String>(){{
+           put("id",employeeId.value());
+           put("name",employeeFirstName.value());
+           put("lastName",employeeLastName.value());
+           put("email",employeeEmail.value());
+
+           if(employeeIsAdministrator.value()){
+               put("admin","true");
+           }
+           else{
+               put("admin","false");
+           }
+        }};
+
+        return data;
     }
 
     public boolean equalsById(String otherId){

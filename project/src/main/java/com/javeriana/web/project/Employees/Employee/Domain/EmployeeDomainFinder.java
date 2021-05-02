@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Employees.Employee.Domain;
 
+import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
 
 import java.util.Optional;

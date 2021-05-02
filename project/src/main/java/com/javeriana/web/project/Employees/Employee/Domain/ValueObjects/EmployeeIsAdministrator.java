@@ -4,6 +4,10 @@ import com.javeriana.web.project.Shared.Domain.BooleanValueObject;
 
 public class EmployeeIsAdministrator extends BooleanValueObject {
 
+    private EmployeeIsAdministrator(){
+        super(false);
+    }
+
     public EmployeeIsAdministrator(Boolean value) {
         super(value);
     }
