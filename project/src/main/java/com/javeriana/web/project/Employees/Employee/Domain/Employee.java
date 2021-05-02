@@ -50,6 +50,7 @@ public class Employee {
            put("name",employeeFirstName.value());
            put("lastName",employeeLastName.value());
            put("email",employeeEmail.value());
+            put("password",employeePassword.value());
            put("is_admin", employeeIsAdministrator.value().toString());
         }};
 

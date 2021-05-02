@@ -9,7 +9,8 @@
 
     <bean id="EmployeeLogin" class="com.javeriana.web.project.Employees.Employee.Application.Login.EmployeeLogin">
         <constructor-arg ref="JWTTokenGenerator"/>
-        <constructor-arg ref="HibernateEmployeeRepository"/>
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
     
     <bean id ="hibernatePropertyRepository" class="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.HibernatePropertyRepository"/>
 

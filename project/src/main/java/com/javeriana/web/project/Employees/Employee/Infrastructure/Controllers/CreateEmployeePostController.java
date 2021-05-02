@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Infrastructure;
+package com.javeriana.web.project.Employees.Employee.Infrastructure.Controllers;
 
 import com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeAlreadyExist;

@@ -4,9 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication(exclude=HibernateJpaAutoConfiguration.class)
+@SpringBootApplication(exclude= {HibernateJpaAutoConfiguration.class, SecurityAutoConfiguration.class})
 @ImportResource("classpath:dependencies.xml")
 public class ProjectApplication {
 

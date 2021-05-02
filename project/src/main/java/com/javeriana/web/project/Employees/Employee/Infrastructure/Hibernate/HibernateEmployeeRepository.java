@@ -2,6 +2,7 @@ package com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
+import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeePassword;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
@@ -50,11 +51,21 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
             String sql = "SELECT * FROM EMPLOYEES WHERE email = :employee_email";
             NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
             query.addEntity(Employee.class);
-            query.setParameter("employee_email",email);
+            query.setParameter("employee_email", email);
             return Optional.ofNullable((Employee) query.getSingleResult());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return Optional.ofNullable(null);
         }
     }
+
+    @Override
+    public Optional<Employee> find(String employeeId) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new EmployeeId(employeeId)));
+    }
+
+    @Override
+    public void update(String employeeId, Employee employee) {
+
+    }
 }
+
