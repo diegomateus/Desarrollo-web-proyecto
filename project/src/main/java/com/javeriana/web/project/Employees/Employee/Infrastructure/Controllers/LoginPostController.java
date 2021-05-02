@@ -26,11 +26,6 @@ public class LoginPostController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
-    @GetMapping(value = "/test")
-    public ResponseEntity test() {
-        return ResponseEntity.status(HttpStatus.OK).body(null);
-    }
-
     static class Request {
         private String email;
         private String password;
