@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Employees.Employee.Application.Find;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
-import com.javeriana.web.project.Employees.Shared.Application.Response;
+import com.javeriana.web.project.Shared.Application.Response;
 
 import java.util.HashMap;
 

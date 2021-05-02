@@ -1,16 +1,16 @@
 package com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
+import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
+import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.WrongCredentials;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;
-import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeePassword;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.NoResultException;
 import java.util.Optional;
 
 @Transactional("transactional-manager")
@@ -33,28 +33,31 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public Optional<Employee> authenticate(String email, String password) {
-        Optional<Employee> searchedEmployee = this.getByEmail(email);
-        if (searchedEmployee.isPresent()) {
-            Employee employee = searchedEmployee.get();
+    public Employee authenticate(String email, String password) {
+        try {
+            Employee employee = this.getByEmail(email);
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(STRENGTH);
             if (encoder.matches(password, employee.data().get("password"))) {
-                return searchedEmployee;
+                return employee;
             }
+            else{
+                throw new WrongCredentials("Wrong username or password");
+            }
+        } catch (EmployeeNotExist e) {
+            throw new WrongCredentials("Wrong username or password");
         }
-        return Optional.ofNullable(null);
     }
 
     @Override
-    public Optional<Employee> getByEmail(String email) {
+    public Employee getByEmail(String email) {
         try {
             String sql = "SELECT * FROM EMPLOYEES WHERE email = :employee_email";
             NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
             query.addEntity(Employee.class);
             query.setParameter("employee_email", email);
-            return Optional.ofNullable((Employee) query.getSingleResult());
+            return (Employee) query.getSingleResult();
         } catch (Exception e) {
-            return Optional.ofNullable(null);
+            throw new EmployeeNotExist("Employee not found");
         }
     }
 

@@ -7,9 +7,9 @@ import java.util.Optional;
 public interface EmployeeRepository {
     void save(Employee employee);
 
-    public Optional<Employee> authenticate(String email, String password);
+    public Employee authenticate(String email, String password);
 
-    public Optional<Employee> getByEmail(String email);
+    public Employee getByEmail(String email);
     //TODO: Add other methods
     Optional<Employee> find (String employeeId);
     
