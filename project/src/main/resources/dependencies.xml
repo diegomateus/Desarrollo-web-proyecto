@@ -11,4 +11,8 @@
         <constructor-arg ref="JWTTokenGenerator"/>
         <constructor-arg ref="HibernateEmployeeRepository"/>
     </bean>
+
+    <bean id="EmployeeDeleter" class="com.javeriana.web.project.Employees.Employee.Application.DeleteEmployee.EmployeeDeleter">
+        <constructor-arg ref="HibernateEmployeeRepository"/>
+    </bean>
 </beans>
