@@ -11,6 +11,7 @@ public class Email extends StringValueObject{
     }
 
     public Email() {
+        super();
     }
 
     private void validate(String value) {

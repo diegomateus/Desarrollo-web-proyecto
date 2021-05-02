@@ -4,13 +4,17 @@ import java.util.Objects;
 
 public class BooleanValueObject {
 
-    protected boolean value;
+    protected Boolean value;
 
     public BooleanValueObject(boolean value) {
         this.value = value;
     }
 
-    public boolean value() {
+    public BooleanValueObject() {
+
+    }
+
+    public Boolean value() {
         return value;
     }
 

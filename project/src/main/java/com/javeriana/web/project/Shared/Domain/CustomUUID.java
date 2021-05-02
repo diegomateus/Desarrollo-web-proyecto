@@ -12,7 +12,6 @@ public class CustomUUID extends StringValueObject implements Serializable {
     }
 
     public CustomUUID() {
-        super();
     }
 
     private void validate(String value) {
