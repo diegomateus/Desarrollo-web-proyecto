@@ -6,6 +6,11 @@ public class EmployeeEmail extends Email {
     public EmployeeEmail() {
     }
 
+    private EmployeeEmail(){
+        super("");
+
+    }
+
     public EmployeeEmail(String value) {
         super(value);
     }

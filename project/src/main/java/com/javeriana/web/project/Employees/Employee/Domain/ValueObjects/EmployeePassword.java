@@ -8,7 +8,8 @@ public class EmployeePassword extends StringValueObject {
 
     private final int STRENGTH = 12;
 
-    public EmployeePassword() {
+    private EmployeePassword(){
+        super("");
     }
 
     public EmployeePassword(String value) {

@@ -11,4 +11,7 @@ public interface EmployeeRepository {
 
     public Optional<Employee> getByEmail(String email);
     //TODO: Add other methods
+    Optional<Employee> find (String employeeId);
+    
+    void update (String employeeId,Employee employee);
 }
