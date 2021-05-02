@@ -1,13 +1,13 @@
 package com.javeriana.web.project.PropertiesTest.PropertyTest;
 
-import com.javeriana.web.project.Properties.Property.Aplication.Create.PropertyCreator;
-import com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinder;
-import com.javeriana.web.project.Properties.Property.Aplication.Update.PropertyModifier;
+import com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator;
+import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
+import com.javeriana.web.project.Properties.Property.Application.Update.PropertyModifier;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
-import com.javeriana.web.project.Shared.Domain.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.PropertyTypeEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;

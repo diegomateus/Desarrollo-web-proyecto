@@ -1,12 +1,12 @@
-package com.javeriana.web.project.Properties.Property.Infraestructure;
+package com.javeriana.web.project.Properties.Property.Infrastructure;
 
-import com.javeriana.web.project.Properties.Property.Aplication.Create.PropertyCreator;
+import com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyAlreadyExist;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestion;
-import com.javeriana.web.project.Shared.Domain.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.PropertyTypeEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

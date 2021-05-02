@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Property.Aplication.Find;
+package com.javeriana.web.project.Properties.Property.Application.Find;
 
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;

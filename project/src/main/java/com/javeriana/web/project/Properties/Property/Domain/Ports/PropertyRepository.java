@@ -9,6 +9,5 @@ public interface PropertyRepository {
     void save(Property property);
     Optional<Property> find(String propertyId);
     Property updateSerializedOffer(String propertyId, Property property);
-    Optional<Property> find (String propertyId);
     void update (String propertyId, Property property);
 }

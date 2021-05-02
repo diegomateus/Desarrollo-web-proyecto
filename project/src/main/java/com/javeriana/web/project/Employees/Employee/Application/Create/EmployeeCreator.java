@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Aplication.Create;
+package com.javeriana.web.project.Employees.Employee.Application.Create;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.EmployeeDomainFinder;

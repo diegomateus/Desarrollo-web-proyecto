@@ -1,10 +1,11 @@
-package com.javeriana.web.project.Properties.Property.Aplication.Update;
+package com.javeriana.web.project.Properties.Property.Application.Update;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.PropertyDomainFinder;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
-import com.javeriana.web.project.Shared.Domain.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.PropertyTypeEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;

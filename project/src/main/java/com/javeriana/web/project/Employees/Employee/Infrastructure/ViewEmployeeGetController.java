@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Employees.Employee.Infrastructure;
 
-import com.javeriana.web.project.Employees.Employee.Aplication.Find.EmployeeFinder;
-import com.javeriana.web.project.Employees.Employee.Aplication.Find.EmployeeFinderResponse;
+import com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder;
+import com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinderResponse;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

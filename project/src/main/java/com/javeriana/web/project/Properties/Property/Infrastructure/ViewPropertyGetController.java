@@ -1,7 +1,7 @@
-package com.javeriana.web.project.Properties.Property.Infraestructure;
+package com.javeriana.web.project.Properties.Property.Infrastructure;
 
-import com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinder;
-import com.javeriana.web.project.Properties.Property.Aplication.Find.PropertyFinderResponse;
+import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
+import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinderResponse;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.javeriana.web.project.Employees.Employee.Infrastructure;
 
-import com.javeriana.web.project.Employees.Employee.Aplication.Create.EmployeeCreator;
+import com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeAlreadyExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
