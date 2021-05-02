@@ -6,7 +6,6 @@ import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Seriali
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +39,8 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         return sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId);
     }
 
+    public void update(String propertyId, Property property) {
+
+    }
 
 }
