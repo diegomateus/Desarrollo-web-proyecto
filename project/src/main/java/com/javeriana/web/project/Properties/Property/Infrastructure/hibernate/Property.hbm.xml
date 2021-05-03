@@ -46,11 +46,11 @@
         </component>
 
         <component name="condition" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Condition" access="field">
-            <property name="value" column="private_area" access="field" type="string"/>
+            <property name="value" column="condition" access="field" type="string"/>
         </component>
 
         <component name="deliveryDate" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.DeliveryDate" access="field">
-            <property name="value" column="delivery_date" access="field" type="java.time.LocalDate;"/>
+            <property name="value" column="delivery_date" access="field" type="java.time.LocalDate"/>
         </component>
 
         <component name="location" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Location" access="field">
@@ -61,7 +61,7 @@
             <property name="longitude" column="longitude" access="field" type="Long"/>
         </component>
 
-        <property name="images" column="image" access="field">
+        <property name="images" column="images" access="field">
             <type name="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.ImagesCustomDetail"></type>
         </property>
 
