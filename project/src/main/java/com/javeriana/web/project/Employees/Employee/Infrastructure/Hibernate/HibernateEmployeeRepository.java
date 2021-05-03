@@ -51,7 +51,7 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
     @Override
     public Employee getByEmail(String email) {
         try {
-            String sql = "SELECT * FROM EMPLOYEES WHERE email = :employee_email";
+            String sql = "SELECT * FROM employees WHERE email = :employee_email";
             NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
             query.addEntity(Employee.class);
             query.setParameter("employee_email", email);
