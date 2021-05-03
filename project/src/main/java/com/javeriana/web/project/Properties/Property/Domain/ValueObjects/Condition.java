@@ -8,4 +8,8 @@ public class Condition {
     public Condition(PropertyConditionEnum value) {
         this.value = value;
     }
+
+    public PropertyConditionEnum value() {
+        return this.value;
+    }
 }

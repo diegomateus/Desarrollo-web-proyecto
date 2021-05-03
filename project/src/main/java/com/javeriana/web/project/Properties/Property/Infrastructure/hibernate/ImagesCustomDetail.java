@@ -1,8 +1,7 @@
-package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
+package com.javeriana.web.project.Properties.Property.Infrastructure.hibernate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javeriana.web.project.Properties.Offer.Domain.Offer;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
+import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
@@ -18,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class SerializedOfferCustomDetail implements UserType {
+public class ImagesCustomDetail implements UserType {
     @Override
     public int[] sqlTypes() {
         return new int[] {Types.LONGNVARCHAR};
@@ -41,15 +40,14 @@ public class SerializedOfferCustomDetail implements UserType {
 
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-        List<SerializedOffer> response=null;
+        List<Image> response=null;
         try {
             Optional<String> value= Optional.ofNullable(rs.getString(names[0]));
             if(value.isPresent()){
                 List<HashMap<String,Object>> objecs=new ObjectMapper().readValue(value.get(),List.class);
-                response=objecs.stream().map(serializedOffer ->
-                        new SerializedOffer((String) serializedOffer.get("id"),
-                                (double) serializedOffer.get("price"),
-                                (String) serializedOffer.get("action"))).collect(Collectors.toList());
+                response=objecs.stream().map(image ->
+                        new Image((String) image.get("id"),
+                        (String) image.get("image"))).collect(Collectors.toList());
             }
         }catch (Exception e){
             throw new HibernateException("Error at reading map",e);
@@ -59,13 +57,13 @@ public class SerializedOfferCustomDetail implements UserType {
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
-        Optional<List<SerializedOffer>> offers=(value == null) ? Optional.empty() : (Optional<List<SerializedOffer>>) value;
-        try{
-            if(offers.isEmpty()){
+        Optional<List<Image>> images=(value == null) ? Optional.empty() : (Optional<List<Image>>) value;
+        try {
+            if(images.isEmpty()){
                 st.setNull(index,Types.VARCHAR);
             }else{
                 ObjectMapper mapper = new ObjectMapper();
-                List<HashMap<String,Object>> objects= offers.get().stream().map(serializedOffer -> serializedOffer.data()).collect(Collectors.toList());
+                List<HashMap<String,Object>> objects= images.get().stream().map(image->image.data()).collect(Collectors.toList());
                 String serializedList= mapper.writeValueAsString(objects).replace("\\","");
                 st.setString(index,serializedList);
             }

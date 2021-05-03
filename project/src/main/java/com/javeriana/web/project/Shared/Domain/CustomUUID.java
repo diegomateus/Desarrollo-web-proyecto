@@ -11,6 +11,9 @@ public class CustomUUID extends StringValueObject implements Serializable {
         this.validate(value);
     }
 
+    public CustomUUID() {
+    }
+
     private void validate(String value) {
         this.validateUUIDFormatRule(value);
     }

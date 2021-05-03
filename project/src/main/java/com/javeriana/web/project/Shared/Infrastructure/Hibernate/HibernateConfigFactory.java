@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Shared.Infrastructure;
+package com.javeriana.web.project.Shared.Infrastructure.Hibernate;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.cfg.AvailableSettings;
@@ -10,7 +10,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
-
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -27,9 +26,11 @@ public class HibernateConfigFactory {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
 
-        FileSystemResource resource1 = new FileSystemResource(".\\src\\main\\java\\com\\javeriana\\web\\project\\Employees\\Employee\\Infrastructure\\hibernate\\Employee.hbm.xml");
+        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Employees/Employee/Infrastructure/hibernate/Employee.hbm.xml");
+        //FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Properties/Property/Infraestructure/hibernate/Property.hbm.xml");
 
         sessionFactory.setMappingLocations(resource1);
+        //sessionFactory.setMappingLocations(resource2);
         return sessionFactory;
     }
 

@@ -1,7 +1,7 @@
-package com.javeriana.web.project.Properties.Property.Infraestructure.hibernate;
+package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibernate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
+import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AssignedEmployee;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
@@ -12,25 +12,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class ImagesCustomDetail implements UserType {
+public class AssignedEmployeeCustomType implements UserType {
     @Override
     public int[] sqlTypes() {
-        return new int[] {Types.LONGNVARCHAR};
+        return new int[] {Types.VARCHAR};
     }
 
     @Override
     public Class returnedClass() {
-        return List.class;
+        return AssignedEmployee.class;
     }
 
     @Override
     public boolean equals(Object x, Object y) throws HibernateException {
-        return Objects.equals(x,y);
+        return Objects.equals(x, y);
     }
 
     @Override
@@ -40,36 +38,33 @@ public class ImagesCustomDetail implements UserType {
 
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-        List<Image> response=null;
+        AssignedEmployee response = null;
         try {
-            Optional<String> value= Optional.ofNullable(rs.getString(names[0]));
-            if(value.isPresent()){
-                List<HashMap<String,Object>> objecs=new ObjectMapper().readValue(value.get(),List.class);
-                response=objecs.stream().map(image ->
-                        new Image((String) image.get("id"),
-                        (String) image.get("image"))).collect(Collectors.toList());
+            Optional<String> value = Optional.ofNullable(rs.getString(names[0]));
+            if(value.isPresent()) {
+                HashMap<String, Object> mapper = new ObjectMapper().readValue(value.get(), HashMap.class);
+                response = new AssignedEmployee((String) mapper.get("id"), (String) mapper.get("email"), (String) mapper.get("firstName"), (String) mapper.get("lastName"));
             }
-        }catch (Exception e){
-            throw new HibernateException("Error at reading map",e);
+        } catch (Exception e) {
+            throw new HibernateException("Error ar reading map", e);
         }
         return Optional.ofNullable(response);
     }
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
-        Optional<List<Image>> images=(value == null) ? Optional.empty() : (Optional<List<Image>>) value;
+        Optional<AssignedEmployee> employee = (value == null) ? Optional.empty() : (Optional<AssignedEmployee>) value;
         try {
-            if(images.isEmpty()){
-                st.setNull(index,Types.VARCHAR);
-            }else{
-                ObjectMapper mapper = new ObjectMapper();
-                List<HashMap<String,Object>> objects= images.get().stream().map(image->image.data()).collect(Collectors.toList());
-                String serializedList= mapper.writeValueAsString(objects).replace("\\","");
-                st.setString(index,serializedList);
+            if(employee.isEmpty()) {
+                st.setNull(index, Types.VARCHAR);
             }
-
-        }catch (Exception e){
-            throw new HibernateException("Exception serializable value  "+value,e);
+            else {
+                ObjectMapper mapper = new ObjectMapper();
+                String serializedObject = mapper.writeValueAsString(employee.get().data());
+                st.setString(index, serializedObject);
+            }
+        } catch (Exception e) {
+            throw new HibernateException("Error serializing value " + value, e);
         }
     }
 
