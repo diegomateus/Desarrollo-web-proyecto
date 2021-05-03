@@ -10,6 +10,7 @@ import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Price;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
+import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
 import com.javeriana.web.project.Shared.Bus.Event.EventBus;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferActionEnum;
 import org.junit.jupiter.api.Test;
@@ -24,20 +25,22 @@ import static org.mockito.Mockito.*;
 public class OfferTest {
 
     @Test
-    void should_create_rent_offer(){
+    void should_not_create_rent_offer(){
         OfferRepository repository=mock(OfferRepository.class);
         EventBus eventBus=mock(EventBus.class);
-        RentOfferCreator offerCreator= new RentOfferCreator(repository,eventBus);
+        PropertyFinder propertyFinder=mock(PropertyFinder.class);
+        RentOfferCreator offerCreator= new RentOfferCreator(repository,eventBus,propertyFinder);
         Offer offer = new Offer(new OfferId("4a229224-759d-4234-8871-ef352ca516ce"),new PropertyId("4a229224-759d-4234-8871-ef352ca516cf"),new Price(10000),new Action(OfferActionEnum.RENT));
         offerCreator.execute("4a229224-759d-4234-8871-ef352ca516ce","4a229224-759d-4234-8871-ef352ca516cf",10000);
         verify(repository, atLeastOnce()).save(offer);
     }
 
     @Test
-    void should_create_sale_offer(){
+    void should_not_create_sale_offer(){
         OfferRepository repository=mock(OfferRepository.class);
         EventBus eventBus=mock(EventBus.class);
-        SaleOfferCreator offerCreator= new SaleOfferCreator(repository,eventBus);
+        PropertyFinder propertyFinder=mock(PropertyFinder.class);
+        SaleOfferCreator offerCreator= new SaleOfferCreator(repository,eventBus,propertyFinder);
         Offer offer = new Offer(new OfferId("4a229224-759d-4234-8871-ef352ca516ce"),new PropertyId("4a229224-759d-4234-8871-ef352ca516cf"),new Price(10000),new Action(OfferActionEnum.SALE));
         offerCreator.execute("4a229224-759d-4234-8871-ef352ca516ce","4a229224-759d-4234-8871-ef352ca516cf",10000);
         verify(repository, atLeastOnce()).save(offer);

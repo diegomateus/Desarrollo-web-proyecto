@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Offer.Infraestructure.hibernate;
+package com.javeriana.web.project.Properties.Offer.Infrastructure.hibernate;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;

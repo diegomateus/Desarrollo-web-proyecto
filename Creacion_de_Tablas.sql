@@ -38,3 +38,10 @@ CREATE TABLE `real_estate`.`properties` (
   `offers` VARCHAR(1000) NULL DEFAULT NULL,
   `questions` VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
+
+CREATE TABLE `real_estate`.`offers` (
+  `id` VARCHAR(36) NOT NULL,
+  `property_id` VARCHAR(36) NOT NULL,
+  `price` INT NOT NULL,
+  `action` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`));

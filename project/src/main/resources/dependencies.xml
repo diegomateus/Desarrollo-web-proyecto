@@ -11,20 +11,40 @@
         <constructor-arg ref="JWTTokenGenerator"/>
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
+    <bean id="employeeFinder" class="com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
+
+    <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
     
     <bean id ="hibernatePropertyRepository" class="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.HibernatePropertyRepository"/>
 
     <bean id="propertyFinder" class="com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
+
     <bean id="propertyCreator" class="com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="employeeFinder" class="com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder">
-        <constructor-arg ref="hibernateEmployeeRepository"/>
+    <bean id="hibernateOfferRepository" class="com.javeriana.web.project.Properties.Offer.Infrastructure.hibernate.HibernateOfferRepository"/>
+
+    <bean id="springApplicationEventBus" class="com.javeriana.web.project.Shared.Infrastructure.Bus.Event.Spring.SpringApplicationEventBus"/>
+
+    <bean id="rentOfferCreator" class="com.javeriana.web.project.Properties.Offer.Application.CreateRentOffer.RentOfferCreator">
+        <constructor-arg ref="hibernateOfferRepository"/>
+        <constructor-arg ref="springApplicationEventBus"/>
+        <constructor-arg ref="propertyFinder"/>
     </bean>
-    <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
-        <constructor-arg ref="hibernateEmployeeRepository"/>
+
+    <bean id="saleOfferCreator" class="com.javeriana.web.project.Properties.Offer.Application.CreateSaleOffer.SaleOfferCreator">
+        <constructor-arg ref="hibernateOfferRepository"/>
+        <constructor-arg ref="springApplicationEventBus"/>
+        <constructor-arg ref="propertyFinder"/>
     </bean>
+
+
 </beans>
