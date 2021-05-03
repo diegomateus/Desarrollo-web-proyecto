@@ -27,4 +27,7 @@
     <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+    <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
 </beans>

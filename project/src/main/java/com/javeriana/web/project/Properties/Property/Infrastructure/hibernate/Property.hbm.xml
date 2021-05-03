@@ -46,7 +46,7 @@
         </component>
 
         <component name="condition" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Condition" access="field">
-            <property name="value" column="private_area" access="field" type="string"/>
+            <property name="value" column="condition" access="field" type="string"/>
         </component>
 
         <component name="deliveryDate" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.DeliveryDate" access="field">

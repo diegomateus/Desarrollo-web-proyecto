@@ -38,7 +38,9 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     public void update(String propertyId, Property property) {
-
+        sessionFactory.getCurrentSession().update(propertyId,property);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 
 }
