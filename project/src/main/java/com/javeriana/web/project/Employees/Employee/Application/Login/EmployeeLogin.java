@@ -16,11 +16,8 @@ public class EmployeeLogin {
         this.employeeRepository = employeeRepository;
     }
 
-    public Optional<Token> execute(String email, String password) {
-        Optional<Employee> employee = employeeRepository.authenticate(email, password);
-        if (employee.isPresent()) {
-            return Optional.of(tokenGenerator.getToken(employee.get()));
-        }
-        return Optional.ofNullable(null);
+    public Token execute(String email, String password) {
+        Employee employee = employeeRepository.authenticate(email, password);
+        return tokenGenerator.getToken(employee);
     }
 }

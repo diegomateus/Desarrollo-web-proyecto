@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Email extends StringValueObject{
+
     public Email(String value) {
         super(value);
         this.validate(value);
