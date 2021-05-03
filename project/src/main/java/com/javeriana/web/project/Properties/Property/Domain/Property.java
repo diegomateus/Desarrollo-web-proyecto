@@ -29,9 +29,9 @@ public class Property {
                     City city, Description description, BedroomsNumber bedroomsNumber,
                     BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
                     ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
-                    Location location, Optional<List<Image>> images,
-                    Optional<List<SerializedQuestion>> serializedQuestions,
-                    Optional<List<SerializedOffer>> serializedOffers) {
+                    Location location, List<Image> images,
+                    List<SerializedQuestion> serializedQuestions,
+                    List<SerializedOffer> serializedOffers) {
         this.propertyId = propertyId;
         this.address = address;
         this.propertyType = propertyType;
@@ -45,9 +45,9 @@ public class Property {
         this.condition = condition;
         this.deliveryDate = deliveryDate;
         this.location = location;
-        this.images = images;
-        this.serializedQuestions = serializedQuestions;
-        this.serializedOffers = serializedOffers;
+        this.images = Optional.ofNullable(images);
+        this.serializedQuestions = Optional.ofNullable(serializedQuestions);
+        this.serializedOffers = Optional.ofNullable(serializedOffers);
     }
     
     public static Property create(PropertyId propertyId,
@@ -63,7 +63,7 @@ public class Property {
                                   Condition condition,
                                   DeliveryDate deliveryDate,
                                   Location location){
-        return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,location,Optional.ofNullable(null),Optional.ofNullable(null),Optional.ofNullable(null));
+        return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,location,null,null,null);
         
     }
 
@@ -71,9 +71,7 @@ public class Property {
                                City city, Description description, BedroomsNumber bedroomsNumber,
                                BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
                                ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
-                               Location location, Optional<List<Image>> images,
-                               Optional<List<SerializedQuestion>> serializedQuestions,
-                               Optional<List<SerializedOffer>> serializedOffers){
+                               Location location){
         this.address = address;
         this.propertyType = propertyType;
         this.city = city;
@@ -86,9 +84,7 @@ public class Property {
         this.condition = condition;
         this.deliveryDate = deliveryDate;
         this.location = location;
-        this.images = images;
-        this.serializedQuestions = serializedQuestions;
-        this.serializedOffers = serializedOffers;
+
     }
 
     public HashMap<String,String> data(){

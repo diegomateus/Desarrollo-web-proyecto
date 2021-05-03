@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/properties")
@@ -25,7 +26,7 @@ public final class CreatePropertyPostController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request){
-        creator.execute(request.getPropertyId(), request.getAddress(), request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude(),request.getImages(),request.getQuestions(),request.getOffers());
+        creator.execute(request.getPropertyId(), request.getAddress(), request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -58,9 +59,6 @@ class Request {
     private Calendar deliveryDate;
     private Long latitude;
     private Long longitude;
-    private List<Image> images;
-    private List<SerializedQuestion> questions;
-    private List<SerializedOffer> offers;
 
     public String getPropertyId() {
         return propertyId;
@@ -172,30 +170,6 @@ class Request {
 
     public void setLongitude(Long longitude) {
         this.longitude = longitude;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    public List<SerializedQuestion> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<SerializedQuestion> questions) {
-        this.questions = questions;
-    }
-
-    public List<SerializedOffer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<SerializedOffer> offers) {
-        this.offers = offers;
     }
 
 }
