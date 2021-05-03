@@ -13,7 +13,6 @@ public class Text extends StringValueObject {
     private void validate(String value) {
         this.lengthRule(value);
     }
-
     private void lengthRule(String value) {
         if(value.length() < 1 || value.length() > 800) {
             throw new InvalidLength("Invalid number of characters");
