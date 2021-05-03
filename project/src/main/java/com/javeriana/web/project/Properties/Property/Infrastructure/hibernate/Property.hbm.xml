@@ -50,7 +50,7 @@
         </component>
 
         <component name="deliveryDate" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.DeliveryDate" access="field">
-            <property name="value" column="delivery_date" access="field" type="java.util.Calendar"/>
+            <property name="value" column="delivery_date" access="field" type="java.time.LocalDate;"/>
         </component>
 
         <component name="location" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Location" access="field">
@@ -62,15 +62,15 @@
         </component>
 
         <property name="images" column="image" access="field">
-            <type name="com.javeriana.web.project.Properties.Property.Infraestructure.hibernate.ImagesCustomDetail"></type>
+            <type name="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.ImagesCustomDetail"></type>
         </property>
 
         <property name="serializedOffers" column="offers" access="field">
-            <type name="com.javeriana.web.project.Properties.Property.Infraestructure.hibernate.SerializedOfferCustomDetail"></type>
+            <type name="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.SerializedOfferCustomDetail"></type>
         </property>
 
         <property name="serializedQuestions" column="questions" access="field">
-            <type name="com.javeriana.web.project.Properties.Property.Infraestructure.hibernate.SerializedQuestionCustomDetail"></type>
+            <type name="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.SerializedQuestionCustomDetail"></type>
         </property>
 
     </class>

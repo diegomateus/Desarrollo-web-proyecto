@@ -10,6 +10,9 @@ public class EmployeeLastName extends StringValueObject {
         this.validate(value);
     }
 
+    public EmployeeLastName() {
+    }
+
     private void validate(String value) {
         this.lengthRule(value);
     }

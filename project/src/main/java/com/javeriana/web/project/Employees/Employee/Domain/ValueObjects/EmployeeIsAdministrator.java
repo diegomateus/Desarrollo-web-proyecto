@@ -8,4 +8,7 @@ public class EmployeeIsAdministrator extends BooleanValueObject {
         super(value);
     }
 
+    public EmployeeIsAdministrator() {
+    }
+
 }
