@@ -18,7 +18,9 @@ public class BookAppointmentPostController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request) {
-        appointmentBooker.execute(request.getPropertyId(),
+        appointmentBooker.execute(
+                request.getAppointmentId(),
+                request.getPropertyId(),
                 request.getYear(),
                 request.getMonth(),
                 request.getDay(),
@@ -40,6 +42,7 @@ public class BookAppointmentPostController {
     }
 
     static class Request {
+        private String appointmentId;
         private String propertyId;
         private int year;
         private int month;
@@ -52,6 +55,14 @@ public class BookAppointmentPostController {
         private String customerPhoneNumber;
 
         public Request() {
+        }
+
+        public String getAppointmentId() {
+            return appointmentId;
+        }
+
+        public void setAppointmentId(String appointmentId) {
+            this.appointmentId = appointmentId;
         }
 
         public String getPropertyId() {

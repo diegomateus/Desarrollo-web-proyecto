@@ -17,7 +17,8 @@ public class AppointmentBooker {
         this.repository = repository;
     }
 
-    public void execute(String propertyId,
+    public void execute(String appointmentId,
+                        String propertyId,
                         int year,
                         int month,
                         int day,
@@ -30,7 +31,7 @@ public class AppointmentBooker {
         //Is it correct to use directly a class form a different bounded context?
         Property property = propertyFinder.get(propertyId);
         repository.save(new Appointment(
-                new AppointmentId(UUID.randomUUID().toString()),
+                new AppointmentId(appointmentId),
                 new AppointmentProperty(
                         property.getPropertyId().value(),
                         property.getAddress().value(),
