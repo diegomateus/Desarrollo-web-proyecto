@@ -5,6 +5,7 @@ import com.javeriana.web.project.Properties.Offer.Domain.Services.OfferDomainFin
 import com.javeriana.web.project.Questions.Question.Domain.Ports.QuestionRepository;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 import com.javeriana.web.project.Questions.Question.Domain.Services.QuestionDomainFinder;
+import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.Answer;
 import com.javeriana.web.project.Shared.Bus.Event.EventBus;
 
 import java.util.Optional;
@@ -13,17 +14,17 @@ public class QuestionAnswerer {
 
     private QuestionRepository repository;
     private QuestionDomainFinder questionDomainFinder;
-    private EventBus eventBus;
 
-    public QuestionAnswerer(QuestionRepository repository, QuestionDomainFinder questionDomainFinder, EventBus eventBus) {
+
+    public QuestionAnswerer(QuestionRepository repository) {
         this.repository = repository;
-        this.questionDomainFinder = questionDomainFinder;
-        this.eventBus = eventBus;
+        this.questionDomainFinder = new QuestionDomainFinder(repository);
+
     }
 
     public Question execute(String questionId, String answer, Question question){
-        Optional<Question> actualQuestion= questionDomainFinder.execute(questionId);
-        question.answerQuestion(question);
+        //Optional<Question> actualQuestion= questionDomainFinder.execute(questionId);
+        question.answerQuestion(new Answer(answer));
         repository.update(questionId,question);
         return question;
     }

@@ -32,7 +32,7 @@ public class Question extends AggregateRoot implements Serializable {
 
     public static Question askQuestion(QuestionId questionId, PropertyId propertyId,QuestionDate date, Text text){
         Question question = new Question(questionId,propertyId,text, date);
-        question.record(new QuestionAskerDomainEvent(questionId.value(), text.value(), propertyId.value(), date.value()));
+
         return question;
     }
 
@@ -56,7 +56,7 @@ public class Question extends AggregateRoot implements Serializable {
         return answer;
     }
 
-    public void answerQuestion(Question question){
-        question.record(new QuestionAnswererDomainEvent(this.questionId.value(),this.text.value(),this.propertyId.value(),this.date.value(),this.answer.value()));
+    public void answerQuestion(Answer answer){
+        this.answer = answer;
     }
 }
