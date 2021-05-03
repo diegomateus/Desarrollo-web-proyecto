@@ -16,7 +16,6 @@ public class UnassignedAppointmentsResponse {
 
     public List<HashMap> response() {
         List<HashMap> response = unassignedAppointments.stream().map(a -> a.data()).collect(Collectors.toList());
-        unassignedAppointments.stream().filter(a -> a.getAssignedEmployee().isEmpty()).collect(Collectors.toList());
         return response;
     }
 

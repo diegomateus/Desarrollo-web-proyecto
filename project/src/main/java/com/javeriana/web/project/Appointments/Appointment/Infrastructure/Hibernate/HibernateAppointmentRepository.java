@@ -6,6 +6,8 @@ import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.List;
+
 public class HibernateAppointmentRepository implements AppointmentRepository {
 
     protected final SessionFactory sessionFactory;
@@ -21,6 +23,12 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
         sessionFactory.getCurrentSession().save(appointment);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
+    }
+
+    @Override
+    public List<Appointment> getUnassignedAppointments() {
+        //TODO
+        return null;
     }
 
 }

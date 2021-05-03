@@ -27,4 +27,10 @@
     <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
+    <bean id ="HibernateAppointmentRepository" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibernate.HibernateAppointmentRepository"/>
+
+    <bean id="UnassignedAppointmentsGetter" class="com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsGetter">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+    </bean>
 </beans>
