@@ -7,11 +7,14 @@ import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Seriali
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestion;
 import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
 import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +58,7 @@ class Request {
     private int builtArea;
     private int serviceLevel;
     private PropertyConditionEnum condition;
-    private Calendar deliveryDate;
+    private LocalDate deliveryDate;
     private Long latitude;
     private Long longitude;
     private List<Image> images;
@@ -150,11 +153,11 @@ class Request {
         this.condition = condition;
     }
 
-    public Calendar getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Calendar deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
