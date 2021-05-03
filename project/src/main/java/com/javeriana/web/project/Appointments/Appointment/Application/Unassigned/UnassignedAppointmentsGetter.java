@@ -18,5 +18,4 @@ public class UnassignedAppointmentsGetter {
         return repository.getUnassignedAppointments();
     }
 
-
 }
