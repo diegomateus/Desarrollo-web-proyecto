@@ -5,7 +5,7 @@
 
     <bean id="JWTTokenGenerator" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Security.JWTTokenGenerator"/>
 
-    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate.HibernateEmployeeRepository"/>
+    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate.HibernateEmployeeRepository"/>
 
     <bean id="EmployeeLogin" class="com.javeriana.web.project.Employees.Employee.Application.Login.EmployeeLogin">
         <constructor-arg ref="JWTTokenGenerator"/>
@@ -27,4 +27,11 @@
     <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
+    <bean id="HibernateAppointmentRepository" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibernate.HibernateAppointmentRepository"/>
+
+    <bean id="appointmentBooker" class="com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+    </bean>
+
 </beans>

@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate;
+package com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
