@@ -33,7 +33,7 @@ public class AppointmentProperty {
         HashMap<String, Object> data = new HashMap<>() {{
             put("id", propertyId);
             put("address", address);
-            put("type", propertyId);
+            put("type", propertyType);
             put("city", city);
             put("latitude", latitude);
             put("longitude", longitude);

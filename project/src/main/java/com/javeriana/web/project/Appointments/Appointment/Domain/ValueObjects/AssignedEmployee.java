@@ -19,7 +19,7 @@ public class AssignedEmployee {
 
     public HashMap<String, Object> data() {
         HashMap<String, Object> data = new HashMap<String, Object>() {{
-            put("id", employeeId):
+            put("id", employeeId);
             put("email", email);
             put("firstName", firstName);
             put("lastName", lastName);
