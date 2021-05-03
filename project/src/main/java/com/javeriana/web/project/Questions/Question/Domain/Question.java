@@ -2,11 +2,8 @@ package com.javeriana.web.project.Questions.Question.Domain;
 
 import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.*;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
-import com.javeriana.web.project.Shared.Domain.Questions.QuestionAnswererDomainEvent;
-import com.javeriana.web.project.Shared.Domain.Questions.QuestionAskerDomainEvent;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class Question extends AggregateRoot implements Serializable {
 
