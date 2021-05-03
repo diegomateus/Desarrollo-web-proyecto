@@ -4,9 +4,11 @@ import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -41,15 +43,59 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(BedroomsNumber bedroomsNumber,
-                                 BathroomsNumber bathroomsNumber,
-                                 BuiltArea builtArea,
+    public List<Property> filter(BedroomsNumber minBedroomsNumber,
+                                 BathroomsNumber minBathroomsNumber,
+                                 BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                                  Condition condition,
-                                 DeliveryDate deliveryDate,
-                                 Location location,
-                                 PrivateArea privateArea) {
+                                 PrivateArea minPrivateArea, PrivateArea maxPrivateArea
+    ) {
         //sessionFactory.getCurrentSession()
-        return null;
+        List<Property> prop = all().get();
+        List<Property> filtradas = new ArrayList<>();
+        if(condition != null){
+            for(Property p : prop){
+                if(!condition.equals(p.getCondition())){
+                    prop.remove(p);
+                }
+            }
+        }
+        if(minBedroomsNumber != null){
+            for(Property p : prop){
+                if(p.getBedroomsNumber().value() < minBedroomsNumber.value()){
+                    prop.remove(p);
+                }
+            }
+        }
+        if(minBathroomsNumber != null){
+            for(Property p : prop){
+                if(p.getBathroomsNumber().value() < minBathroomsNumber.value()){
+                    prop.remove(p);
+                }
+            }
+        }
+        if(minBuiltArea.value() != 0 || maxBuiltArea.value() != 100000){
+            for(Property p : prop){
+                if(minBuiltArea.value() > p.getBuiltArea().value() && p.getBuiltArea().value() > maxBuiltArea.value()){
+                    prop.remove(p);
+                }
+            }
+        }
+        if(minPrivateArea.value() != 0 || maxPrivateArea.value() != 100000){
+            for(Property p : prop){
+                if(minPrivateArea.value() > p.getPrivateArea().value() && p.getPrivateArea().value() > maxPrivateArea.value()){
+                    prop.remove(p);
+                }
+            }
+        }
+
+
+        return prop;
+    }
+
+    @Override
+    public Optional<List<Property>> all() {
+        Query query = sessionFactory.getCurrentSession().createQuery("From property");
+        return Optional.ofNullable(query.list());
     }
 
 

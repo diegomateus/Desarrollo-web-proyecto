@@ -11,22 +11,20 @@ import java.util.List;
 public class FilterProperties {
 
     private PropertyRepository repository;
-    private PropertyFilter propertiesFilterer;
+    private PropertyFilter propertiesFilter;
 
     public FilterProperties(PropertyRepository repository, PropertyFilter
             propertiesFilterer) {
         this.repository = repository;
-        this.propertiesFilterer = propertiesFilterer;
+        this.propertiesFilter = propertiesFilterer;
     }
 
-    public List<Property> execute(BedroomsNumber bedroomsNumber,
-                                  BathroomsNumber bathroomsNumber,
-                                  BuiltArea builtArea,
+    public List<Property> execute(BedroomsNumber minBedroomsNumber,
+                                  BathroomsNumber minBathroomsNumber,
+                                  BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                                   Condition condition,
-                                  DeliveryDate deliveryDate,
-                                  Location location,
-                                  PrivateArea privateArea
+                                  PrivateArea minPrivateArea, PrivateArea maxPrivateArea
                                   ){
-        return propertiesFilterer.execute(bedroomsNumber,bathroomsNumber,builtArea,condition,deliveryDate,location,privateArea);
+        return propertiesFilter.execute(minBedroomsNumber,minBathroomsNumber,minBuiltArea,maxBuiltArea,condition,minPrivateArea,maxPrivateArea);
     }
 }

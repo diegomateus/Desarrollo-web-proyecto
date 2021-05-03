@@ -11,13 +11,13 @@ public interface PropertyRepository {
     void save(Property property);
     Optional<Property> find(String propertyId);
     Property updateSerializedOffer(String propertyId, Property property);
-    List<Property> filter(BedroomsNumber bedroomsNumber,
-                          BathroomsNumber bathroomsNumber,
-                          BuiltArea builtArea,
+    List<Property> filter(BedroomsNumber minBedroomsNumber,
+                          BathroomsNumber minBathroomsNumber,
+                          BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                           Condition condition,
-                          DeliveryDate deliveryDate,
-                          Location location,
-                          PrivateArea privateArea);
+                          PrivateArea minPrivateArea, PrivateArea maxPrivateArea);
+
+    Optional<List<Property>> all();
 
     //TODO: Add other methods
 }

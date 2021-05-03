@@ -15,14 +15,12 @@ public class PropertyFilter {
         this.repository = repository;
     }
 
-    public List<Property> execute(BedroomsNumber bedroomsNumber,
-                                  BathroomsNumber bathroomsNumber,
-                                  BuiltArea builtArea,
+    public List<Property> execute(BedroomsNumber minBedroomsNumber,
+                                  BathroomsNumber minBathroomsNumber,
+                                  BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                                   Condition condition,
-                                  DeliveryDate deliveryDate,
-                                  Location location,
-                                  PrivateArea privateArea){
-        List<Property> properties = repository.filter(bedroomsNumber,bathroomsNumber,builtArea,condition,deliveryDate,location,privateArea);
+                                  PrivateArea minPrivateArea, PrivateArea maxPrivateArea){
+        List<Property> properties = repository.filter(minBedroomsNumber,minBathroomsNumber,minBuiltArea,maxBuiltArea,condition,minPrivateArea,maxPrivateArea);
         if(properties.isEmpty()){
             //TO DO
             //Crear throw de no hay
