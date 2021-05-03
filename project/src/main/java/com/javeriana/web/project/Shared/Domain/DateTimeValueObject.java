@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Shared;
+package com.javeriana.web.project.Shared.Domain;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

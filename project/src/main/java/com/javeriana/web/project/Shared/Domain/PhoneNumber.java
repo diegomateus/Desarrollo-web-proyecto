@@ -1,7 +1,5 @@
 package com.javeriana.web.project.Shared.Domain;
 
-import com.javeriana.web.project.Shared.InvalidPhoneNumber;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +19,7 @@ public class PhoneNumber extends StringValueObject{
     }
 
     private void regexRule(String value) {
-        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Pattern pattern = Pattern.compile("^[0-9]+$");
         Matcher matcher = pattern.matcher(value);
         if(!matcher.matches()) {
             throw new InvalidPhoneNumber("Invalid phone number format");

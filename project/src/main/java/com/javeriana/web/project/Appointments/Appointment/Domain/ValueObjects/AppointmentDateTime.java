@@ -1,6 +1,6 @@
 package com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects;
 
-import com.javeriana.web.project.Shared.DateTimeValueObject;
+import com.javeriana.web.project.Shared.Domain.DateTimeValueObject;
 import com.javeriana.web.project.Shared.Domain.PastDateException;
 
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ public class AppointmentDateTime extends DateTimeValueObject {
     }
 
     private void validate(LocalDateTime value) {
-
+        precedenceRule(value);
     }
 
     private void precedenceRule(LocalDateTime value) {
