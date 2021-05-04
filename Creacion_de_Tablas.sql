@@ -20,7 +20,6 @@ CREATE TABLE `real_estate`.`offers` (
   PRIMARY KEY (`id`));
 
 CREATE TABLE `real_estate`.`properties` (
-
                                             `property_id` VARCHAR(36) NOT NULL,
                                             `property_address` VARCHAR(50) NOT NULL,
                                             `property_type` VARCHAR(45) NOT NULL,
