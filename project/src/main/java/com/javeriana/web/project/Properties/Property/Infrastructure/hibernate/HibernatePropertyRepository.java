@@ -36,12 +36,6 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public Property updateSerializedOffer(String propertyId, Property property) {
-        sessionFactory.getCurrentSession().saveOrUpdate(propertyId,property);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId);
-    }
-
-    @Override
     public List<Property> filter(BedroomsNumber minBedroomsNumber,
                                  BathroomsNumber minBathroomsNumber,
                                  BuiltArea minBuiltArea, BuiltArea maxBuiltArea,

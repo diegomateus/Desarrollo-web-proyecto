@@ -70,6 +70,13 @@ public class Offer extends AggregateRoot{
     }
 
     public void deleteOffer(Offer offer) {
-        offer.record(new OfferDeleterDomainEvent(this.offerId.value()));
+        offer.record(new OfferDeleterDomainEvent(this.offerId.value(),this.propertyId.value()));
+    }
+
+    public boolean validatePropertyId(String propertyId) {
+        if(this.propertyId.value().equals(propertyId)){
+            return true;
+        }
+        return false;
     }
 }

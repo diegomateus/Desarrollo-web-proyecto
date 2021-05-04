@@ -37,15 +37,11 @@ public class OfferCreator {
     }
 
     private boolean validate(String offerId, String propertyId) {
-        if(!offerDomainFinder.execute(offerId).isEmpty()){
+        if(!repository.find(offerId).isEmpty()){
             throw new OfferAlreadyExist("Offer with id "+offerId+" already exist");
         }
-        try {
-            if(propertyValidator.execute(propertyId)){
-                return true;
-            }
-        }catch (PropertyNotFound e){
-
+        if(propertyValidator.execute(propertyId)){
+            return true;
         }
         return false;
     }

@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface PropertyRepository {
     void save(Property property);
     Optional<Property> find(String propertyId);
-    Property updateSerializedOffer(String propertyId, Property property);
     List<Property> filter(BedroomsNumber minBedroomsNumber,
                           BathroomsNumber minBathroomsNumber,
                           BuiltArea minBuiltArea, BuiltArea maxBuiltArea,

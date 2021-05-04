@@ -1,8 +1,8 @@
 package com.javeriana.web.project.Properties.Property.Domain.Services;
 
+import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyNotExist;
 
 import java.util.Optional;
 
@@ -17,7 +17,7 @@ public class PropertyDomainFinder {
     public Optional<Property> execute(String propertyId){
         Optional<Property> property = repository.find(propertyId);
         if(property.isEmpty()){
-            throw new PropertyNotExist("Offer with id: "+propertyId+" not exist");
+            throw new PropertyNotExist("Property with id: "+propertyId+" not exist");
         }
         return property;
     }

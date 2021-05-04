@@ -17,9 +17,9 @@ public class SerializedOfferModifier {
         this.finder=new PropertyDomainFinder(repository);
     }
 
-    public Property execute(String offerId, String propertyId, double price, String action){
+    public void execute(String offerId, String propertyId, double price, String action){
         Optional<Property> actualProperty=finder.execute(propertyId);
         actualProperty.get().modifyOffer(new SerializedOffer(offerId,price,action));
-        return repository.updateSerializedOffer(offerId,actualProperty.get());
+        repository.update(propertyId,actualProperty.get());
     }
 }

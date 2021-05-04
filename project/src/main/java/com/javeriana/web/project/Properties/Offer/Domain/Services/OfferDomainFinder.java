@@ -16,6 +16,9 @@ public class OfferDomainFinder {
 
     public Optional<Offer> execute(String offerId){
         Optional<Offer> offer = repository.find(offerId);
+        if(offer.isEmpty()){
+            throw new OfferNotExist("Offer with id "+offerId+" not found");
+        }
         return offer;
     }
 }
