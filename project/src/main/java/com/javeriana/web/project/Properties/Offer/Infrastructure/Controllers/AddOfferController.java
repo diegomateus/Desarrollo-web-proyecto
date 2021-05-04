@@ -13,8 +13,8 @@ public class AddOfferController {
     @Autowired
     private OfferCreator offerCreator;
 
-    @GetMapping(value="/{propertyId}/offers")
-    public ResponseEntity execute(@RequestBody Request request,@PathVariable("propertyId") String propertyId){
+    @PostMapping(value="/{propertyId}/offers")
+    public ResponseEntity execute(@RequestBody Request request, @PathVariable("propertyId") String propertyId){
         offerCreator.execute(request.getOfferId(),propertyId,request.getPrice(),request.getAction());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
