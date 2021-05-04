@@ -39,6 +39,5 @@
         <component name="appointmentCustomerPhoneNumber" class="com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AppointmentCustomerPhoneNumber" access="field">
             <property name="value" column="customer_phone_number" access="field" type="string"/>
         </component>
-
     </class>
 </hibernate-mapping>

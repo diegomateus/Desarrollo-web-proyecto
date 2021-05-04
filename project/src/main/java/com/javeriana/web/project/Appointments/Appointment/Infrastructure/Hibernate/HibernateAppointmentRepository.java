@@ -2,15 +2,16 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibern
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
-import com.javeriana.web.project.Properties.Property.Domain.Property;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional("transactional-manager")
 public class HibernateAppointmentRepository implements AppointmentRepository {
 
     protected final SessionFactory sessionFactory;

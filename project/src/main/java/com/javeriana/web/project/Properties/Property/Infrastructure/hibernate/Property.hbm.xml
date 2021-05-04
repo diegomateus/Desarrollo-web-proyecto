@@ -5,6 +5,7 @@
 
 <hibernate-mapping>
     <class name="com.javeriana.web.project.Properties.Property.Domain.Property" table="properties">
+
         <composite-id name="propertyId" class="com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyId" access="field">
             <key-property name="value" column="property_id" access="field" length="36"/>
         </composite-id>

@@ -3,18 +3,24 @@ package com.javeriana.web.project.Appointments.Appointment.Application.Book;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
 import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.*;
+import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
+import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
+import com.javeriana.web.project.Properties.Property.Domain.PropertyDomainFinder;
 import com.javeriana.web.project.Shared.Domain.CustomUUID;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 public class AppointmentBooker {
 
     private AppointmentRepository repository;
+    private PropertyFinder finder;
 
-    public AppointmentBooker(AppointmentRepository repository) {
+    public AppointmentBooker(AppointmentRepository repository, PropertyFinder finder) {
         this.repository = repository;
+        this.finder = finder;
     }
 
     public void execute(String appointmentId,
@@ -28,8 +34,7 @@ public class AppointmentBooker {
                         String customerLastName,
                         String customerEmail,
                         String customerPhoneNumber) {
-        //Is it correct to use directly a class form a different bounded context?
-        Property property = propertyFinder.get(propertyId);
+        Property property = finder.execute(propertyId);
         repository.save(new Appointment(
                 new AppointmentId(appointmentId),
                 new AppointmentProperty(
@@ -37,8 +42,8 @@ public class AppointmentBooker {
                         property.getAddress().value(),
                         property.getPropertyType().value().toString(),
                         property.getCity().value(),
-                        property.getLocation().latitude(),
-                        property.getLocation().longitude()),
+                        (long) property.getLatitude().value(),
+                        (long) property.getLongitude().value()),
                 new AppointmentDateTime(LocalDateTime.of(year, month, day, hour, minute)),
                 new AppointmentCustomerFirstName(customerFirstName),
                 new AppointmentCustomerLastName(customerLastName),

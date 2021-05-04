@@ -35,6 +35,7 @@
 
     <bean id="appointmentBooker" class="com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker">
         <constructor-arg ref="HibernateAppointmentRepository"/>
+        <constructor-arg ref="propertyFinder"/>
     </bean>
 
     <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">

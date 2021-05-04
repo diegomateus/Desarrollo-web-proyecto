@@ -24,7 +24,7 @@ public class BookAppointmentPostController {
                 request.getYear(),
                 request.getMonth(),
                 request.getDay(),
-                request.getMinute(),
+                request.getHour(),
                 request.getMinute(),
                 request.getCustomerFirstName(),
                 request.getCustomerLastName(),
@@ -32,6 +32,8 @@ public class BookAppointmentPostController {
                 request.getCustomerPhoneNumber());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
+
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<HashMap> handleException(Exception exception){
