@@ -8,11 +8,11 @@ import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.As
 import java.util.Optional;
 
 
-public class Assigner {
+public class AppointmentAssigner {
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
 
-    public Assigner(AppointmentRepository repository) {
+    public AppointmentAssigner(AppointmentRepository repository) {
         this.repository = repository;
         this.finder = new AppointmentDomainFinder(repository);
     }
