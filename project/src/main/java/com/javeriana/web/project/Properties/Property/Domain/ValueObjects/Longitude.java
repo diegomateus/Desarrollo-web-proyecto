@@ -3,24 +3,24 @@ package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class Longitude {
-    private long value;
+    private float value;
 
     public Longitude(){
 
     }
 
-    public Longitude(long value) {
+    public Longitude(float value) {
         this.value = value;
         this.validate(value);
     }
 
-    private void validate(long value) {
+    private void validate(float value) {
         if(value<-180 || value>180){
             throw new InvalidNumber("Invalid longitude number");
         }
     }
 
-    public long value(){
+    public float value(){
         return this.value;
     }
 }

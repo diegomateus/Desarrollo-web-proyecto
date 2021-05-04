@@ -19,7 +19,7 @@ public final class CreatePropertyPostController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request){
-        creator.execute(request.getPropertyId(),request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude());
+        creator.execute(request.getPropertyId(),request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDateYear(), request.getDeliveryDateMonth(), request.getDeliveryDateDay(), request.getLatitude(),request.getLongitude());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -49,9 +49,11 @@ class Request {
     private int builtArea;
     private int serviceLevel;
     private String condition;
-    private LocalDate deliveryDate;
-    private long latitude;
-    private long longitude;
+    private float latitude;
+    private float longitude;
+    private int deliveryDateYear;
+    private int deliveryDateMonth;
+    private int deliveryDateDay;
 
     public String getPropertyId() {
         return propertyId;
@@ -65,9 +67,9 @@ class Request {
         return address;
     }
 
-    //public void setAddress(String address) {
-      //  this.address = address;
-    //}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getCity() {
         return city;
@@ -125,27 +127,19 @@ class Request {
         this.serviceLevel = serviceLevel;
     }
 
-    public LocalDate getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public long getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 
@@ -163,5 +157,29 @@ class Request {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public int getDeliveryDateYear() {
+        return deliveryDateYear;
+    }
+
+    public void setDeliveryDateYear(int deliveryDateYear) {
+        this.deliveryDateYear = deliveryDateYear;
+    }
+
+    public int getDeliveryDateMonth() {
+        return deliveryDateMonth;
+    }
+
+    public void setDeliveryDateMonth(int deliveryDateMonth) {
+        this.deliveryDateMonth = deliveryDateMonth;
+    }
+
+    public int getDeliveryDateDay() {
+        return deliveryDateDay;
+    }
+
+    public void setDeliveryDateDay(int deliveryDateDay) {
+        this.deliveryDateDay = deliveryDateDay;
     }
 }

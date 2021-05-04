@@ -21,11 +21,11 @@ public class PropertyModifier {
         this.finder = new PropertyDomainFinder(repository);
     }
 
-    public void execute(String propertyId, String address, String propertyType, String city, String description, int bedroomsNumber, int bathroomsNumber, int privateArea, int builtArea, int serviceLevel, String condition, LocalDate deliveryDate, long latitude, long longitude){
+    public void execute(String propertyId, String address, String propertyType, String city, String description, int bedroomsNumber, int bathroomsNumber, int privateArea, int builtArea, int serviceLevel, String condition, int deliveryDateYear,int deliveryDateMonth,int deliveryDateDay, float latitude, float longitude){
 
         Optional<Property> actualProperty = finder.execute(propertyId);
         Property oldProperty = actualProperty.get();
-        oldProperty.updateProperty(new Address(address), new PropertyType(propertyType), new City(city), new Description(description), new BedroomsNumber(bedroomsNumber), new BathroomsNumber(bathroomsNumber), new PrivateArea(privateArea), new BuiltArea(builtArea), new ServiceLevel(serviceLevel), new Condition(condition), new DeliveryDate(deliveryDate), new Latitude(latitude), new Longitude(longitude));
+        oldProperty.updateProperty(new Address(address),new PropertyType(propertyType),new City(city),new Description(description),new BedroomsNumber(bedroomsNumber),new BathroomsNumber(bathroomsNumber),new PrivateArea(privateArea),new BuiltArea(builtArea),new ServiceLevel(serviceLevel),new Condition(condition),new DeliveryDate(LocalDate.of(deliveryDateYear,deliveryDateMonth,deliveryDateDay)),new Latitude(latitude),new Longitude(longitude));
         repository.update(propertyId, oldProperty);
     }
 

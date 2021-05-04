@@ -20,9 +20,9 @@ public class PropertyCreator {
         this.finder = new PropertyDomainFinder(repository);
     }
 
-    public void execute(String propertyId, String address, String propertyType, String city, String description, int bedroomsNumber, int bathroomsNumber, int privateArea, int builtArea, int serviceLevel, String condition, LocalDate deliveryDate, long latitude, long longitude){
+    public void execute(String propertyId, String address, String propertyType, String city, String description, int bedroomsNumber, int bathroomsNumber, int privateArea, int builtArea, int serviceLevel, String condition, int deliveryDateYear, int deliveryDateMonth, int deliveryDateDay, float latitude, float longitude){
         this.validate(propertyId);
-        Property property = Property.create(new PropertyId(propertyId),new Address(address),new PropertyType(propertyType),new City(city),new Description(description),new BedroomsNumber(bedroomsNumber),new BathroomsNumber(bathroomsNumber),new PrivateArea(privateArea),new BuiltArea(builtArea),new ServiceLevel(serviceLevel),new Condition(condition),new DeliveryDate(deliveryDate),new Latitude(latitude),new Longitude(longitude));
+        Property property = Property.create(new PropertyId(propertyId),new Address(address),new PropertyType(propertyType),new City(city),new Description(description),new BedroomsNumber(bedroomsNumber),new BathroomsNumber(bathroomsNumber),new PrivateArea(privateArea),new BuiltArea(builtArea),new ServiceLevel(serviceLevel),new Condition(condition),new DeliveryDate(LocalDate.of(deliveryDateYear,deliveryDateMonth,deliveryDateDay)),new Latitude(latitude),new Longitude(longitude));
         repository.save(property);
     }
 

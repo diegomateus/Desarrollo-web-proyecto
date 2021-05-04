@@ -18,7 +18,7 @@ public class EditPropertyPutController {
 
     @PutMapping(value = "/{propertyId}")
     public ResponseEntity execute(@RequestBody Request request, @PathVariable("propertyId") String id){
-        modifier.execute(id,request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude());
+        modifier.execute(id,request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDateYear(), request.getDeliveryDateMonth(), request.getDeliveryDateDay(), request.getLatitude(),request.getLongitude());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
