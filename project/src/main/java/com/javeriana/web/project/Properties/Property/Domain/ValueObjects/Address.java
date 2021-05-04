@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class Address extends StringValueObject {
 
+    public Address(){
+
+    }
+
     public Address(String value) {
         super(value);
         this.validate(value);
