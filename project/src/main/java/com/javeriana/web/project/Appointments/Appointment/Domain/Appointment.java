@@ -74,4 +74,6 @@ public class Appointment {
         this.assignedEmployee = Optional.ofNullable(new AssignedEmployee(employeeId,email,firstName,lastName));
     }
 
+    public void deleteAppointment(Appointment appointment) {
+    }
 }

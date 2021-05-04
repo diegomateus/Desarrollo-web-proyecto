@@ -6,6 +6,7 @@ import com.javeriana.web.project.Properties.Property.Domain.Services.PropertyFil
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterProperties {
@@ -19,12 +20,11 @@ public class FilterProperties {
         this.propertiesFilter = propertiesFilterer;
     }
 
-    public List<Property> execute(BedroomsNumber minBedroomsNumber,
-                                  BathroomsNumber minBathroomsNumber,
-                                  BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
-                                  Condition condition,
-                                  PrivateArea minPrivateArea, PrivateArea maxPrivateArea
+    public List<Property> execute(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
+                                  int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition
                                   ){
-        return propertiesFilter.execute(minBedroomsNumber,minBathroomsNumber,minBuiltArea,maxBuiltArea,condition,minPrivateArea,maxPrivateArea);
+        return propertiesFilter.execute(propertyType,priceLowerLimit,priceUpperLimit,city,
+                bedRoomsNumber,bathRoomNumber,action,propertyCondition
+        );
     }
 }
