@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class PrivateArea extends IntegerValueObject {
 
+    public PrivateArea(){
+        super(0);
+    }
+
     public PrivateArea(int value) {
         super(value);
         this.validate(value);

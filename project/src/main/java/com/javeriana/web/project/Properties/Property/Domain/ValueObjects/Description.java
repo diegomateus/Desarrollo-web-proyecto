@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class Description extends StringValueObject {
 
+    public Description(){
+
+    }
+
     public Description(String value) {
         super(value);
         this.validate(value);

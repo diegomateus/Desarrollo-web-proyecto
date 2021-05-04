@@ -1,7 +1,5 @@
 package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 
-import com.javeriana.web.project.Shared.Domain.StringValueObject;
-
 import java.util.HashMap;
 import java.util.Objects;
 

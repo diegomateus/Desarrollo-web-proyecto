@@ -19,6 +19,10 @@
     <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
+    <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
     
     <bean id ="hibernatePropertyRepository" class="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.HibernatePropertyRepository"/>
 
@@ -27,6 +31,10 @@
     </bean>
 
     <bean id="propertyCreator" class="com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
+
+    <bean id="propertyModifier" class="com.javeriana.web.project.Properties.Property.Application.Update.PropertyModifier">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
@@ -45,13 +53,13 @@
         <constructor-arg ref="springApplicationEventBus"/>
     </bean>
 
-    <bean id="offerFinder" class="com.javeriana.web.project.Properties.Offer.Application.FindOffer.OfferFinder">
-        <constructor-arg ref="hibernateOfferRepository"/>
-    </bean>
-
     <bean id="offerModifier" class="com.javeriana.web.project.Properties.Offer.Application.UpdateOffer.OfferModifier">
         <constructor-arg ref="hibernateOfferRepository"/>
         <constructor-arg ref="springApplicationEventBus"/>
+    </bean>
+
+    <bean id="offerFinder" class="com.javeriana.web.project.Properties.Offer.Application.FindOffer.OfferFinder">
+        <constructor-arg ref="hibernateOfferRepository"/>
     </bean>
 
 </beans>
