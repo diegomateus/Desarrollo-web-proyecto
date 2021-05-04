@@ -9,6 +9,9 @@ public class Action extends StringValueObject {
         super(value);
     }
 
+    public Action() {
+    }
+
     public String value(){
         return this.value;
     }

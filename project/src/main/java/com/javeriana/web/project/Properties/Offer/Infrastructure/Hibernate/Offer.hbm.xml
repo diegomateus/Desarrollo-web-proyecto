@@ -20,5 +20,6 @@
         <component name="action" class="com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action" access="field">
             <property name="value" column="action" access="field" type="string"/>
         </component>
+        
     </class>
 </hibernate-mapping>

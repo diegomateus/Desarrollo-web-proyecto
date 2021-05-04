@@ -1,25 +1,23 @@
 package com.javeriana.web.project.Properties.Offer.Domain;
 
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action;
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Price;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.*;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
-import com.javeriana.web.project.Shared.Domain.Offers.OfferActionEnum;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferCreatorDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferDeleterDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferModifierDomainEvent;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Optional;
 
-public class Offer extends AggregateRoot implements Serializable {
+public class Offer extends AggregateRoot{
     private OfferId offerId;
     private PropertyId propertyId;
     private Price price;
     private Action action;
+
+    public Offer() {
+    }
 
     public Offer(OfferId offerId, PropertyId propertyId, Price price, Action action) {
         this.offerId = offerId;

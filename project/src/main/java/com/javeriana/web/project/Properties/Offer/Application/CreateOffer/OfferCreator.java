@@ -1,7 +1,6 @@
 package com.javeriana.web.project.Properties.Offer.Application.CreateOffer;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferAlreadyExist;
-import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferNotExist;
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.PropertyNotFound;
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;

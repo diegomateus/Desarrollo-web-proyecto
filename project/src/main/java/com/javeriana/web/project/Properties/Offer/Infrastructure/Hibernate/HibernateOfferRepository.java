@@ -35,7 +35,9 @@ public class HibernateOfferRepository implements OfferRepository {
 
     @Override
     public Offer update(String offerId,Offer offer) {
-        sessionFactory.getCurrentSession().saveOrUpdate(offerId,offer);
+        sessionFactory.getCurrentSession().update(offerId,offer);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
         return sessionFactory.getCurrentSession().byId(aggregateClass).load(offerId);
     }
 
