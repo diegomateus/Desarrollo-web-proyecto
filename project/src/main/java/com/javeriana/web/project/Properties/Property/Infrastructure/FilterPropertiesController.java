@@ -19,7 +19,7 @@ public class FilterPropertiesController {
     @Autowired
     FilterProperties filterProperties;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/properties")
     public ResponseEntity<HashMap> execute(@PathVariable("id") String id,
                                            @PathVariable("propertyType") String propertyType,
                                            @PathVariable("priceLowerLimit") int priceLowerLimit,
