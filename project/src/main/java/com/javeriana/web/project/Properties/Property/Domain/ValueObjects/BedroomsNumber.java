@@ -4,6 +4,9 @@ import com.javeriana.web.project.Shared.Domain.IntegerValueObject;
 import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class BedroomsNumber extends IntegerValueObject {
+    public BedroomsNumber(){
+        super(0);
+    }
 
     public BedroomsNumber(int value) {
         super(value);

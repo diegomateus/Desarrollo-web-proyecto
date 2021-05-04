@@ -2,20 +2,13 @@ package com.javeriana.web.project.Properties.Property.Infrastructure;
 
 import com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyAlreadyExist;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestion;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/properties")
@@ -26,7 +19,7 @@ public final class CreatePropertyPostController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request){
-        creator.execute(request.getPropertyId(), request.getAddress(), request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude());
+        creator.execute(request.getPropertyId(),request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -47,7 +40,7 @@ class Request {
 
     private String propertyId;
     private String address;
-    private PropertyTypeEnum propertyType;
+    private String propertyType;
     private String city;
     private String description;
     private int bedroomsNumber;
@@ -55,10 +48,10 @@ class Request {
     private int privateArea;
     private int builtArea;
     private int serviceLevel;
-    private PropertyConditionEnum condition;
-    private Calendar deliveryDate;
-    private Long latitude;
-    private Long longitude;
+    private String condition;
+    private LocalDate deliveryDate;
+    private long latitude;
+    private long longitude;
 
     public String getPropertyId() {
         return propertyId;
@@ -72,17 +65,9 @@ class Request {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public PropertyTypeEnum getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(PropertyTypeEnum propertyType) {
-        this.propertyType = propertyType;
-    }
+    //public void setAddress(String address) {
+      //  this.address = address;
+    //}
 
     public String getCity() {
         return city;
@@ -140,36 +125,43 @@ class Request {
         this.serviceLevel = serviceLevel;
     }
 
-    public PropertyConditionEnum getCondition() {
-        return condition;
-    }
-
-    public void setCondition(PropertyConditionEnum condition) {
-        this.condition = condition;
-    }
-
-    public Calendar getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Calendar deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
-    public Long getLatitude() {
+    public long getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(long latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public long getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(long longitude) {
         this.longitude = longitude;
     }
 
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
 }
