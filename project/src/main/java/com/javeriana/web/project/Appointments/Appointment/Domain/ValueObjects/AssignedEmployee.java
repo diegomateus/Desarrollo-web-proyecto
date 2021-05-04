@@ -43,5 +43,19 @@ public class AssignedEmployee {
     public AssignedEmployee() {
     }
 
+    public String getEmployeeId() {
+        return employeeId;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

@@ -12,6 +12,9 @@ public class AppointmentDateTime extends DateTimeValueObject {
         this.validate(value);
     }
 
+    public AppointmentDateTime() {
+    }
+
     private void validate(LocalDateTime value) {
         precedenceRule(value);
     }

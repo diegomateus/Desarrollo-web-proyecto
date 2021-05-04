@@ -26,11 +26,11 @@ public class HibernateConfigFactory {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
 
-        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Employees/Employee/Infrastructure/hibernate/Employee.hbm.xml");
-        //FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Properties/Property/Infraestructure/hibernate/Property.hbm.xml");
+        FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Employees/Employee/Infrastructure/Hibernate/Employee.hbm.xml");
+        FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Properties/Property/Infrastructure/hibernate/Property.hbm.xml");
+        FileSystemResource resource3 = new FileSystemResource("./src/main/java/com/javeriana/web/project/Appointments/Appointment/Infrastructure/Hibernate/Appointment.hbm.xml");
 
-        sessionFactory.setMappingLocations(resource1);
-        //sessionFactory.setMappingLocations(resource2);
+        sessionFactory.setMappingLocations(resource1,resource2, resource3);
         return sessionFactory;
     }
 

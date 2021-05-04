@@ -5,7 +5,7 @@
 
     <bean id="JWTTokenGenerator" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Security.JWTTokenGenerator"/>
 
-    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate.HibernateEmployeeRepository"/>
+    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate.HibernateEmployeeRepository"/>
 
     <bean id="EmployeeLogin" class="com.javeriana.web.project.Employees.Employee.Application.Login.EmployeeLogin">
         <constructor-arg ref="JWTTokenGenerator"/>
@@ -20,6 +20,9 @@
     <bean id="propertyCreator" class="com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
+    <bean id="propertyModifier" class="com.javeriana.web.project.Properties.Property.Application.Update.PropertyModifier">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
 
     <bean id="employeeFinder" class="com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder">
         <constructor-arg ref="hibernateEmployeeRepository"/>
@@ -32,5 +35,13 @@
 
     <bean id="UnassignedAppointmentsGetter" class="com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsGetter">
         <constructor-arg ref="HibernateAppointmentRepository"/>
+
+    <bean id="appointmentBooker" class="com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+        <constructor-arg ref="propertyFinder"/>
+    </bean>
+
+    <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
 </beans>
