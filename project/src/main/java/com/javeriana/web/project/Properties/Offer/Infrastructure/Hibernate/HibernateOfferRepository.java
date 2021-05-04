@@ -2,6 +2,7 @@ package com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,7 @@ public class HibernateOfferRepository implements OfferRepository {
 
     @Override
     public Optional<Offer> find(String offerId) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(offerId));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new OfferId(offerId)));
     }
 
     @Override
@@ -42,7 +43,5 @@ public class HibernateOfferRepository implements OfferRepository {
     public void delete(Offer offer) {
         sessionFactory.getCurrentSession().delete(offer);
     }
-
-    //TODO: revisar manyToOne de propertyId dentro de Offer en hbm.xml
 
 }
