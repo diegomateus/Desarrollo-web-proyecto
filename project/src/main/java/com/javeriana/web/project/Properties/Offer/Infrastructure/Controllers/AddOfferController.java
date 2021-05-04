@@ -1,10 +1,15 @@
 package com.javeriana.web.project.Properties.Offer.Infrastructure.Controllers;
 
 import com.javeriana.web.project.Properties.Offer.Application.CreateOffer.OfferCreator;
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferAlreadyExist;
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferNotExist;
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.PropertyNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/properties")
@@ -18,12 +23,29 @@ public class AddOfferController {
         offerCreator.execute(request.getOfferId(),propertyId,request.getPrice(),request.getAction());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
+    @ExceptionHandler(OfferAlreadyExist.class)
+    public ResponseEntity<HashMap> handleOfferAlreadyExist(OfferAlreadyExist exception) {
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler(PropertyNotFound.class)
+    public ResponseEntity<HashMap> handlePropertyNotFound(PropertyNotFound exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    //TODO: Handle exceptions
 }
 
 class Request {
 
     private String offerId;
-    private String propertyId;
     private int price;
     private String action;
 
@@ -33,14 +55,6 @@ class Request {
 
     public void setOfferId(String offerId) {
         this.offerId = offerId;
-    }
-
-    public String getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(String propertyId) {
-        this.propertyId = propertyId;
     }
 
     public int getPrice() {

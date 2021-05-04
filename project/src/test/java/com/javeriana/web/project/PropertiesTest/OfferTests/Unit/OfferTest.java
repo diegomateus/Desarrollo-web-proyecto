@@ -23,8 +23,9 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 public class OfferTest {
 
+
     @Test
-    void should_not_create_rent_offer(){
+    void should_create_rent_offer(){
         OfferRepository repository=mock(OfferRepository.class);
         EventBus eventBus=mock(EventBus.class);
         PropertyFinder propertyFinder=mock(PropertyFinder.class);
@@ -35,7 +36,7 @@ public class OfferTest {
     }
 
     @Test
-    void should_not_create_sale_offer(){
+    void should_create_sale_offer(){
         OfferRepository repository=mock(OfferRepository.class);
         EventBus eventBus=mock(EventBus.class);
         PropertyFinder propertyFinder=mock(PropertyFinder.class);

@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Offer.Application.CreateOffer;
 
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferAlreadyExist;
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferNotExist;
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.PropertyNotFound;
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
@@ -37,11 +38,15 @@ public class OfferCreator {
     }
 
     private boolean validate(String offerId, String propertyId) {
+        if(!offerDomainFinder.execute(offerId).isEmpty()){
+            throw new OfferAlreadyExist("Offer with id "+offerId+"already exist");
+        }
         try {
-            if(propertyValidator.execute(propertyId) && !offerDomainFinder.execute(offerId).isEmpty()){
+            if(propertyValidator.execute(propertyId)){
                 return true;
             }
-        }catch (OfferNotExist e){
+        }catch (PropertyNotFound e){
+
         }
         return false;
     }
