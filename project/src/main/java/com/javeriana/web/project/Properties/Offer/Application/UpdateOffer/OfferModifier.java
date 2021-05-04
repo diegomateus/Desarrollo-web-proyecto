@@ -20,13 +20,12 @@ public class OfferModifier {
         this.eventBus=eventBus;
     }
 
-    public Offer execute(String offerId, Offer offer){
+    public Offer execute(String offerId, int price){
         Optional<Offer> actualOffer=offerDomainFinder.execute(offerId);
-        offer.modifyPrice(offer);
+        Offer offer=actualOffer.get();
+        offer.updateOffer(new Price(price));
         repository.update(offerId,offer);
         this.eventBus.publish(offer.pullDomainEvents());
         return offer;
     }
-
-    //TODO: EVento modificar oferta serializada
 }

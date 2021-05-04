@@ -2,6 +2,7 @@ package com.javeriana.web.project.Properties.Offer.Domain.Services;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.PropertyNotFound;
 import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
+import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 
 import java.util.Optional;
@@ -15,10 +16,14 @@ public class PropertyValidator {
     }
 
     public boolean execute(String propertyId){
-        Property property = propertyFinder.execute(propertyId);
-        if(property==null){
-            throw new PropertyNotFound("Property with id "+propertyId+" not exist");
+        try {
+            Property property = propertyFinder.execute(propertyId);
+            if (property != null) {
+                return true;
+            }
+            return false;
+        }catch (PropertyNotExist e){
+            throw new PropertyNotFound("Property not found: "+e.getMessage());
         }
-        return true;
     }
 }

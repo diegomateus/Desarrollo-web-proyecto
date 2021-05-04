@@ -25,22 +25,12 @@ public class Offer extends AggregateRoot implements Serializable {
         this.propertyId = propertyId;
         this.price = price;
         this.action = action;
-    }
-
-    public static Offer createRentOffer(OfferId offerId, PropertyId propertyId, Price price) {
-        Offer offer = new Offer(offerId,propertyId,price, new Action(OfferActionEnum.RENT));
-        offer.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),OfferActionEnum.RENT.toString(),propertyId.value()));
-        return offer;
-    }
-
-    public static Offer createSaleOffer(OfferId offerId, PropertyId propertyId, Price price) {
-        Offer offer = new Offer(offerId,propertyId,price, new Action(OfferActionEnum.SALE));
-        offer.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),OfferActionEnum.SALE.toString(),propertyId.value()));
-        return offer;
+        this.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),action.value(),propertyId.value()));
     }
 
     public void updateOffer(Price price) {
         this.price=price;
+        this.record(new OfferModifierDomainEvent(this.offerId.value(),this.price.value(),this.action.value(),this.propertyId.value()));
     }
 
     @Override
@@ -68,10 +58,6 @@ public class Offer extends AggregateRoot implements Serializable {
 
     public Action getAction() {
         return action;
-    }
-
-    public void modifyPrice(Offer offer) {
-        offer.record(new OfferModifierDomainEvent(this.offerId.value(),this.price.value(),this.action.value().toString(),this.propertyId.value()));
     }
 
     public void deleteOffer(Offer offer) {
