@@ -37,6 +37,8 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
         NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         query.addEntity(Appointment.class);
         return (List<Appointment>) query.getResultList();
+    }
+
     public Optional<Appointment> find(String appointmentId) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId));
     }
