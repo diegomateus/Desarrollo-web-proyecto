@@ -12,12 +12,11 @@ public interface PropertyRepository {
     void save(Property property);
     Optional<Property> find(String propertyId);
     Property updateSerializedOffer(String propertyId, Property property);
-    List<Property> filter(ArrayList<String> idPropiedades,
-                          BedroomsNumber minBedroomsNumber,
-                          BathroomsNumber minBathroomsNumber,
-                          Condition condition,
-                          PropertyType type
-                          );
+
+
+    List<Property> filter(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
+                          int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition
+    );
 
     Optional<List<Property>> all();
 

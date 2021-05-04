@@ -42,16 +42,14 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(ArrayList<String> idPropiedades,
-                                 BedroomsNumber minBedroomsNumber,
-                                 BathroomsNumber minBathroomsNumber,
-                                 Condition condition,
-                                 PropertyType type
+    public List<Property> filter(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
+                                 int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition
     ) {
         //sessionFactory.getCurrentSession()
         List<Property> prop = new ArrayList<>();
         List<Property> todas = all().get();
-        if(!idPropiedades.isEmpty()){
+
+        /*if(!idPropiedades.isEmpty()){
             for(Property p : todas ){
                 if(idPropiedades.contains(p.getPropertyId().value())){
                     prop.add(p);
@@ -59,37 +57,36 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             }
         }else{
             prop = todas;
-        }
-
-        if(type != null){
+        }*/
+        prop = todas;
+        if(propertyType != null){
             for(Property p : prop){
-                if(!type.equals(p.getPropertyType())){
+                if(!propertyType.equals(p.getPropertyType())){
                     prop.remove(p);
                 }
             }
         }
-        if(condition != null){
+        if(propertyCondition != null){
             for(Property p : prop){
-                if(!condition.equals(p.getCondition())){
+                if(!propertyCondition.equals(p.getCondition())){
                     prop.remove(p);
                 }
             }
         }
-        if(minBedroomsNumber != null){
+        if(bedRoomsNumber != 0){
             for(Property p : prop){
-                if(p.getBedroomsNumber().value() < minBedroomsNumber.value()){
+                if(p.getBedroomsNumber().value() < bedRoomsNumber){
                     prop.remove(p);
                 }
             }
         }
-        if(minBathroomsNumber != null){
+        if(bathRoomNumber != 0){
             for(Property p : prop){
-                if(p.getBathroomsNumber().value() < minBathroomsNumber.value()){
+                if(p.getBathroomsNumber().value() < bathRoomNumber){
                     prop.remove(p);
                 }
             }
         }
-
 
         return prop;
     }

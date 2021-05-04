@@ -16,12 +16,10 @@ public class PropertyFilter {
         this.repository = repository;
     }
 
-    public List<Property> execute(ArrayList<String> idPropiedades,
-                                  BedroomsNumber minBedroomsNumber,
-                                  BathroomsNumber minBathroomsNumber,
-                                  Condition condition,
-                                  PropertyType type){
-        List<Property> properties = repository.filter(idPropiedades,minBedroomsNumber,minBathroomsNumber,condition,type);
+    public List<Property> execute(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
+                                  int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition){
+        List<Property> properties = repository.filter(propertyType,priceLowerLimit,priceUpperLimit,city,
+                bedRoomsNumber,bathRoomNumber,action,propertyCondition);
         if(properties.isEmpty()){
             //TO DO
             //Crear throw de no hay
