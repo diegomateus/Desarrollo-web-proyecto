@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Offer.Application.FindOffer;
 
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferNotExist;
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
 import com.javeriana.web.project.Properties.Offer.Domain.Services.OfferDomainFinder;
@@ -17,7 +18,12 @@ public class OfferFinder {
     }
 
     public Offer execute(String offerId){
-        Optional<Offer> actualOffer=offerDomainFinder.execute(offerId);
-        return actualOffer.get();
+        try{
+            Optional<Offer> actualOffer=offerDomainFinder.execute(offerId);
+            return actualOffer.get();
+        }catch(OfferNotExist e){
+
+        }
+        return null;
     }
 }

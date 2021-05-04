@@ -1,8 +1,7 @@
-package com.javeriana.web.project.Properties.Offer.Infrastructure.hibernate;
+package com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;

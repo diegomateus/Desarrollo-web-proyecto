@@ -11,6 +11,7 @@ import com.javeriana.web.project.Shared.Domain.Offers.OfferDeleterDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferModifierDomainEvent;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -31,6 +32,16 @@ public class Offer extends AggregateRoot implements Serializable {
     public void updateOffer(Price price) {
         this.price=price;
         this.record(new OfferModifierDomainEvent(this.offerId.value(),this.price.value(),this.action.value(),this.propertyId.value()));
+    }
+
+    public HashMap<String,String> data(){
+        HashMap<String,String> data = new HashMap<String,String>(){{
+            put("offerId",offerId.value());
+            put("propertyId",propertyId.value());
+            put("price",Integer.toString(price.value()));
+            put("action",action.value());
+        }};
+        return data;
     }
 
     @Override

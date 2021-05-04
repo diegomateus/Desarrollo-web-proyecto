@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Offer.Application.CreateOffer;
 
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.OfferNotExist;
 import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.PropertyNotFound;
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
@@ -40,8 +41,7 @@ public class OfferCreator {
             if(propertyValidator.execute(propertyId) && !offerDomainFinder.execute(offerId).isEmpty()){
                 return true;
             }
-        }catch (PropertyNotFound e){
-
+        }catch (OfferNotExist e){
         }
         return false;
     }
