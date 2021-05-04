@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class BathroomsNumber extends IntegerValueObject {
 
+    public BathroomsNumber(){
+        super(0);
+    }
+
     public BathroomsNumber(int value) {
         super(value);
         this.validate(value);

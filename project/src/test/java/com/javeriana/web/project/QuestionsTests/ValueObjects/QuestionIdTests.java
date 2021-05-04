@@ -1,4 +1,4 @@
-package com.javeriana.web.project.QuestionsTests.QuestionTests;
+package com.javeriana.web.project.QuestionsTests.ValueObjects;
 
 
 import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.QuestionId;

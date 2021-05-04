@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class ServiceLevel extends IntegerValueObject {
 
+    public ServiceLevel(){
+        super(0);
+    }
+
     public ServiceLevel(int value) {
         super(value);
         this.validate(value);

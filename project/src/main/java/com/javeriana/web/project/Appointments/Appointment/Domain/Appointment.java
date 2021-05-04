@@ -70,4 +70,8 @@ public class Appointment {
         return Objects.equals(appointmentId, that.appointmentId) && Objects.equals(appointmentProperty, that.appointmentProperty) && Objects.equals(appointmentDateTime, that.appointmentDateTime) && Objects.equals(assignedEmployee, that.assignedEmployee) && Objects.equals(appointmentCustomerFirstName, that.appointmentCustomerFirstName) && Objects.equals(appointmentCustomerLastName, that.appointmentCustomerLastName) && Objects.equals(appointmentCustomerEmail, that.appointmentCustomerEmail) && Objects.equals(appointmentCustomerPhoneNumber, that.appointmentCustomerPhoneNumber);
     }
 
+    public void assignEmployee(String employeeId, String email, String firstName, String lastName){
+        this.assignedEmployee = Optional.ofNullable(new AssignedEmployee(employeeId,email,firstName,lastName));
+    }
+
 }
