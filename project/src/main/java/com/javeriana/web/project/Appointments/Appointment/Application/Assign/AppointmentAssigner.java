@@ -4,11 +4,13 @@ import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Services.AppointmentDomainFinder;
 import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AssignedEmployee;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-
+@Component
 public class AppointmentAssigner {
+
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
 

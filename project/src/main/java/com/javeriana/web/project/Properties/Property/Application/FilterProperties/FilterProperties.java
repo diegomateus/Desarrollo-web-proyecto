@@ -4,10 +4,14 @@ import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyReposi
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Services.PropertyFilter;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
+<<<<<<< Updated upstream
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 import org.springframework.stereotype.Component;
+=======
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+>>>>>>> Stashed changes
+
 import java.util.List;
 
 @Component
