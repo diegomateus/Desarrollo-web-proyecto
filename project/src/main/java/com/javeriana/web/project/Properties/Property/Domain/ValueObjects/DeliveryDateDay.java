@@ -3,12 +3,12 @@ package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 import com.javeriana.web.project.Shared.Domain.IntegerValueObject;
 import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
-public class BedroomsNumber extends IntegerValueObject {
-    public BedroomsNumber(){
+public class DeliveryDateDay extends IntegerValueObject {
+    public DeliveryDateDay (){
         super(0);
     }
 
-    public BedroomsNumber(int value) {
+    public DeliveryDateDay (int value) {
         super(value);
         this.validate(value);
     }
@@ -18,8 +18,8 @@ public class BedroomsNumber extends IntegerValueObject {
     }
 
     private void numberRule(int value) {
-        if(value < 1 || value > 20) {
-            throw new InvalidNumber("Invalid number of rooms");
-        }
+        //if(value < 1 || value > 31) {
+          //  throw new InvalidNumber("Invalid area number");
+        //}
     }
 }

@@ -20,11 +20,17 @@
     <bean id="propertyCreator" class="com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
+    <bean id="propertyModifier" class="com.javeriana.web.project.Properties.Property.Application.Update.PropertyModifier">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
 
     <bean id="employeeFinder" class="com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
     <bean id="employeeCreator" class="com.javeriana.web.project.Employees.Employee.Application.Create.EmployeeCreator">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
+    <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
 </beans>

@@ -2,22 +2,13 @@ package com.javeriana.web.project.Properties.Property.Infrastructure;
 
 import com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyAlreadyExist;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedOffer;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.SerializedQuestion;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping("/properties")
@@ -28,7 +19,7 @@ public final class CreatePropertyPostController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity execute(@RequestBody Request request){
-        creator.execute(request.getPropertyId(), request.getAddress(), request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDate(),request.getLatitude(),request.getLongitude(),request.getImages(),request.getQuestions(),request.getOffers());
+        creator.execute(request.getPropertyId(),request.getAddress(),request.getPropertyType(),request.getCity(),request.getDescription(),request.getBedroomsNumber(),request.getBathroomsNumber(),request.getPrivateArea(),request.getBuiltArea(),request.getServiceLevel(),request.getCondition(),request.getDeliveryDateYear(), request.getDeliveryDateMonth(), request.getDeliveryDateDay(), request.getLatitude(),request.getLongitude());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -49,7 +40,7 @@ class Request {
 
     private String propertyId;
     private String address;
-    private PropertyTypeEnum propertyType;
+    private String propertyType;
     private String city;
     private String description;
     private int bedroomsNumber;
@@ -57,13 +48,12 @@ class Request {
     private int privateArea;
     private int builtArea;
     private int serviceLevel;
-    private PropertyConditionEnum condition;
-    private LocalDate deliveryDate;
-    private Long latitude;
-    private Long longitude;
-    private List<Image> images;
-    private List<SerializedQuestion> questions;
-    private List<SerializedOffer> offers;
+    private String condition;
+    private float latitude;
+    private float longitude;
+    private int deliveryDateYear;
+    private int deliveryDateMonth;
+    private int deliveryDateDay;
 
     public String getPropertyId() {
         return propertyId;
@@ -79,14 +69,6 @@ class Request {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public PropertyTypeEnum getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(PropertyTypeEnum propertyType) {
-        this.propertyType = propertyType;
     }
 
     public String getCity() {
@@ -145,60 +127,59 @@ class Request {
         this.serviceLevel = serviceLevel;
     }
 
-    public PropertyConditionEnum getCondition() {
-        return condition;
-    }
-
-    public void setCondition(PropertyConditionEnum condition) {
-        this.condition = condition;
-    }
-
-    public LocalDate getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public Long getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public String getPropertyType() {
+        return propertyType;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
-    public List<SerializedQuestion> getQuestions() {
-        return questions;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setQuestions(List<SerializedQuestion> questions) {
-        this.questions = questions;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
-    public List<SerializedOffer> getOffers() {
-        return offers;
+    public int getDeliveryDateYear() {
+        return deliveryDateYear;
     }
 
-    public void setOffers(List<SerializedOffer> offers) {
-        this.offers = offers;
+    public void setDeliveryDateYear(int deliveryDateYear) {
+        this.deliveryDateYear = deliveryDateYear;
     }
 
+    public int getDeliveryDateMonth() {
+        return deliveryDateMonth;
+    }
+
+    public void setDeliveryDateMonth(int deliveryDateMonth) {
+        this.deliveryDateMonth = deliveryDateMonth;
+    }
+
+    public int getDeliveryDateDay() {
+        return deliveryDateDay;
+    }
+
+    public void setDeliveryDateDay(int deliveryDateDay) {
+        this.deliveryDateDay = deliveryDateDay;
+    }
 }
