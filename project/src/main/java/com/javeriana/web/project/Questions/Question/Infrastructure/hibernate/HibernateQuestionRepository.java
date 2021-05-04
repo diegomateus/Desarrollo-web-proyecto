@@ -42,11 +42,10 @@ public class HibernateQuestionRepository implements QuestionRepository {
     }
 
     @Override
-    public List findUnAnsweredQuestions() {
+    public Optional<List<Question>> findUnAnsweredQuestions() {
         String hql = "FROM Question E WHERE E.answer IS NULL OR E.answer = ''";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        List results = query.list();
-        return results;
+        return Optional.ofNullable(query.list());
     }
 
 }

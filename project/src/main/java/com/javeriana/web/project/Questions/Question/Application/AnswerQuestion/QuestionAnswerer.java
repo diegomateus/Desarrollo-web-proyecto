@@ -22,8 +22,9 @@ public class QuestionAnswerer {
 
     }
 
-    public Question execute(String questionId, String answer, Question question){
-        //Optional<Question> actualQuestion= questionDomainFinder.execute(questionId);
+    public Question execute(String questionId, String answer){
+        Optional<Question> actualQuestion= questionDomainFinder.execute(questionId);
+        Question question = actualQuestion.get();
         question.answerQuestion(new Answer(answer));
         repository.update(questionId,question);
         return question;

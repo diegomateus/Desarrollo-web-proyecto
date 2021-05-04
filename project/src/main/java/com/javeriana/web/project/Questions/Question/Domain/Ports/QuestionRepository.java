@@ -11,7 +11,7 @@ public interface QuestionRepository {
     Optional<Question> find(String questionId);
     Question update(String questionId, Question question);
 
-    List findUnAnsweredQuestions();
+    Optional<List<Question>> findUnAnsweredQuestions();
     //TODO: Add other methods
 
 }

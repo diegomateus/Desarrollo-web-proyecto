@@ -11,9 +11,9 @@ public class FindUnAnsweredQuestions {
     private QuestionRepository repository;
     private UnAnsweredQuestionsFinder unAnsweredQuestionsFinder;
 
-    public FindUnAnsweredQuestions(QuestionRepository repository, UnAnsweredQuestionsFinder unAnsweredQuestionsFinder) {
+    public FindUnAnsweredQuestions(QuestionRepository repository) {
         this.repository = repository;
-        this.unAnsweredQuestionsFinder = unAnsweredQuestionsFinder;
+        this.unAnsweredQuestionsFinder = new UnAnsweredQuestionsFinder(repository);
     }
 
     public List<Question> execute(){

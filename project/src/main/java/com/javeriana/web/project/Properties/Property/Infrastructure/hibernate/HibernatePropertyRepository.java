@@ -88,7 +88,6 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             }
         }
 
-
         return prop;
     }
 

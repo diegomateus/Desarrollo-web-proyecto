@@ -14,7 +14,7 @@ public class UnAnsweredQuestionsFinder {
     }
 
     public List execute(){
-        List questions = repository.findUnAnsweredQuestions();
+        List questions = repository.findUnAnsweredQuestions().get();
         if(questions.isEmpty()){
             throw new UnAnsweredQuestionsNotExist("There are no unanswered questions");
         }
