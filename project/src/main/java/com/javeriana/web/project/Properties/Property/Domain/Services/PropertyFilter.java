@@ -5,6 +5,7 @@ import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyFilter {
@@ -15,12 +16,12 @@ public class PropertyFilter {
         this.repository = repository;
     }
 
-    public List<Property> execute(BedroomsNumber minBedroomsNumber,
+    public List<Property> execute(ArrayList<String> idPropiedades,
+                                  BedroomsNumber minBedroomsNumber,
                                   BathroomsNumber minBathroomsNumber,
-                                  BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                                   Condition condition,
-                                  PrivateArea minPrivateArea, PrivateArea maxPrivateArea){
-        List<Property> properties = repository.filter(minBedroomsNumber,minBathroomsNumber,minBuiltArea,maxBuiltArea,condition,minPrivateArea,maxPrivateArea);
+                                  PropertyType type){
+        List<Property> properties = repository.filter(idPropiedades,minBedroomsNumber,minBathroomsNumber,condition,type);
         if(properties.isEmpty()){
             //TO DO
             //Crear throw de no hay

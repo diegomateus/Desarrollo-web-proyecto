@@ -43,15 +43,32 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(BedroomsNumber minBedroomsNumber,
+    public List<Property> filter(ArrayList<String> idPropiedades,
+                                 BedroomsNumber minBedroomsNumber,
                                  BathroomsNumber minBathroomsNumber,
-                                 BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
                                  Condition condition,
-                                 PrivateArea minPrivateArea, PrivateArea maxPrivateArea
+                                 PropertyType type
     ) {
         //sessionFactory.getCurrentSession()
-        List<Property> prop = all().get();
-        List<Property> filtradas = new ArrayList<>();
+        List<Property> prop = new ArrayList<>();
+        List<Property> todas = all().get();
+        if(!idPropiedades.isEmpty()){
+            for(Property p : todas ){
+                if(idPropiedades.contains(p.getPropertyId().value())){
+                    prop.add(p);
+                }
+            }
+        }else{
+            prop = todas;
+        }
+
+        if(type != null){
+            for(Property p : prop){
+                if(!type.equals(p.getPropertyType())){
+                    prop.remove(p);
+                }
+            }
+        }
         if(condition != null){
             for(Property p : prop){
                 if(!condition.equals(p.getCondition())){
@@ -73,20 +90,7 @@ public class HibernatePropertyRepository  implements PropertyRepository {
                 }
             }
         }
-        if(minBuiltArea.value() != 0 || maxBuiltArea.value() != 100000){
-            for(Property p : prop){
-                if(minBuiltArea.value() > p.getBuiltArea().value() && p.getBuiltArea().value() > maxBuiltArea.value()){
-                    prop.remove(p);
-                }
-            }
-        }
-        if(minPrivateArea.value() != 0 || maxPrivateArea.value() != 100000){
-            for(Property p : prop){
-                if(minPrivateArea.value() > p.getPrivateArea().value() && p.getPrivateArea().value() > maxPrivateArea.value()){
-                    prop.remove(p);
-                }
-            }
-        }
+
 
         return prop;
     }
