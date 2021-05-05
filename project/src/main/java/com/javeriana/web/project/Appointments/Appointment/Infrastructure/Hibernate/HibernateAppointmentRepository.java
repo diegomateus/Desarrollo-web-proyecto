@@ -2,7 +2,10 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibern
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
+import com.javeriana.web.project.Employees.Employee.Domain.Employee;
+import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -34,6 +37,13 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     }
 
     @Override
+    public List<Appointment> getUnassignedAppointments() {
+        String sql = "SELECT * FROM appointments WHERE assigned_employee IS NULL";
+        NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(Appointment.class);
+        return (List<Appointment>) query.getResultList();
+    }
+
     public Optional<Appointment> find(String appointmentId) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId));
     }

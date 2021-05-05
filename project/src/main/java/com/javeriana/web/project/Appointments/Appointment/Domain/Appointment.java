@@ -42,6 +42,12 @@ public class Appointment {
     public HashMap<String, String> data() {
         HashMap<String,String> data = new HashMap<String,String>(){{
             put("id", appointmentId.value());
+            put("propertyId", appointmentProperty.getPropertyId());
+            put("propertyType", appointmentProperty.getPropertyType());
+            put("propertyCity", appointmentProperty.getCity());
+            put("propertyAddress", appointmentProperty.getAddress());
+            put("propertyLatitude", "" + appointmentProperty.getLatitude());
+            put("propertyLongitude", "" + appointmentProperty.getLongitude());
             put("dateTime", appointmentDateTime.value().toString());
             put("customerFirstName", appointmentCustomerFirstName.value());
             put("customerLastName", appointmentCustomerLastName.value());

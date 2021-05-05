@@ -13,6 +13,9 @@ public interface AppointmentRepository {
     Optional<Appointment> find(String appointmentId);
     Appointment assignEmployee(String appointmentId, Appointment appointment);
     Optional<List<Appointment>> findAssignedAppointmets(String employeeId);
+
+    List<Appointment> getUnassignedAppointments();
+
     Optional<List<Appointment>> all();
     void delete(Appointment appointment);
 }

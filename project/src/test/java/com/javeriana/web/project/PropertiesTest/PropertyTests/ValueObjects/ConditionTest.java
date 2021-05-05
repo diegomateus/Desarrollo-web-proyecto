@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ConditionTest {
+    /*
     @Test
     void should_not_throw_exceptions_NUEVO() {
         assertAll(() -> new Condition(PropertyConditionEnum.NUEVO));
@@ -21,4 +22,5 @@ public class ConditionTest {
     void should_not_throw_exceptions_USADO() {
         assertAll(() -> new Condition(PropertyConditionEnum.USADO));
     }
+     */
 }

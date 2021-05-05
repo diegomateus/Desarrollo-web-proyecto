@@ -38,9 +38,9 @@ public class AppointmentBooker {
         repository.save(new Appointment(
                 new AppointmentId(appointmentId),
                 new AppointmentProperty(
-                        property.getPropertyId().value(),
+                        propertyId,
                         property.getAddress().value(),
-                        property.getPropertyType().value().toString(),
+                        property.getPropertyType().value(),
                         property.getCity().value(),
                         (long) property.getLatitude().value(),
                         (long) property.getLongitude().value()),
