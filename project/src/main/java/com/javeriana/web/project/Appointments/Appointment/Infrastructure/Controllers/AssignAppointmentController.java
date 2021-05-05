@@ -18,7 +18,7 @@ public class AssignAppointmentController {
     @Autowired
     AppointmentAssigner assigner;
 
-    @PutMapping(value = "/appointmentId")
+    @PutMapping(value = "/{appointmentId}")
     public ResponseEntity execute(@PathVariable("appointmentId") String id){
         Employee empleado = (Employee) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HashMap<String,String> datosEmpleado = empleado.data();

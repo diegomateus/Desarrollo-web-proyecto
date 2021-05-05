@@ -5,21 +5,17 @@ import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.Appointme
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
-<<<<<<< Updated upstream
+
 import org.springframework.transaction.annotation.Transactional;
-=======
+
 import org.springframework.stereotype.Component;
->>>>>>> Stashed changes
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-<<<<<<< Updated upstream
+
 @Transactional("transactional-manager")
-=======
-@Component
->>>>>>> Stashed changes
 public class HibernateAppointmentRepository implements AppointmentRepository {
 
     protected final SessionFactory sessionFactory;
@@ -69,6 +65,13 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     public Optional<List<Appointment>> all() {
         Query query = sessionFactory.getCurrentSession().createQuery("From appointmets");
         return Optional.ofNullable(query.list());
+    }
+
+    @Override
+    public void delete(Appointment appointment) {
+        sessionFactory.getCurrentSession().delete(appointment);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 
 }

@@ -37,6 +37,8 @@ public class Appointment {
     public Appointment() {
     }
 
+
+
     public HashMap<String, String> data() {
         HashMap<String,String> data = new HashMap<String,String>(){{
             put("id", appointmentId.value());
