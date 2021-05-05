@@ -8,11 +8,11 @@ import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Seriali
 
 import java.util.Optional;
 
-public class SerializedOfferModifier {
+public class UpdateSerializedOffer {
     private PropertyRepository repository;
     private PropertyDomainFinder finder;
 
-    public SerializedOfferModifier(PropertyRepository repository) {
+    public UpdateSerializedOffer(PropertyRepository repository) {
         this.repository = repository;
         this.finder=new PropertyDomainFinder(repository);
     }

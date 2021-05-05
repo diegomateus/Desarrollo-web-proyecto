@@ -11,6 +11,7 @@ import com.javeriana.web.project.Shared.Bus.Event.EventBus;
 import java.util.Optional;
 
 public class OfferDeleter {
+
     private OfferRepository repository;
     private OfferDomainFinder offerDomainFinder;
     private EventBus eventBus;

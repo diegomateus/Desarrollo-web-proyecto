@@ -54,7 +54,7 @@ public class OfferTest {
         Mockito.when(repository.find("4a229224-759d-4234-8871-ef352ca516ce")).thenReturn(Optional.of(offer));
         EventBus eventBus=mock(EventBus.class);
         OfferModifier offerModifier=new OfferModifier(repository,eventBus);
-        offerModifier.execute("4a229224-759d-4234-8871-ef352ca516ce",2000000);
+        offerModifier.execute("4a229224-759d-4234-8871-ef352ca516ce",2000000,"4a229224-759d-4234-8871-ef352ca516cf");
         verify(repository,atLeastOnce()).update("4a229224-759d-4234-8871-ef352ca516ce",offerEdited);
     }
 
@@ -65,7 +65,7 @@ public class OfferTest {
         Mockito.when(repository.find("4a229224-759d-4234-8871-ef352ca516ce")).thenReturn(Optional.of(offer));
         EventBus eventBus=mock(EventBus.class);
         OfferDeleter offerDeleter=new OfferDeleter(repository,eventBus);
-        offerDeleter.execute("4a229224-759d-4234-8871-ef352ca516ce");
+        offerDeleter.execute("4a229224-759d-4234-8871-ef352ca516ce","4a229224-759d-4234-8871-ef352ca516cf");
         verify(repository,atLeastOnce()).delete(offer);
     }
 }
