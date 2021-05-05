@@ -36,46 +36,46 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(BedroomsNumber minBedroomsNumber,
-                                 BathroomsNumber minBathroomsNumber,
-                                 BuiltArea minBuiltArea, BuiltArea maxBuiltArea,
-                                 Condition condition,
-                                 PrivateArea minPrivateArea, PrivateArea maxPrivateArea
-    ) {
+    public List<Property> filter(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
+                                 int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition) {
         //sessionFactory.getCurrentSession()
-        List<Property> prop = all().get();
-        List<Property> filtradas = new ArrayList<>();
-        if(condition != null){
+        List<Property> prop = new ArrayList<>();
+        List<Property> todas = all().get();
+
+        /*if(!idPropiedades.isEmpty()){
+            for(Property p : todas ){
+                if(idPropiedades.contains(p.getPropertyId().value())){
+                    prop.add(p);
+                }
+            }
+        }else{
+            prop = todas;
+        }*/
+        prop = todas;
+        if(propertyType != null){
             for(Property p : prop){
-                if(!condition.equals(p.getCondition())){
+                if(!propertyType.equals(p.getPropertyType())){
                     prop.remove(p);
                 }
             }
         }
-        if(minBedroomsNumber != null){
+        if(propertyCondition != null){
             for(Property p : prop){
-                if(p.getBedroomsNumber().value() < minBedroomsNumber.value()){
+                if(!propertyCondition.equals(p.getCondition())){
                     prop.remove(p);
                 }
             }
         }
-        if(minBathroomsNumber != null){
+        if(bedRoomsNumber != 0){
             for(Property p : prop){
-                if(p.getBathroomsNumber().value() < minBathroomsNumber.value()){
+                if(p.getBedroomsNumber().value() < bedRoomsNumber){
                     prop.remove(p);
                 }
             }
         }
-        if(minBuiltArea.value() != 0 || maxBuiltArea.value() != 100000){
+        if(bathRoomNumber != 0){
             for(Property p : prop){
-                if(minBuiltArea.value() > p.getBuiltArea().value() && p.getBuiltArea().value() > maxBuiltArea.value()){
-                    prop.remove(p);
-                }
-            }
-        }
-        if(minPrivateArea.value() != 0 || maxPrivateArea.value() != 100000){
-            for(Property p : prop){
-                if(minPrivateArea.value() > p.getPrivateArea().value() && p.getPrivateArea().value() > maxPrivateArea.value()){
+                if(p.getBathroomsNumber().value() < bathRoomNumber){
                     prop.remove(p);
                 }
             }

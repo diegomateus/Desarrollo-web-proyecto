@@ -1,28 +1,26 @@
-package com.javeriana.web.project.Appointments.Appointment.Application.Assign;
+package com.javeriana.web.project.Appointments.Appointment.Application.Cancel;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Services.AppointmentDomainFinder;
-import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AssignedEmployee;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class AppointmentAssigner {
-
+public class CancelAppointment {
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
 
-    public AppointmentAssigner(AppointmentRepository repository) {
+    public CancelAppointment(AppointmentRepository repository) {
         this.repository = repository;
         this.finder = new AppointmentDomainFinder(repository);
     }
 
-    public void execute(String appointmentId, String employeeId, String email, String firstName, String lastName){
+    public void execute(String appointmentId){
         Optional<Appointment> actualAppointment = finder.execute(appointmentId);
         Appointment appointment = actualAppointment.get();
-        appointment.assignEmployee(employeeId,email,firstName,lastName);
-        repository.assignEmployee(appointmentId,appointment);
+        appointment.deleteAppointment(appointment);
+        repository.delete(appointment);
     }
 }

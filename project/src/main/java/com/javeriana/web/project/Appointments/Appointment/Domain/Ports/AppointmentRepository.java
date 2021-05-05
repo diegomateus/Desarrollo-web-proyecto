@@ -1,10 +1,12 @@
 package com.javeriana.web.project.Appointments.Appointment.Domain.Ports;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface AppointmentRepository {
 
     void save(Appointment appointment);
@@ -12,5 +14,8 @@ public interface AppointmentRepository {
     Appointment assignEmployee(String appointmentId, Appointment appointment);
     Optional<List<Appointment>> findAssignedAppointmets(String employeeId);
 
+    List<Appointment> getUnassignedAppointments();
+
     Optional<List<Appointment>> all();
+    void delete(Appointment appointment);
 }
