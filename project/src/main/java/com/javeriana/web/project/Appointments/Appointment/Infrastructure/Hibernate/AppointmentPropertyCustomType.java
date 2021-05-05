@@ -41,9 +41,8 @@ public class AppointmentPropertyCustomType implements UserType {
         try {
             String value = rs.getString(names[0]);
             HashMap<String, Object> mapper = new ObjectMapper().readValue(value, HashMap.class);
-            response = new AppointmentProperty((String) mapper.get("id"), (String) mapper.get("address"), (String) mapper.get("type"), (String) mapper.get("city"), ((Number) mapper.get("latitude")).longValue(), ((Number) mapper.get("longitude")).longValue());
+            response = new AppointmentProperty((String) mapper.get("propertyId"), (String) mapper.get("address"), (String) mapper.get("propertyType"), (String) mapper.get("city"), ((Number) mapper.get("latitude")).longValue(), ((Number) mapper.get("longitude")).longValue());
         } catch (Exception e) {
-            e.printStackTrace();
             throw new HibernateException("Error reading map");
         }
         return response;
