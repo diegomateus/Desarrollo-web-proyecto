@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/employees/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/employees").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/employees/{id}").hasRole("ADMIN")
                 //TODO: Add roles to endpoints
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("ADMIN")
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("EMPLOYEE")
