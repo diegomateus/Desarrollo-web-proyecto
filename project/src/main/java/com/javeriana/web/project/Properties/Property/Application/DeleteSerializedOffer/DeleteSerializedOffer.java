@@ -17,9 +17,9 @@ public class DeleteSerializedOffer {
         this.finder=new PropertyDomainFinder(repository);
     }
 
-    public void execute(String offerId){
-        Optional<Property> actualProperty=finder.execute(offerId);
+    public void execute(String offerId, String propertyId){
+        Optional<Property> actualProperty=finder.execute(propertyId);
         actualProperty.get().deleteOffer(offerId);
-        repository.updateSerializedOffer(offerId,actualProperty.get());
+        repository.update(propertyId,actualProperty.get());
     }
 }

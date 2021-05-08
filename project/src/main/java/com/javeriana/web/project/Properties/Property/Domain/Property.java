@@ -17,7 +17,8 @@ public class Property {
     private ServiceLevel serviceLevel;
     private Condition condition;
     private DeliveryDate deliveryDate;
-    private Location location;
+    private Latitude latitude;
+    private Longitude longitude;
     private Optional<List<Image>> images;
     private Optional<List<SerializedQuestion>> serializedQuestions;
     private Optional<List<SerializedOffer>> serializedOffers;
@@ -29,9 +30,9 @@ public class Property {
                     City city, Description description, BedroomsNumber bedroomsNumber,
                     BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
                     ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
-                    Location location, Optional<List<Image>> images,
-                    Optional<List<SerializedQuestion>> serializedQuestions,
-                    Optional<List<SerializedOffer>> serializedOffers) {
+                    Latitude latitude, Longitude longitude, List<Image> images,
+                    List<SerializedQuestion> serializedQuestions,
+                    List<SerializedOffer> serializedOffers) {
         this.propertyId = propertyId;
         this.address = address;
         this.propertyType = propertyType;
@@ -44,10 +45,11 @@ public class Property {
         this.serviceLevel = serviceLevel;
         this.condition = condition;
         this.deliveryDate = deliveryDate;
-        this.location = location;
-        this.images = images;
-        this.serializedQuestions = serializedQuestions;
-        this.serializedOffers = serializedOffers;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.images = Optional.ofNullable(images);
+        this.serializedQuestions = Optional.ofNullable(serializedQuestions);
+        this.serializedOffers = Optional.ofNullable(serializedOffers);
     }
     
     public static Property create(PropertyId propertyId,
@@ -62,8 +64,9 @@ public class Property {
                                   ServiceLevel serviceLevel,
                                   Condition condition,
                                   DeliveryDate deliveryDate,
-                                  Location location){
-        return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,location,Optional.ofNullable(null),Optional.ofNullable(null),Optional.ofNullable(null));
+                                  Latitude latitude,
+                                  Longitude longitude){
+        return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,latitude,longitude,null,null,null);
         
     }
 
@@ -71,9 +74,7 @@ public class Property {
                                City city, Description description, BedroomsNumber bedroomsNumber,
                                BathroomsNumber bathroomsNumber, PrivateArea privateArea, BuiltArea builtArea,
                                ServiceLevel serviceLevel, Condition condition, DeliveryDate deliveryDate,
-                               Location location, Optional<List<Image>> images,
-                               Optional<List<SerializedQuestion>> serializedQuestions,
-                               Optional<List<SerializedOffer>> serializedOffers){
+                               Latitude latitude, Longitude longitude){
         this.address = address;
         this.propertyType = propertyType;
         this.city = city;
@@ -85,25 +86,26 @@ public class Property {
         this.serviceLevel = serviceLevel;
         this.condition = condition;
         this.deliveryDate = deliveryDate;
-        this.location = location;
-        this.images = images;
-        this.serializedQuestions = serializedQuestions;
-        this.serializedOffers = serializedOffers;
+        this.latitude = latitude;
+        this.longitude = longitude;
+
     }
 
     public HashMap<String,String> data(){
         HashMap<String,String> data = new HashMap<String,String>(){{
             put("id",propertyId.value());
             put("address",address.value());
-            put("type",propertyType.value().toString());
+            put("type",propertyType.value());
             put("city",city.value());
             put("bedRooms",String.valueOf(bedroomsNumber.value()));
             put("badRooms",String.valueOf(bathroomsNumber.value()));
             put("privateArea",String.valueOf(privateArea.value()));
             put("builtArea",String.valueOf(builtArea.value()));
             put("serviceLevel",String.valueOf(serviceLevel.value()));
-            put("condition",condition.value().toString());
+            put("condition",condition.value());
             put("deliveryDate",deliveryDate.value().toString());
+            put("latitude",String.valueOf(latitude.value()));
+            put("longitude",String.valueOf(longitude.value()));
 
         }};
 
@@ -119,7 +121,7 @@ public class Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return Objects.equals(propertyId, property.propertyId) && Objects.equals(address, property.address) && Objects.equals(propertyType, property.propertyType) && Objects.equals(city, property.city) && Objects.equals(description, property.description) && Objects.equals(bedroomsNumber, property.bedroomsNumber) && Objects.equals(bathroomsNumber, property.bathroomsNumber) && Objects.equals(privateArea, property.privateArea) && Objects.equals(builtArea, property.builtArea) && Objects.equals(serviceLevel, property.serviceLevel) && Objects.equals(condition, property.condition) && Objects.equals(deliveryDate, property.deliveryDate) && Objects.equals(location, property.location) && Objects.equals(images, property.images) && Objects.equals(serializedQuestions, property.serializedQuestions) && Objects.equals(serializedOffers, property.serializedOffers);
+        return Objects.equals(propertyId, property.propertyId) && Objects.equals(address, property.address) && Objects.equals(propertyType, property.propertyType) && Objects.equals(city, property.city) && Objects.equals(description, property.description) && Objects.equals(bedroomsNumber, property.bedroomsNumber) && Objects.equals(bathroomsNumber, property.bathroomsNumber) && Objects.equals(privateArea, property.privateArea) && Objects.equals(builtArea, property.builtArea) && Objects.equals(serviceLevel, property.serviceLevel) && Objects.equals(condition, property.condition) && Objects.equals(deliveryDate, property.deliveryDate) && Objects.equals(latitude, property.latitude) && Objects.equals(longitude, property.longitude) && Objects.equals(images, property.images) && Objects.equals(serializedQuestions, property.serializedQuestions) && Objects.equals(serializedOffers, property.serializedOffers);
     }
 
     public Optional<List<HashMap<String,Object>>> getImages(){
@@ -130,10 +132,19 @@ public class Property {
         return response;
     }
 
-    public void addImage(Image image){
+    public void addImage(String image){
         List<Image> imageList=this.images.isEmpty() ? new ArrayList<>():this.images.get();
-        imageList.add(image);
+        imageList.add(new Image(image,Integer.toString(imageList.size())));
         this.images=Optional.ofNullable(imageList);
+    }
+
+    public boolean deleteImage(String imageId){
+        int index=Integer.valueOf(imageId);
+        if(index>=this.images.get().size() || index<0){
+            return false;
+        }
+        images.get().remove(index);
+        return true;
     }
 
     public Optional<List<HashMap<String,Object>>> getSerializedQuestions(){
@@ -228,7 +239,11 @@ public class Property {
         return deliveryDate;
     }
 
-    public Location getLocation() {
-        return location;
+    public Latitude getLatitude() {
+        return latitude;
+    }
+
+    public Longitude getLongitude() {
+        return longitude;
     }
 }

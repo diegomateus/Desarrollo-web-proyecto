@@ -19,7 +19,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/employees/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/employees").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/employees/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/employees").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/properties").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/properties").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/properties/{propertyId}/offers").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.PUT, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.POST, "/appointments").permitAll()
+                .antMatchers(HttpMethod.POST, "/appointments/unassigned").hasRole("EMPLOYEE")
+                .antMatchers(HttpMethod.POST, "/properties/{propertyId}/images").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/images/{indexInList}").permitAll()
                 //TODO: Add roles to endpoints
+                .antMatchers(HttpMethod.POST, "/appointments/expired").denyAll()
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("ADMIN")
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("EMPLOYEE")
                 .anyRequest().authenticated();

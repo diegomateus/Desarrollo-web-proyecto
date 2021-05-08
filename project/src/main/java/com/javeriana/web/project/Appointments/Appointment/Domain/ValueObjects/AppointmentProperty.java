@@ -54,4 +54,27 @@ public class AppointmentProperty {
         return Objects.hash(propertyId, address, propertyType, city, latitude, longitude);
     }
 
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public long getLatitude() {
+        return latitude;
+    }
+
+    public long getLongitude() {
+        return longitude;
+    }
 }

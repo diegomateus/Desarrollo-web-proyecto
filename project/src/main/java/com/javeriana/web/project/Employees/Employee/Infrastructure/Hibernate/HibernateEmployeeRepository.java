@@ -68,7 +68,9 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
 
     @Override
     public void update(String employeeId, Employee employee) {
-
+        sessionFactory.getCurrentSession().update(employeeId,employee);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 
     @Override

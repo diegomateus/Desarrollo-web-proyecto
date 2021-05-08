@@ -7,6 +7,10 @@ import java.time.LocalDate;
 
 public class DeliveryDate extends DateValueObject {
 
+    public DeliveryDate(){
+        super(LocalDate.of(0001,01,01));
+    }
+
     public DeliveryDate(LocalDate value) {
         super(value);
         this.validate(value);

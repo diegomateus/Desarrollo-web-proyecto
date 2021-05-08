@@ -7,4 +7,7 @@ public class OfferId extends CustomUUID {
     public OfferId(String value) {
         super(value);
     }
+
+    public OfferId() {
+    }
 }

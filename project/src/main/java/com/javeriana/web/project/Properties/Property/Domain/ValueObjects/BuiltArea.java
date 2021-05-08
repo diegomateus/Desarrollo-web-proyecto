@@ -4,6 +4,9 @@ import com.javeriana.web.project.Shared.Domain.IntegerValueObject;
 import com.javeriana.web.project.Shared.Domain.InvalidNumber;
 
 public class BuiltArea extends IntegerValueObject {
+    public BuiltArea(){
+        super(0);
+    }
 
     public BuiltArea(int value) {
         super(value);

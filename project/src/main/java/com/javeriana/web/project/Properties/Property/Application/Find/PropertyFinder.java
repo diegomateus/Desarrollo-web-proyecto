@@ -2,7 +2,7 @@ package com.javeriana.web.project.Properties.Property.Application.Find;
 
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
-import com.javeriana.web.project.Properties.Property.Domain.PropertyDomainFinder;
+import com.javeriana.web.project.Properties.Property.Domain.Services.PropertyDomainFinder;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.PropertyId;
 
 import java.util.Optional;

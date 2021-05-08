@@ -1,7 +1,5 @@
 package com.javeriana.web.project.Properties.Property.Domain.ValueObjects;
 
-import com.javeriana.web.project.Shared.Domain.StringValueObject;
-
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -43,4 +41,18 @@ public class Image{
         return Objects.hash(imageId, image);
     }
 
+    public String getImageId() {
+        return imageId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public boolean equalsId(String imageId) {
+        if(this.image.equals(imageId)){
+            return true;
+        }
+        return false;
+    }
 }

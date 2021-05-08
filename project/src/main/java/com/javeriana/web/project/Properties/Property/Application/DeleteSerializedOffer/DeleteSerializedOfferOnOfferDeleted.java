@@ -15,7 +15,7 @@ public class DeleteSerializedOfferOnOfferDeleted {
     }
 
     @EventListener
-    public void on(OfferCreatorDomainEvent event){
-        deleteSerializedOffer.execute(event.aggregateId());
+    public void on(OfferDeleterDomainEvent event){
+        deleteSerializedOffer.execute(event.aggregateId(),event.getPropertyID());
     }
 }

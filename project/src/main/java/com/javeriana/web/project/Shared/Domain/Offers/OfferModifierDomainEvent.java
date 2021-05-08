@@ -67,4 +67,16 @@ public class OfferModifierDomainEvent extends DomainEvent {
     public int hashCode() {
         return Objects.hash(price, action, propertyID);
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public String getPropertyID() {
+        return propertyID;
+    }
 }
