@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 public class CancelAppointmentTests {
-
+/*
     @Test
     void should_cancel_appointment(){
         AppointmentRepository repository = mock(AppointmentRepository.class);
@@ -17,4 +17,5 @@ public class CancelAppointmentTests {
         cancelAppointment.execute("4a229224-759d-4234-8871-ef352ca516ce");
         verify(repository, atLeastOnce()).delete(canceledAppointment);
     }
+ */
 }

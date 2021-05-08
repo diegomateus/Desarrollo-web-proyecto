@@ -5,7 +5,7 @@
 
     <bean id="JWTTokenGenerator" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Security.JWTTokenGenerator"/>
 
-    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate.HibernateEmployeeRepository"/>
+    <bean id="hibernateEmployeeRepository" class="com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate.HibernateEmployeeRepository"/>
 
     <bean id="EmployeeLogin" class="com.javeriana.web.project.Employees.Employee.Application.Login.EmployeeLogin">
         <constructor-arg ref="JWTTokenGenerator"/>
@@ -109,5 +109,18 @@
     <bean id="offerFinder" class="com.javeriana.web.project.Properties.Offer.Application.FindOffer.OfferFinder">
         <constructor-arg ref="hibernateOfferRepository"/>
     </bean>
+
+    <bean id="SpringEmailSender" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.Email.SpringEmailSender"/>
+
+    <bean id="CancellationNotifier" class="com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancellationNotifier">
+        <constructor-arg ref="SpringEmailSender"/>
+    </bean>
+
+    <bean id="cancelAppointment" class="com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancelAppointment">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+        <constructor-arg ref="CancellationNotifier"/>
+    </bean>
+
+
 
 </beans>
