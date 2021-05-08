@@ -41,4 +41,11 @@ public class Image{
         return Objects.hash(imageId, image);
     }
 
+    public String getImageId() {
+        return imageId;
+    }
+
+    public String getImage() {
+        return image;
+    }
 }

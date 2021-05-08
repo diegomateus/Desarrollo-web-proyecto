@@ -132,10 +132,20 @@ public class Property {
         return response;
     }
 
-    public void addImage(Image image){
+    public void addImage(String image){
         List<Image> imageList=this.images.isEmpty() ? new ArrayList<>():this.images.get();
-        imageList.add(image);
+        imageList.add(new Image(image,Integer.toString(imageList.size())));
         this.images=Optional.ofNullable(imageList);
+    }
+
+    public boolean deleteImage(String imageId){
+        for(int i=0; i<images.get().size();i++){
+            if(images.get().get(i).getImageId().equals(imageId)){
+                images.get().remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Optional<List<HashMap<String,Object>>> getSerializedQuestions(){
