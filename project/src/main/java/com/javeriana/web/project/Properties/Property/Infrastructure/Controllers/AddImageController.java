@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
 
-import com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditionner;
+import com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditive;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,11 +15,11 @@ import java.util.HashMap;
 public class AddImageController {
 
     @Autowired
-    private ImageAdditionner imageAdditionner;
+    private ImageAdditive imageAdditive;
 
     @PostMapping(value = "/{propertyId}/images")
     public ResponseEntity execute(@RequestBody AddImageRequest request,@PathVariable("propertyId") String propertyId){
-        imageAdditionner.execute(propertyId,request.getImageId());
+        imageAdditive.execute(propertyId,request.getImageId());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 

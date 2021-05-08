@@ -1,6 +1,7 @@
 package com.javeriana.web.project.Appointments.Appointment.Domain.Ports;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
+import com.javeriana.web.project.Properties.Property.Domain.Property;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface AppointmentRepository {
 
     Optional<List<Appointment>> all();
     void delete(Appointment appointment);
+
+    List<Appointment> getExpiredAppointments();
 }

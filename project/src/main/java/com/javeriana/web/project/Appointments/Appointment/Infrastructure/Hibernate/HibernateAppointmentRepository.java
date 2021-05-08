@@ -2,8 +2,10 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibern
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
+import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AppointmentId;
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
+import com.javeriana.web.project.Properties.Property.Domain.Property;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +49,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     }
 
     public Optional<Appointment> find(String appointmentId) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new AppointmentId(appointmentId)));
     }
 
     @Override
@@ -82,6 +86,15 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
         sessionFactory.getCurrentSession().delete(appointment);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
+    }
+
+    @Override
+    public List<Appointment> getExpiredAppointments() {
+        String now= "'"+LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE)+"'";
+        String sql = "SELECT * FROM appointments WHERE date_time < "+now;
+        NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(Appointment.class);
+        return (List<Appointment>) query.getResultList();
     }
 
 }

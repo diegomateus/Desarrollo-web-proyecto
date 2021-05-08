@@ -7,12 +7,12 @@ import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Image;
 
 import java.util.Optional;
 
-public class ImageAdditionner {
+public class ImageAdditive {
 
     private PropertyRepository repository;
     private PropertyDomainFinder finder;
 
-    public ImageAdditionner(PropertyRepository repository) {
+    public ImageAdditive(PropertyRepository repository) {
         this.repository = repository;
         this.finder=new PropertyDomainFinder(repository);
     }

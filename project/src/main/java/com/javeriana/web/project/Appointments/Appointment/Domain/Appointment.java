@@ -84,4 +84,28 @@ public class Appointment {
 
     public void deleteAppointment(Appointment appointment) {
     }
+
+    public AppointmentId getAppointmentId() {
+        return appointmentId;
+    }
+
+    public AppointmentDateTime getAppointmentDateTime() {
+        return appointmentDateTime;
+    }
+
+    public AppointmentCustomerFirstName getAppointmentCustomerFirstName() {
+        return appointmentCustomerFirstName;
+    }
+
+    public AppointmentCustomerLastName getAppointmentCustomerLastName() {
+        return appointmentCustomerLastName;
+    }
+
+    public AppointmentCustomerEmail getAppointmentCustomerEmail() {
+        return appointmentCustomerEmail;
+    }
+
+    public AppointmentCustomerPhoneNumber getAppointmentCustomerPhoneNumber() {
+        return appointmentCustomerPhoneNumber;
+    }
 }

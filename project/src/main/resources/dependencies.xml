@@ -38,7 +38,7 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="imageAdditionner" class="com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditionner">
+    <bean id="imageAdditionner" class="com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditive">
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
@@ -55,6 +55,11 @@
     <bean id="appointmentBooker" class="com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker">
         <constructor-arg ref="HibernateAppointmentRepository"/>
         <constructor-arg ref="propertyFinder"/>
+    </bean>
+
+    <bean id="expiredAppointmentsDeleter" class="com.javeriana.web.project.Appointments.Appointment.Application.DeleteExpiredAppointments.ExpiredAppointmentsDeleter">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+        <constructor-arg ref="cancelAppointment"/>
     </bean>
 
     <bean id="addSerializedOffer" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOffer">
