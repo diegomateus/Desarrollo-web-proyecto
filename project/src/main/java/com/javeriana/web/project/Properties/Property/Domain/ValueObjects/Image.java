@@ -48,4 +48,11 @@ public class Image{
     public String getImage() {
         return image;
     }
+
+    public boolean equalsId(String imageId) {
+        if(this.image.equals(imageId)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -20,7 +20,7 @@ public class ImageDeleter {
     public void execute(String propertyId,String imageId){
         Optional<Property> property=finder.execute(propertyId);
         if(!property.get().deleteImage(imageId)){
-            throw new ImageNotFoundException("Image with id: "+imageId+" not found in property with id: "+propertyId);
+            throw new ImageNotFoundException("Image in position "+imageId+" not found in property with id "+propertyId);
         }
         repository.update(propertyId,property.get());
     }

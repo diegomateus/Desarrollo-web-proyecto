@@ -139,13 +139,12 @@ public class Property {
     }
 
     public boolean deleteImage(String imageId){
-        for(int i=0; i<images.get().size();i++){
-            if(images.get().get(i).getImageId().equals(imageId)){
-                images.get().remove(i);
-                return true;
-            }
+        int index=Integer.valueOf(imageId);
+        if(index>=this.images.get().size() || index<0){
+            return false;
         }
-        return false;
+        images.get().remove(index);
+        return true;
     }
 
     public Optional<List<HashMap<String,Object>>> getSerializedQuestions(){
