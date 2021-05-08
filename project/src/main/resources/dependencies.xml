@@ -38,6 +38,14 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
+    <bean id="imageAdditionner" class="com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditionner">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
+
+    <bean id="imageDeleter" class="com.javeriana.web.project.Properties.Property.Application.DeleteImage.ImageDeleter">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
+
     <bean id ="HibernateAppointmentRepository" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibernate.HibernateAppointmentRepository"/>
 
     <bean id="UnassignedAppointmentsGetter" class="com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsGetter">
