@@ -68,8 +68,6 @@
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
 
-
-
     <bean id="updateAppointmentOnPropertyModifier" class="com.javeriana.web.project.Appointments.Appointment.Application.Update.UpdateAppointmentOnPropertyModifier">
         <constructor-arg ref="appointmentBooker"/>
     </bean>
