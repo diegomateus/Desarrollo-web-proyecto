@@ -1,6 +1,7 @@
 package com.javeriana.web.project.Appointments.Appointment.Domain;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.*;
+import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Shared.Domain.CustomUUID;
 
 import java.util.HashMap;
@@ -83,6 +84,10 @@ public class Appointment {
     }
 
     public void deleteAppointment(Appointment appointment) {
+    }
+
+    public void updateProperty(AppointmentProperty property){
+        this.appointmentProperty = property;
     }
 
     public AppointmentId getAppointmentId() {

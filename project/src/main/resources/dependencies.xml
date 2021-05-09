@@ -38,6 +38,7 @@
 
     <bean id="propertyDeleter" class="com.javeriana.web.project.Properties.Property.Application.Delete.PropertyDeleter">
         <constructor-arg ref="hibernatePropertyRepository"/>
+        <constructor-arg ref="springApplicationEventBus"/>
     </bean>
 
     <bean id="propertyModifier" class="com.javeriana.web.project.Properties.Property.Application.Update.PropertyModifier">
@@ -68,8 +69,12 @@
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
 
+    <bean id="appointmentModifier" class="com.javeriana.web.project.Appointments.Appointment.Application.Update.AppointmentModifier">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+    </bean>
+
     <bean id="updateAppointmentOnPropertyModifier" class="com.javeriana.web.project.Appointments.Appointment.Application.Update.UpdateAppointmentOnPropertyModifier">
-        <constructor-arg ref="appointmentBooker"/>
+        <constructor-arg ref="appointmentModifier"/>
     </bean>
 
     <bean id="deleteAppointmentOnPropertyDeleter" class="com.javeriana.web.project.Appointments.Appointment.Application.Delete.DeleteAppointmentOnPropertyDeleter">

@@ -1,30 +1,27 @@
-/*package com.javeriana.web.project.Appointments.Appointment.Application.Update;
+package com.javeriana.web.project.Appointments.Appointment.Application.Update;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
-import com.javeriana.web.project.Appointments.Appointment.Domain.Services.AppointmentDomainFinder;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
-
-import java.util.Optional;
+import com.javeriana.web.project.Appointments.Appointment.Domain.Services.AppointmentDomainFinderByProperty;
+import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AppointmentProperty;
+import java.util.List;
 
 public class AppointmentModifier {
     private AppointmentRepository repository;
-    private AppointmentDomainFinder finder;
+    private AppointmentDomainFinderByProperty finder;
 
     public AppointmentModifier(AppointmentRepository repository){
         this.repository = repository;
-        this.finder = new AppointmentDomainFinder(repository);
+        this.finder = new AppointmentDomainFinderByProperty(repository);
     }
 
-    public void execute(String propertyId, String address, String propertyType, String city, long latitude, long longitude){
-        Optional<Appointment> actualAppointment = finder.execute(propertyId);
-        Appointment oldAppointment = actualAppointment.get();
-        oldAppointment.updateProperty(new PropertyId(propertyId),new Address(address),new PropertyType(propertyType),new City(city), new Latitude(latitude),new Longitude(longitude));
-        this.repository.updateProperty();
+    public void execute(AppointmentProperty property){
+        List<Appointment> actualAppointments = finder.execute(property.getPropertyId());
+
+        for(Appointment a : actualAppointments){
+            a.updateProperty(property);
+        }
+        this.repository.updateProperty(actualAppointments);
     }
 }
 
-<bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
-        <constructor-arg ref="hibernateEmployeeRepository"/>
-    </bean>
-*/

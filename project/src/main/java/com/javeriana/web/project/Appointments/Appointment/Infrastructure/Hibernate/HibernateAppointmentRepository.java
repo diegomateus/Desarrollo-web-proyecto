@@ -75,8 +75,14 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     }
 
     @Override
-    public void updateProperty() {
-
+    public void updateProperty(List<Appointment> appointments) {
+        if(!appointments.isEmpty()){
+            for(Appointment a : appointments){
+                sessionFactory.getCurrentSession().saveOrUpdate(a);
+                sessionFactory.getCurrentSession().flush();
+                sessionFactory.getCurrentSession().clear();
+            }
+        }
     }
 
     @Override
@@ -116,6 +122,23 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
         NativeQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         query.addEntity(Appointment.class);
         return (List<Appointment>) query.getResultList();
+    }
+
+    @Override
+    public Optional<List<Appointment>> findByProperty(String propertyId) {
+        ArrayList<Appointment> todos = (ArrayList<Appointment>) all().get();
+        if(todos.isEmpty()){
+            return Optional.empty();
+        }
+        ArrayList<Appointment> updates = new ArrayList<>();
+        for(Appointment a : todos){
+            if(!a.getAppointmentProperty().isEmpty()){
+                if(a.getAppointmentProperty().get("id").equals(propertyId)){
+                    updates.add(a);
+                }
+            }
+        }
+        return Optional.ofNullable(updates);
     }
 
 }

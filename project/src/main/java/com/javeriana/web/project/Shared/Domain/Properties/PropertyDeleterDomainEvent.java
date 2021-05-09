@@ -1,7 +1,6 @@
 package com.javeriana.web.project.Shared.Domain.Properties;
 
 import com.javeriana.web.project.Shared.Bus.Event.DomainEvent;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -18,8 +17,6 @@ public final class PropertyDeleterDomainEvent extends DomainEvent {
     public PropertyDeleterDomainEvent() {
         super();
     }
-
-
 
     @Override
     public String eventName() {

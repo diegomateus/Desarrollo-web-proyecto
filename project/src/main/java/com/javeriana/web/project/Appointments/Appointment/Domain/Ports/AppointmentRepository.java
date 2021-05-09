@@ -14,10 +14,11 @@ public interface AppointmentRepository {
     Optional<Appointment> find(String appointmentId);
     Appointment assignEmployee(String appointmentId, Appointment appointment);
     Optional<List<Appointment>> findAssignedAppointmets(String employeeId);
-    void updateProperty();
+    void updateProperty(List<Appointment> appointments);
     void deleteForProperty(String propertyId);
     List<Appointment> getUnassignedAppointments();
     Optional<List<Appointment>> all();
     void delete(Appointment appointment);
     List<Appointment> getExpiredAppointments();
+    Optional<List<Appointment>> findByProperty(String propertyId);
 }
