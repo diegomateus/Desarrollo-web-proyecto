@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Employees.Employee.Infrastructure.Hibernate;
+package com.javeriana.web.project.Employees.Employee.Infrastructure.hibernate;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
@@ -69,6 +69,13 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
     @Override
     public void update(String employeeId, Employee employee) {
         sessionFactory.getCurrentSession().update(employeeId,employee);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+    }
+
+    @Override
+    public void delete (Employee employee) {
+        sessionFactory.getCurrentSession().delete(employee);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }

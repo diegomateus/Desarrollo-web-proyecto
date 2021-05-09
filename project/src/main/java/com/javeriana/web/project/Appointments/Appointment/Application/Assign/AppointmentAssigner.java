@@ -13,10 +13,12 @@ public class AppointmentAssigner {
 
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
+    private AppointmentNotifier notifier;
 
-    public AppointmentAssigner(AppointmentRepository repository) {
+    public AppointmentAssigner(AppointmentRepository repository, AppointmentNotifier notifier) {
         this.repository = repository;
         this.finder = new AppointmentDomainFinder(repository);
+        this.notifier = notifier;
     }
 
     public void execute(String appointmentId, String employeeId, String email, String firstName, String lastName){
@@ -24,5 +26,6 @@ public class AppointmentAssigner {
         Appointment appointment = actualAppointment.get();
         appointment.assignEmployee(employeeId,email,firstName,lastName);
         repository.assignEmployee(appointmentId,appointment);
+        notifier.execute(appointment);
     }
 }

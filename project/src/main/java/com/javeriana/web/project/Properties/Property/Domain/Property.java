@@ -1,10 +1,14 @@
 package com.javeriana.web.project.Properties.Property.Domain;
 
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
+import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyDeleterDomainEvent;
+import com.javeriana.web.project.Shared.Domain.Properties.PropertyModifierDomainEvent;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Property {
+public class Property extends AggregateRoot {
     private PropertyId propertyId;
     private Address address;
     private PropertyType propertyType;
@@ -67,7 +71,10 @@ public class Property {
                                   Latitude latitude,
                                   Longitude longitude){
         return new Property(propertyId,address,propertyType,city,description,bedroomsNumber,bathroomsNumber,privateArea,builtArea,serviceLevel,condition,deliveryDate,latitude,longitude,null,null,null);
-        
+    }
+
+    public void delete(PropertyId propertyId){
+        this.record(new PropertyDeleterDomainEvent(this.propertyId.value()));
     }
 
     public void updateProperty(Address address, PropertyType propertyType,
@@ -88,12 +95,15 @@ public class Property {
         this.deliveryDate = deliveryDate;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.record(new PropertyModifierDomainEvent(this.propertyId.value(),address.value(),propertyType.value(),city.value(),description.value(),
+                bedroomsNumber.value(),bathroomsNumber.value(),privateArea.value(),builtArea.value(),
+                serviceLevel.value(),condition.value(),deliveryDate.value(),latitude.value(),longitude.value()));
 
     }
 
     public HashMap<String,String> data(){
         HashMap<String,String> data = new HashMap<String,String>(){{
-            put("id",propertyId.value());
+
             put("address",address.value());
             put("type",propertyType.value());
             put("city",city.value());
@@ -132,10 +142,19 @@ public class Property {
         return response;
     }
 
-    public void addImage(Image image){
+    public void addImage(String image){
         List<Image> imageList=this.images.isEmpty() ? new ArrayList<>():this.images.get();
-        imageList.add(image);
+        imageList.add(new Image(image,Integer.toString(imageList.size())));
         this.images=Optional.ofNullable(imageList);
+    }
+
+    public boolean deleteImage(String imageId){
+        int index=Integer.valueOf(imageId);
+        if(index>=this.images.get().size() || index<0){
+            return false;
+        }
+        images.get().remove(index);
+        return true;
     }
 
     public Optional<List<HashMap<String,Object>>> getSerializedQuestions(){

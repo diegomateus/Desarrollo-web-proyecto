@@ -14,4 +14,5 @@ public interface EmployeeRepository {
     Optional<Employee> find (String employeeId);
     
     void update (String employeeId,Employee employee);
+    void delete (Employee employee);
 }

@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Property.Infrastructure;
+package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
 import com.javeriana.web.project.Properties.Property.Application.Create.PropertyCreator;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyAlreadyExist;
@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
+
 import java.util.HashMap;
 
 @RestController

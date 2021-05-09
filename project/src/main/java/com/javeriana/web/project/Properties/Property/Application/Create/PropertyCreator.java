@@ -6,8 +6,6 @@ import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyA
 import com.javeriana.web.project.Properties.Property.Domain.PropertyDomainFinder;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyConditionEnum;
-import com.javeriana.web.project.Shared.Domain.Properties.PropertyTypeEnum;
 import java.time.LocalDate;
 
 
