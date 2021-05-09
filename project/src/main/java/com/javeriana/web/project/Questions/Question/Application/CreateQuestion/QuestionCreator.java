@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Questions.Question.Application.CreateQuestion;
 
+import com.javeriana.web.project.Questions.Question.Domain.Exceptions.QuestionAlreadyExist;
 import com.javeriana.web.project.Questions.Question.Domain.Ports.QuestionRepository;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
 import com.javeriana.web.project.Questions.Question.Domain.Services.QuestionDomainFinder;
@@ -12,26 +13,24 @@ public class QuestionCreator {
 
     private QuestionRepository repository;
     private QuestionDomainFinder questionDomainFinder;
+    private EventBus eventBus;
 
-
-
-
-    public QuestionCreator(QuestionRepository repository) {
+    public QuestionCreator(QuestionRepository repository, EventBus eventBus) {
         this.repository = repository;
         this.questionDomainFinder = new QuestionDomainFinder(repository);
+        this.eventBus = eventBus;
     }
 
     public void execute(String questionId, String propertyId, String text, LocalDate date){
         validate(questionId);
-        Question question = Question.askQuestion(new QuestionId(questionId),new PropertyId(propertyId),new QuestionDate(date), new Text(text));
+        Question question = new Question(new QuestionId(questionId),new PropertyId(propertyId),new Text(text),new QuestionDate(date),new Answer(""));
         repository.save(question);
+        this.eventBus.publish(question.pullDomainEvents());
     }
 
     private void validate(String questionId){
-        try{
-
-        }catch(Exception e){
-
+        if(!questionDomainFinder.execute(questionId).isEmpty()){
+            throw new QuestionAlreadyExist("Question with id "+questionId+ "Already exist");
         }
     }
 

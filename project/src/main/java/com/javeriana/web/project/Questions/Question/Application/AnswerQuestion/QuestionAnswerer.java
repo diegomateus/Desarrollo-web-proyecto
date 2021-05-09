@@ -14,11 +14,13 @@ public class QuestionAnswerer {
 
     private QuestionRepository repository;
     private QuestionDomainFinder questionDomainFinder;
+    private EventBus eventBus;
 
 
-    public QuestionAnswerer(QuestionRepository repository) {
+    public QuestionAnswerer(QuestionRepository repository, EventBus eventBus) {
         this.repository = repository;
         this.questionDomainFinder = new QuestionDomainFinder(repository);
+        this.eventBus = eventBus;
 
     }
 

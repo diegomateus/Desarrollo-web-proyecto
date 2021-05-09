@@ -2,14 +2,15 @@ package com.javeriana.web.project.Questions.Question.Domain;
 
 import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.*;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
+import com.javeriana.web.project.Shared.Domain.Questions.QuestionCreatorDomainEvent;
 
 import java.io.Serializable;
 
 public class Question extends AggregateRoot implements Serializable {
 
 
-    private PropertyId propertyId;
     private QuestionId questionId;
+    private PropertyId propertyId;
     private QuestionDate date;
     private Text text;
     private Answer answer;
@@ -20,6 +21,7 @@ public class Question extends AggregateRoot implements Serializable {
         this.questionId = questionId;
         this.text = text;
         this.answer = answer;
+        this.record(new QuestionCreatorDomainEvent(questionId.value(),propertyId.value(),text.value(),date.value(),answer.value()));
     }
 
     public Question(QuestionId questionId, PropertyId propertyId, Text text, QuestionDate date) {
@@ -28,11 +30,12 @@ public class Question extends AggregateRoot implements Serializable {
         this.questionId = questionId;
         this.text = text;
         this.answer = null;
+        this.record(new QuestionCreatorDomainEvent(questionId.value(),propertyId.value(),text.value(),date.value(),""));
     }
 
-    public static Question askQuestion(QuestionId questionId, PropertyId propertyId,QuestionDate date, Text text){
+    public Question askQuestion(QuestionId questionId, PropertyId propertyId,QuestionDate date, Text text){
         Question question = new Question(questionId,propertyId,text, date);
-
+        this.record(new QuestionCreatorDomainEvent(questionId.value(),propertyId.value(),text.value(),date.value(),""));
         return question;
     }
 

@@ -7,19 +7,15 @@ public class SerializedQuestion {
     private String questionId;
     private String textQuestion;
     private String questionDate;
-    private String answerId;
-    private String answerDate;
     private String answerText;
 
     public SerializedQuestion() {
     }
 
-    public SerializedQuestion(String questionId, String textQuestion, String questionDate, String answerId, String answerDate, String answerText) {
+    public SerializedQuestion(String questionId, String textQuestion, String questionDate, String answerText) {
         this.questionId = questionId;
         this.textQuestion = textQuestion;
         this.questionDate = questionDate;
-        this.answerId = answerId;
-        this.answerDate = answerDate;
         this.answerText = answerText;
     }
 
@@ -28,8 +24,6 @@ public class SerializedQuestion {
             put("idQuestion",questionId);
             put("question",textQuestion);
             put("questionDate",questionDate);
-            put("answerId",answerId);
-            put("answerDate",answerDate);
             put("answer",answerText);
         }};
         return data;
@@ -40,12 +34,12 @@ public class SerializedQuestion {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SerializedQuestion that = (SerializedQuestion) o;
-        return Objects.equals(questionId, that.questionId) && Objects.equals(answerId, that.answerId);
+        return Objects.equals(questionId, that.questionId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(questionId, textQuestion, questionDate, answerId, answerDate, answerText);
+        return Objects.hash(questionId, textQuestion, questionDate,answerText);
     }
 
     public String getQuestionId() {
@@ -60,13 +54,6 @@ public class SerializedQuestion {
         return questionDate;
     }
 
-    public String getAnswerId() {
-        return answerId;
-    }
-
-    public String getAnswerDate() {
-        return answerDate;
-    }
 
     public String getAnswerText() {
         return answerText;

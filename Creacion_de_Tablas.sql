@@ -1,3 +1,11 @@
+CREATE TABLE `question` (
+  `questionId` varchar(36) NOT NULL,
+  `propertyId` varchar(36) NOT NULL,
+  `date` date DEFAULT NULL,
+  `text` varchar(1000) NOT NULL,
+  `answer` varchar(1000) NOT NULL,
+  PRIMARY KEY (`questionId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `appointments` (
   `id` varchar(36) NOT NULL,

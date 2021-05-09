@@ -49,8 +49,6 @@ public class SerializedQuestionCustomDetail implements UserType {
                         new SerializedQuestion((String) serializedQuestion.get("idQuestion"),
                                 (String) serializedQuestion.get("question"),
                                 (String) serializedQuestion.get("questionDate"),
-                                (String) serializedQuestion.get("answerId"),
-                                (String) serializedQuestion.get("answerDate"),
                                 (String) serializedQuestion.get("answer"))).collect(Collectors.toList());
             }
         }catch (Exception e){

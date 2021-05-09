@@ -40,6 +40,7 @@
 
     <bean id ="HibernateAppointmentRepository" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibernate.HibernateAppointmentRepository"/>
 
+
     <bean id="UnassignedAppointmentsGetter" class="com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsGetter">
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
@@ -47,6 +48,14 @@
     <bean id="appointmentBooker" class="com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker">
         <constructor-arg ref="HibernateAppointmentRepository"/>
         <constructor-arg ref="propertyFinder"/>
+    </bean>
+
+    <bean id="appointmentAssigner" class="com.javeriana.web.project.Appointments.Appointment.Application.Assign.AppointmentAssigner">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+    </bean>
+
+    <bean id="cancelAppointment" class="com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancelAppointment">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
 
     <bean id="addSerializedOffer" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOffer">
@@ -101,6 +110,18 @@
 
     <bean id="QuestionCreator" class="com.javeriana.web.project.Questions.Question.Application.CreateQuestion.QuestionCreator">
         <constructor-arg ref="HibernateQuestionRepository"/>
+        <constructor-arg ref="springApplicationEventBus"/>
     </bean>
+
+    <bean id="QuestionAnswerer" class="com.javeriana.web.project.Questions.Question.Application.AnswerQuestion.QuestionAnswerer">
+        <constructor-arg ref="HibernateQuestionRepository"/>
+        <constructor-arg ref="springApplicationEventBus"/>
+    </bean>
+
+    <bean id="findUnAnsweredQuestions" class="com.javeriana.web.project.Questions.Question.Application.UnAnsweredQuestions.FindUnAnsweredQuestions">
+        <constructor-arg ref="HibernateQuestionRepository"/>
+    </bean>
+
+
 
 </beans>

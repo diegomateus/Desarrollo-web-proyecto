@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+
 public class CancelAppointment {
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
