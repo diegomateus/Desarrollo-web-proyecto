@@ -6,14 +6,13 @@ import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.Ap
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
+import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.transaction.annotation.Transactional;
-
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -54,7 +53,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     @Override
     public Appointment assignEmployee(String appointmentId, Appointment appointment) {
         sessionFactory.getCurrentSession().saveOrUpdate(appointmentId,appointment);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId);
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(new AppointmentId(appointmentId));
     }
 
     @Override

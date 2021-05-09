@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/appointments").permitAll()
+                .antMatchers(HttpMethod.PUT, "/appointments/{appointmentId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/appointments/unassigned").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/properties/{propertyId}/images").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/images/{indexInList}").permitAll()

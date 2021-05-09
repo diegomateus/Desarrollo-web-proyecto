@@ -2,6 +2,7 @@ package com.javeriana.web.project.Appointments.Appointment.Domain.Ports;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
+import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AppointmentId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
