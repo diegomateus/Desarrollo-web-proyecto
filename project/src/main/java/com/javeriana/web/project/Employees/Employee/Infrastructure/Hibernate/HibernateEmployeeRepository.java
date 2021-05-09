@@ -72,5 +72,12 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }
+
+    @Override
+    public void delete (Employee employee) {
+        sessionFactory.getCurrentSession().delete(employee);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+    }
 }
 

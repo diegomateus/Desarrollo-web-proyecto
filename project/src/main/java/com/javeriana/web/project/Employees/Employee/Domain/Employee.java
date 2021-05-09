@@ -1,11 +1,14 @@
 package com.javeriana.web.project.Employees.Employee.Domain;
 
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.*;
+import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
+import com.javeriana.web.project.Shared.Domain.Employees.EmployeeDeletedDomainEvent;
 
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Employee {
+public class Employee extends AggregateRoot {
+
     private EmployeeId employeeId;
     private EmployeeEmail employeeEmail;
     private EmployeePassword employeePassword;
@@ -67,6 +70,10 @@ public class Employee {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return Objects.equals(employeeId, employee.employeeId) && Objects.equals(employeeEmail, employee.employeeEmail) && Objects.equals(employeePassword, employee.employeePassword) && Objects.equals(employeeFirstName, employee.employeeFirstName) && Objects.equals(employeeLastName, employee.employeeLastName) && Objects.equals(employeeIsAdministrator, employee.employeeIsAdministrator);
+    }
+
+    public static void deleteEmployee(Employee employee) {
+        employee.record(new EmployeeDeletedDomainEvent(employee.employeeId.value()));
     }
 
 }

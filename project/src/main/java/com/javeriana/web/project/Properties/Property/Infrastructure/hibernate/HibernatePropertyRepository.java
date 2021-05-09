@@ -96,4 +96,10 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         sessionFactory.getCurrentSession().clear();
     }
 
+    public void delete(Property property){
+        sessionFactory.getCurrentSession().delete(property);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+    }
+
 }
