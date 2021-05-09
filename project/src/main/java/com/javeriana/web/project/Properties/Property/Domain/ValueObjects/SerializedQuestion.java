@@ -37,6 +37,10 @@ public class SerializedQuestion {
         return Objects.equals(questionId, that.questionId);
     }
 
+    public boolean equalsSerializedQuestionId(SerializedQuestion serializedQuestion){
+        return this.questionId.equals(serializedQuestion.getQuestionId());
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(questionId, textQuestion, questionDate,answerText);

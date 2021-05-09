@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class Text extends StringValueObject {
 
+    public Text(){
+
+    }
+
     public Text(String value){
         super(value);
         this.validate(value);

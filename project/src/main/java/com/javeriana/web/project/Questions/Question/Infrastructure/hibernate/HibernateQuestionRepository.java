@@ -3,6 +3,7 @@ package com.javeriana.web.project.Questions.Question.Infrastructure.hibernate;
 
 import com.javeriana.web.project.Questions.Question.Domain.Ports.QuestionRepository;
 import com.javeriana.web.project.Questions.Question.Domain.Question;
+import com.javeriana.web.project.Questions.Question.Domain.ValueObjects.QuestionId;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,13 +33,13 @@ public class HibernateQuestionRepository implements QuestionRepository {
 
     @Override
     public Optional<Question> find(String questionId) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(questionId));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new QuestionId(questionId)));
     }
 
     @Override
     public Question update(String questionId, Question question) {
         sessionFactory.getCurrentSession().saveOrUpdate(questionId,question);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(questionId);
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(new QuestionId(questionId));
     }
 
     @Override

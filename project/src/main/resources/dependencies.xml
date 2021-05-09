@@ -70,10 +70,6 @@
         <constructor-arg ref="propertyFinder"/>
     </bean>
 
-    <bean id="appointmentAssigner" class="com.javeriana.web.project.Appointments.Appointment.Application.Assign.AppointmentAssigner">
-        <constructor-arg ref="HibernateAppointmentRepository"/>
-    </bean>
-
     <bean id="appointmentsDeleter" class="com.javeriana.web.project.Appointments.Appointment.Application.Delete.AppointmentsDeleter">
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
@@ -192,6 +188,22 @@
     <bean id="CancelAppointmentOnEmployeeDeleted" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.DomainEventSubscribers.CancelAppointmentOnEmployeeDeleted">
         <constructor-arg ref="CancelAppointment"/>
         <constructor-arg ref="FindAssignedAppointments"/>
+    </bean>
+
+    <bean id="AddSerializedQuestion" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedQuestion.AddSerializedQuestion">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
+
+    <bean id="AddSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedQuestion.AddSerializedQuestionOnQuestionCreated">
+        <constructor-arg ref="AddSerializedQuestion"/>
+    </bean>
+
+    <bean id="UpdateSerializedQuestion" class="com.javeriana.web.project.Properties.Property.Application.UpdateSerializedQuestion.UpdateSerializedQuestion">
+        <constructor-arg ref="hibernatePropertyRepository"/>
+    </bean>
+
+    <bean id="UpdateSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Application.UpdateSerializedQuestion.UpdateSerializedQuestionOnQuestionModified">
+        <constructor-arg ref="UpdateSerializedQuestion"/>
     </bean>
 
 </beans>

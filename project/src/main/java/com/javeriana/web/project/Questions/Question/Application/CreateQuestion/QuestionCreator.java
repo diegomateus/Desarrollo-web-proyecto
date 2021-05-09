@@ -22,7 +22,8 @@ public class QuestionCreator {
     }
 
     public void execute(String questionId, String propertyId, String text, LocalDate date){
-        validate(questionId);
+       // validate(questionId);
+       // System.out.println(questionId + propertyId + text + date.toString());
         Question question = new Question(new QuestionId(questionId),new PropertyId(propertyId),new Text(text),new QuestionDate(date),new Answer(""));
         repository.save(question);
         this.eventBus.publish(question.pullDomainEvents());

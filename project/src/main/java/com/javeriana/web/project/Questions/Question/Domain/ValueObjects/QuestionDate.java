@@ -7,5 +7,9 @@ import java.util.Date;
 
 public class QuestionDate extends DateValueObject {
 
+    public QuestionDate(){
+        super(LocalDate.of(0001,01,01));
+    }
+
     public QuestionDate(LocalDate value){super(value);}
 }

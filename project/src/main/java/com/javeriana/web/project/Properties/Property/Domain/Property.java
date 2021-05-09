@@ -171,6 +171,15 @@ public class Property extends AggregateRoot {
         this.serializedQuestions=Optional.ofNullable(questionsList);
     }
 
+    public void answerQuestion(SerializedQuestion serializedQuestion){
+        List<SerializedQuestion> questions=this.serializedQuestions.get();
+        SerializedQuestion serializedQuestionActual=questions.stream().
+                filter(question->question.equalsSerializedQuestionId(serializedQuestion)).findFirst().get();
+        questions.remove(serializedQuestionActual);
+        questions.add(serializedQuestion);
+        this.serializedQuestions=Optional.ofNullable(questions);
+    }
+
     public Optional<List<HashMap<String,Object>>> getSerializedOffers(){
         Optional<List<HashMap<String,Object>>> response = Optional.empty();
         if(this.serializedOffers.isPresent()){

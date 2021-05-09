@@ -29,6 +29,7 @@ public class QuestionAnswerer {
         Question question = actualQuestion.get();
         question.answerQuestion(new Answer(answer));
         repository.update(questionId,question);
+        eventBus.publish(question.pullDomainEvents());
         return question;
     }
 }

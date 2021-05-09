@@ -5,6 +5,10 @@ import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
 public class Answer extends StringValueObject {
 
+    public Answer(){
+
+    }
+
     public Answer(String value){
         super(value);
         this.validate(value);
@@ -15,7 +19,7 @@ public class Answer extends StringValueObject {
     }
 
     private void lengthRule(String value) {
-        if(value.length() < 1 || value.length() > 800) {
+        if( value.length() > 800) {
             throw new InvalidLength("Invalid number of characters");
         }
     }
