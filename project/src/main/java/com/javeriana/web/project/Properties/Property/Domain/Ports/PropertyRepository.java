@@ -22,4 +22,5 @@ public interface PropertyRepository {
 
     //TODO: Add other methods
     void update (String propertyId, Property property);
+    void delete (Property property);
 }

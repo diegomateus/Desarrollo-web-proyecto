@@ -3,6 +3,7 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibern
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +56,32 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
             }
         }
         return Optional.ofNullable(assigned);
+    }
+
+    @Override
+    public void updateProperty() {
+
+    }
+
+    @Override
+    public void delete(String propertyId) {
+        ArrayList<Appointment> todos = (ArrayList<Appointment>) all().get();
+        for(Appointment a : todos){
+            if(!a.getAppointmentProperty().isEmpty()){
+                if(a.getAppointmentProperty().get("id").equals(propertyId)){
+                    sessionFactory.getCurrentSession().delete(a);
+                    sessionFactory.getCurrentSession().flush();
+                    sessionFactory.getCurrentSession().clear();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void delete(Appointment appointment) {
+        sessionFactory.getCurrentSession().delete(appointment);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 
     @Override
