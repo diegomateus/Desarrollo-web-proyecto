@@ -27,7 +27,7 @@ public class AppointmentNotifier {
         String subject = "Appointment confirmation notification";
         String message = "<h1> Your appointment has been confirmed. </h1>" +
                 "<p> Your appointment at " + appointment.getAppointmentProperty().get("address")
-                + " which is scheduled for " + appointment.getAppointmentDateTime().toString() +
+                + " which is scheduled for " + appointment.getAppointmentDateTime().value().toString() +
                 " has been assigned to our employee: </p>" +
                 "<h4> " + appointment.getAssignedEmployee().get().get("firstName")
                 + " " + appointment.getAssignedEmployee().get().get("lastName") + " </h4>" +
@@ -43,13 +43,13 @@ public class AppointmentNotifier {
         String subject = "Appointment confirmation notification";
         String message = "<h1> You have been assigned to an appointment. </h1>" +
                 "<p> Yo have been assigned to an appointment at " + appointment.getAppointmentProperty().get("address")
-                + ", scheduled for " + appointment.getAppointmentDateTime().toString() + "</p>" +
+                + ", scheduled for " + appointment.getAppointmentDateTime().value().toString() + "</p>" +
                 "<h2> Customer Information </h2>" +
                 "<ul>" +
                 "<li> Name: " + appointment.getAppointmentCustomerFirstName().value()
                 + " " + appointment.getAppointmentCustomerLastName().value()  + " </li>" +
                 "<li> Email: " + appointment.getAppointmentCustomerEmail().value() + " </li>" +
-                "<li> Phone number: " + appointment.getAppointmentCustomerPhoneNumber()+ " </li>" +
+                "<li> Phone number: " + appointment.getAppointmentCustomerPhoneNumber().value() + " </li>" +
                 "</ul>";
         sender.send((String) appointment.getAssignedEmployee().get().get("email"), subject, message);
     }

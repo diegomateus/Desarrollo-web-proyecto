@@ -29,7 +29,7 @@ public class CancellationNotifier {
         String subject = "Appointment cancellation notification";
         String message = "<h1> Sorry, your appointment was cancelled. </h1>" +
                 "<p> Your appointment at " + appointment.getAppointmentProperty().get("address")
-                + " which was scheduled for " + appointment.getAppointmentDateTime().toString() +
+                + " which was scheduled for " + appointment.getAppointmentDateTime().value().toString() +
                 " was cancelled because our employees cannot join you. </p>" +
                 "<p> We are really sorry, please feel free to book another appointment. </p>";
         sender.send(appointment.getAppointmentCustomerEmail().value(), subject, message);
@@ -39,7 +39,7 @@ public class CancellationNotifier {
         String subject = "Appointment cancellation notification";
         String message = "<h1> An appointment you were assigned to was cancelled. </h1>" +
                 "<p> Your appointment at " + appointment.getAppointmentProperty().get("address")
-                + " which was scheduled for " + appointment.getAppointmentDateTime().toString() +
+                + " which was scheduled for " + appointment.getAppointmentDateTime().value().toString() +
                 " was cancelled. </p>";
         sender.send((String) appointment.getAssignedEmployee().get().get("email"), subject, message);
     }

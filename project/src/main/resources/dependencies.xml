@@ -166,7 +166,7 @@
 
     <bean id="CancelAppointment" class="com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancelAppointment">
         <constructor-arg ref="HibernateAppointmentRepository"/>
-        <constructor-arg ref="AppointmentDomainFinder"/>
+        <constructor-arg ref="CancellationNotifier"/>
     </bean>
 
     <bean id="FindAssignedAppointments" class="com.javeriana.web.project.Appointments.Appointment.Application.FindAssigned.FindAssignedAppointments">
