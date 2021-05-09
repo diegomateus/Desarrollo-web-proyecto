@@ -36,15 +36,8 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public Property updateSerializedOffer(String propertyId, Property property) {
-        sessionFactory.getCurrentSession().saveOrUpdate(propertyId,property);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(propertyId);
-    }
-
-    @Override
     public List<Property> filter(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
-                                 int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition
-    ) {
+                                 int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition) {
         //sessionFactory.getCurrentSession()
         List<Property> prop = new ArrayList<>();
         List<Property> todas = all().get();

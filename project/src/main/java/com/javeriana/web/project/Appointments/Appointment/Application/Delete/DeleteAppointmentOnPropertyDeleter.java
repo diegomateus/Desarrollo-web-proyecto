@@ -10,15 +10,15 @@ import org.springframework.context.event.EventListener;
 public final class DeleteAppointmentOnPropertyDeleter {
 
     //private AppointmentsDeleter appointmentDeleter;
-    private CancelAppointment cancelAppointment;
+    private AppointmentsDeleter appointmentsDeleter;
 
-    public DeleteAppointmentOnPropertyDeleter(CancelAppointment cancelAppointment){
-        this.cancelAppointment = cancelAppointment;
+    public DeleteAppointmentOnPropertyDeleter(AppointmentsDeleter appointmentsDeleter){
+        this.appointmentsDeleter = appointmentsDeleter;
     }
 
     @EventListener
     public void on(PropertyDeleterDomainEvent event){
-        cancelAppointment.execute();
+        appointmentsDeleter.execute(event.aggregateId());
     }
 
 }

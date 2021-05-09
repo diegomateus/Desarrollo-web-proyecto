@@ -10,6 +10,6 @@ public class AppointmentsDeleter {
     }
 
     public void execute(String propertyId){
-        this.repository.delete(propertyId);
+        this.repository.deleteForProperty(propertyId);
     }
 }

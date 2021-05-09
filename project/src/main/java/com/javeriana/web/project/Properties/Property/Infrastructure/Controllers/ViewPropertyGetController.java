@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Property.Infrastructure;
+package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
 import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
 import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinderResponse;

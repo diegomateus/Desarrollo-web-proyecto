@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Appointments.Appointment.Application.Update;
+/*package com.javeriana.web.project.Appointments.Appointment.Application.Update;
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
@@ -23,3 +23,8 @@ public class AppointmentModifier {
         this.repository.updateProperty();
     }
 }
+
+<bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
+*/

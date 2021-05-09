@@ -142,10 +142,19 @@ public class Property extends AggregateRoot {
         return response;
     }
 
-    public void addImage(Image image){
+    public void addImage(String image){
         List<Image> imageList=this.images.isEmpty() ? new ArrayList<>():this.images.get();
-        imageList.add(image);
+        imageList.add(new Image(image,Integer.toString(imageList.size())));
         this.images=Optional.ofNullable(imageList);
+    }
+
+    public boolean deleteImage(String imageId){
+        int index=Integer.valueOf(imageId);
+        if(index>=this.images.get().size() || index<0){
+            return false;
+        }
+        images.get().remove(index);
+        return true;
     }
 
     public Optional<List<HashMap<String,Object>>> getSerializedQuestions(){

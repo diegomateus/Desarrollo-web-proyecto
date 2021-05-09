@@ -10,6 +10,10 @@ public class Price extends IntegerValueObject {
         this.validate(value);
     }
 
+    public Price() {
+        super(0);
+    }
+
     private void validate(int value) {
         this.numberRule(value);
     }

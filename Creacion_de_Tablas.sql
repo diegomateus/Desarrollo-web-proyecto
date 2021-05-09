@@ -11,6 +11,14 @@ CREATE TABLE `appointments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+CREATE TABLE `real_estate`.`offers` (
+  `id` VARCHAR(36) NOT NULL,
+  `property_id` VARCHAR(36) NOT NULL,
+  `price` INT NOT NULL,
+  `action` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`));
+
 CREATE TABLE `real_estate`.`properties` (
                                             `property_id` VARCHAR(36) NOT NULL,
                                             `property_address` VARCHAR(50) NOT NULL,

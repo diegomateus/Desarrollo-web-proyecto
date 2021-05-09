@@ -1,46 +1,45 @@
 package com.javeriana.web.project.Properties.Offer.Domain;
 
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action;
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
-import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Price;
+import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.*;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
-import com.javeriana.web.project.Shared.Domain.Offers.OfferActionEnum;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferCreatorDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferDeleterDomainEvent;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferModifierDomainEvent;
 
-import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
-import java.util.Optional;
 
-public class Offer extends AggregateRoot implements Serializable {
+public class Offer extends AggregateRoot{
     private OfferId offerId;
     private PropertyId propertyId;
     private Price price;
     private Action action;
+
+    public Offer() {
+    }
 
     public Offer(OfferId offerId, PropertyId propertyId, Price price, Action action) {
         this.offerId = offerId;
         this.propertyId = propertyId;
         this.price = price;
         this.action = action;
-    }
-
-    public static Offer createRentOffer(OfferId offerId, PropertyId propertyId, Price price) {
-        Offer offer = new Offer(offerId,propertyId,price, new Action(OfferActionEnum.RENT));
-        offer.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),OfferActionEnum.RENT.toString(),propertyId.value()));
-        return offer;
-    }
-
-    public static Offer createSaleOffer(OfferId offerId, PropertyId propertyId, Price price) {
-        Offer offer = new Offer(offerId,propertyId,price, new Action(OfferActionEnum.SALE));
-        offer.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),OfferActionEnum.SALE.toString(),propertyId.value()));
-        return offer;
+        this.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),action.value(),propertyId.value()));
     }
 
     public void updateOffer(Price price) {
         this.price=price;
+        this.record(new OfferModifierDomainEvent(this.offerId.value(),this.price.value(),this.action.value(),this.propertyId.value()));
+    }
+
+    public HashMap<String,String> data(){
+        HashMap<String,String> data = new HashMap<String,String>(){{
+            put("offerId",offerId.value());
+            put("propertyId",propertyId.value());
+            put("price",Integer.toString(price.value()));
+            put("action",action.value());
+        }};
+        return data;
     }
 
     @Override
@@ -70,11 +69,14 @@ public class Offer extends AggregateRoot implements Serializable {
         return action;
     }
 
-    public void modifyPrice(Offer offer) {
-        offer.record(new OfferModifierDomainEvent(this.offerId.value(),this.price.value(),this.action.value().toString(),this.propertyId.value()));
+    public void deleteOffer(Offer offer) {
+        offer.record(new OfferDeleterDomainEvent(this.offerId.value(),this.propertyId.value()));
     }
 
-    public void deleteOffer(Offer offer) {
-        offer.record(new OfferDeleterDomainEvent(this.offerId.value()));
+    public boolean validatePropertyId(String propertyId) {
+        if(this.propertyId.value().equals(propertyId)){
+            return true;
+        }
+        return false;
     }
 }

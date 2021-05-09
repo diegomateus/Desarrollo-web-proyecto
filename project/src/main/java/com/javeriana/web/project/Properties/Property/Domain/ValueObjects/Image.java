@@ -41,4 +41,18 @@ public class Image{
         return Objects.hash(imageId, image);
     }
 
+    public String getImageId() {
+        return imageId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public boolean equalsId(String imageId) {
+        if(this.image.equals(imageId)){
+            return true;
+        }
+        return false;
+    }
 }

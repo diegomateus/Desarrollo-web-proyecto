@@ -3,11 +3,11 @@ package com.javeriana.web.project.Properties.Property.Application.FilterProperti
 import com.javeriana.web.project.Properties.Property.Domain.Ports.PropertyRepository;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Property.Domain.Services.PropertyFilter;
-import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
-import com.javeriana.web.project.Questions.Question.Domain.Question;
+
+
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Component
