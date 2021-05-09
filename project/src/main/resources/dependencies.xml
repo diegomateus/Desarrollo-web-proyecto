@@ -75,6 +75,8 @@
 
     <bean id="hibernateOfferRepository" class="com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate.HibernateOfferRepository"/>
 
+    <bean id="HibernateQuestionRepository" class="com.javeriana.web.project.Questions.Question.Infrastructure.hibernate.HibernateQuestionRepository"/>
+
     <bean id="springApplicationEventBus" class="com.javeriana.web.project.Shared.Infrastructure.Bus.Event.Spring.SpringApplicationEventBus"/>
 
     <bean id="offerCreator" class="com.javeriana.web.project.Properties.Offer.Application.CreateOffer.OfferCreator">
@@ -95,6 +97,10 @@
 
     <bean id="offerFinder" class="com.javeriana.web.project.Properties.Offer.Application.FindOffer.OfferFinder">
         <constructor-arg ref="hibernateOfferRepository"/>
+    </bean>
+
+    <bean id="QuestionCreator" class="com.javeriana.web.project.Questions.Question.Application.CreateQuestion.QuestionCreator">
+        <constructor-arg ref="HibernateQuestionRepository"/>
     </bean>
 
 </beans>

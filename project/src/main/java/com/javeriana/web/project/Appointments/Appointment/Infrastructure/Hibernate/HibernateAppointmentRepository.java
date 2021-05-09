@@ -2,16 +2,14 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Hibern
 
 import com.javeriana.web.project.Appointments.Appointment.Domain.Appointment;
 import com.javeriana.web.project.Appointments.Appointment.Domain.Ports.AppointmentRepository;
-import com.javeriana.web.project.Employees.Employee.Domain.Employee;
-import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
+import com.javeriana.web.project.Appointments.Appointment.Domain.ValueObjects.AppointmentId;
+import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.transaction.annotation.Transactional;
-
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +43,13 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     }
 
     public Optional<Appointment> find(String appointmentId) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new AppointmentId(appointmentId)));
     }
 
     @Override
     public Appointment assignEmployee(String appointmentId, Appointment appointment) {
         sessionFactory.getCurrentSession().saveOrUpdate(appointmentId,appointment);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(appointmentId);
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(new AppointmentId(appointmentId));
     }
 
     @Override
