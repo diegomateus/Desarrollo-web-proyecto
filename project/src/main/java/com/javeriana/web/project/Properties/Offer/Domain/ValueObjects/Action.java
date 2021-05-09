@@ -1,23 +1,18 @@
 package com.javeriana.web.project.Properties.Offer.Domain.ValueObjects;
 
 import com.javeriana.web.project.Shared.Domain.Offers.OfferActionEnum;
+import com.javeriana.web.project.Shared.Domain.StringValueObject;
 
-public class Action {
-    private OfferActionEnum value;
+public class Action extends StringValueObject {
 
-    public Action(OfferActionEnum value) {
-        this.value = value;
+    public Action(String value) {
+        super(value);
     }
 
-    public OfferActionEnum value(){
+    public Action() {
+    }
+
+    public String value(){
         return this.value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Action action = (Action) o;
-        return value == action.value;
     }
 }

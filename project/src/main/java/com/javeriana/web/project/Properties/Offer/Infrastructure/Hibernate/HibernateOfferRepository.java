@@ -1,4 +1,4 @@
-package com.javeriana.web.project.Properties.Offer.Infraestructure.hibernate;
+package com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate;
 
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
@@ -30,20 +30,20 @@ public class HibernateOfferRepository implements OfferRepository {
 
     @Override
     public Optional<Offer> find(String offerId) {
-        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(offerId));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(new OfferId(offerId)));
     }
 
     @Override
     public Offer update(String offerId,Offer offer) {
-        sessionFactory.getCurrentSession().saveOrUpdate(offerId,offer);
-        return sessionFactory.getCurrentSession().byId(aggregateClass).load(offerId);
+        sessionFactory.getCurrentSession().update(offerId,offer);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+        return sessionFactory.getCurrentSession().byId(aggregateClass).load(new OfferId(offerId));
     }
 
     @Override
     public void delete(Offer offer) {
         sessionFactory.getCurrentSession().delete(offer);
     }
-
-    //TODO: revisar manyToOne de propertyId dentro de Offer en hbm.xml
 
 }

@@ -8,18 +8,18 @@ import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.Seriali
 
 import java.util.Optional;
 
-public class SerializedOfferModifier {
+public class UpdateSerializedOffer {
     private PropertyRepository repository;
     private PropertyDomainFinder finder;
 
-    public SerializedOfferModifier(PropertyRepository repository) {
+    public UpdateSerializedOffer(PropertyRepository repository) {
         this.repository = repository;
         this.finder=new PropertyDomainFinder(repository);
     }
 
-    public Property execute(String offerId, String propertyId, double price, String action){
+    public void execute(String offerId, String propertyId, double price, String action){
         Optional<Property> actualProperty=finder.execute(propertyId);
         actualProperty.get().modifyOffer(new SerializedOffer(offerId,price,action));
-        return repository.updateSerializedOffer(offerId,actualProperty.get());
+        repository.update(propertyId,actualProperty.get());
     }
 }

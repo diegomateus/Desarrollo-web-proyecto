@@ -21,6 +21,6 @@ public class AddSerializedOffer {
     public void execute(String offerId, String propertyId, double price, String action){
         Optional<Property> property=finder.execute(propertyId);
         property.get().addOffer(new SerializedOffer(offerId,price,action));
-        repository.save(property.get());
+        repository.update(propertyId,property.get());
     }
 }

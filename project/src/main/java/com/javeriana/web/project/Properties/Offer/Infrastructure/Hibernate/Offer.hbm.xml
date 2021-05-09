@@ -9,12 +9,9 @@
             <key-property name="value" column="id" access="field" length="36"/>
         </composite-id>
 
-        <many-to-one name="propertyId"
-                     class="com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId"
-                     access="field"
-                     column="property_id"
-                     cascade="save-update">
-        </many-to-one>
+        <component name="propertyId" class="com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.PropertyId" access="field">
+            <property name="value" column="property_id" access="field" type="string"/>
+        </component>
 
         <component name="price" class="com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Price" access="field">
             <property name="value" column="price" access="field" type="int"/>
@@ -23,5 +20,6 @@
         <component name="action" class="com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.Action" access="field">
             <property name="value" column="action" access="field" type="string"/>
         </component>
+        
     </class>
 </hibernate-mapping>

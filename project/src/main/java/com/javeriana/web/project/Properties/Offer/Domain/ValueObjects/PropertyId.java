@@ -7,4 +7,7 @@ public class PropertyId extends CustomUUID {
     public PropertyId(String value) {
         super(value);
     }
+
+    public PropertyId() {
+    }
 }
