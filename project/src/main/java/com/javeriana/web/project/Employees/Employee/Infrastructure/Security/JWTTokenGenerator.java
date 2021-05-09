@@ -17,7 +17,7 @@ public class JWTTokenGenerator implements TokenGenerator {
     private final String ID = "realEstateAppToken";
     private final String SECRET = "web_dev_real_estate";
     private final String CLAIM = "authorities";
-    private final int validity = 60000;
+    private final int validity = 1800000;
     private final String PREFIX = "Bearer ";
 
     @Override

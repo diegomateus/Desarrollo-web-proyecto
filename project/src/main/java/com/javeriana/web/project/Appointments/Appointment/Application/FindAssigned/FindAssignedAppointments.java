@@ -6,7 +6,6 @@ import com.javeriana.web.project.Appointments.Appointment.Domain.Services.Assign
 
 import java.util.List;
 
-
 public class FindAssignedAppointments {
 
     private AppointmentRepository repository;

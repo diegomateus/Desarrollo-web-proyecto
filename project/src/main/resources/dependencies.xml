@@ -87,7 +87,7 @@
 
     <bean id="expiredAppointmentsDeleter" class="com.javeriana.web.project.Appointments.Appointment.Application.DeleteExpiredAppointments.ExpiredAppointmentsDeleter">
         <constructor-arg ref="HibernateAppointmentRepository"/>
-        <constructor-arg ref="cancelAppointment"/>
+        <constructor-arg ref="CancelAppointment"/>
     </bean>
 
     <bean id="addSerializedOffer" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOffer">
@@ -118,8 +118,6 @@
 
     <bean id="HibernateQuestionRepository" class="com.javeriana.web.project.Questions.Question.Infrastructure.hibernate.HibernateQuestionRepository"/>
 
-
-
     <bean id="offerCreator" class="com.javeriana.web.project.Properties.Offer.Application.CreateOffer.OfferCreator">
         <constructor-arg ref="hibernateOfferRepository"/>
         <constructor-arg ref="springApplicationEventBus"/>
@@ -142,6 +140,22 @@
 
     <bean id="QuestionCreator" class="com.javeriana.web.project.Questions.Question.Application.CreateQuestion.QuestionCreator">
         <constructor-arg ref="HibernateQuestionRepository"/>
+    </bean>
+
+    <bean id="AppointmentDomainFinder" class="com.javeriana.web.project.Appointments.Appointment.Domain.Services.AppointmentDomainFinder"/>
+
+    <bean id="CancelAppointment" class="com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancelAppointment">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+        <constructor-arg ref="AppointmentDomainFinder"/>
+    </bean>
+
+    <bean id="FindAssignedAppointments" class="com.javeriana.web.project.Appointments.Appointment.Application.FindAssigned.FindAssignedAppointments">
+        <constructor-arg ref="HibernateAppointmentRepository"/>
+    </bean>
+
+    <bean id="CancelAppointmentOnEmployeeDeleted" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.DomainEventSubscribers.CancelAppointmentOnEmployeeDeleted">
+        <constructor-arg ref="CancelAppointment"/>
+        <constructor-arg ref="FindAssignedAppointments"/>
     </bean>
 
 </beans>

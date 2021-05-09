@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
 public class CancelAppointment {
     private AppointmentRepository repository;
     private AppointmentDomainFinder finder;
 
-    public CancelAppointment(AppointmentRepository repository) {
+    public CancelAppointment(AppointmentRepository repository, AppointmentDomainFinder appointmentDomainFinder) {
         this.repository = repository;
-        this.finder = new AppointmentDomainFinder(repository);
+        this.finder = appointmentDomainFinder;
     }
 
     public void execute(String appointmentId){
