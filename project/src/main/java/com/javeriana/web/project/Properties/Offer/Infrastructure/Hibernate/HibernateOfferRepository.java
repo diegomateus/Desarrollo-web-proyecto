@@ -54,15 +54,18 @@ public class HibernateOfferRepository implements OfferRepository {
     public Optional<List<String>> filter(int priceLowerLimit, int priceUpperLimit, String action) {
         List<String> ids = new ArrayList<>();
         List<Offer> offers = all().get();
+        //System.out.println(action);
         if(!action.equals("")){
             for(Offer o : offers){
                 if(o.getAction().value().equals(action)){
-                    if( priceLowerLimit < o.getPrice().value() && o.getPrice().value() < priceUpperLimit){
-                        ids.add(o.getOfferId().value());
+                    if( priceLowerLimit <= o.getPrice().value() && o.getPrice().value() <= priceUpperLimit){
+                        ids.add(o.getPropertyId().value());
                     }
+                    //System.out.println(priceLowerLimit + " " + o.getPrice().value() + " " + priceUpperLimit);
                 }
             }
         }
+
         return Optional.ofNullable(ids);
     }
 

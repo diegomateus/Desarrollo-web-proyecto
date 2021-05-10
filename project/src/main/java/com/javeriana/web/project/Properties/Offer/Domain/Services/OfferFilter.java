@@ -19,7 +19,7 @@ public class OfferFilter {
 
             Optional<List<String>> propiedades = repository.filter(priceLowerLimit,priceUpperLimit, action);
 
-            if(propiedades.isEmpty()){
+            if(propiedades.get().isEmpty()){
                 throw new NoOffersFoundException("No se encontraron propiedades con los parametros de oferta especificados");
             }
 

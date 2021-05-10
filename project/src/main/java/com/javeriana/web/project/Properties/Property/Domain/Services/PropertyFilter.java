@@ -22,7 +22,8 @@ public class PropertyFilter {
                                   int bedRoomsNumber, int bathRoomNumber, String propertyCondition){
         Optional<List<Property>> properties = repository.filter(propiedades ,propertyType,city,
                 bedRoomsNumber,bathRoomNumber,propertyCondition);
-        if(!properties.isEmpty()){
+
+        if(properties.get().isEmpty()){
             throw new NoPropertiesFoundException("No se encontraron propiedades con los parametros especificados");
         }
 

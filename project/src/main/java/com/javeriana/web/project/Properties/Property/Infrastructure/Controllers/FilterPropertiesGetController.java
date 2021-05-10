@@ -33,6 +33,7 @@ public class FilterPropertiesGetController {
                                            @RequestParam  String action,
                                            @RequestParam  String propertyCondition
     ){
+        //System.out.println(propertyType+priceLowerLimit+priceUpperLimit+city+bedRoomsNumber+bathRoomNumber+action+propertyCondition);
         List<String> propiedades = filterOffers.execute(priceLowerLimit,priceUpperLimit,action);
         FilterPropertiesResponse response = new FilterPropertiesResponse(filterProperties.execute(propiedades, propertyType,city,
                 bedRoomsNumber,bathRoomNumber,propertyCondition));
