@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javeriana.web.project.Properties.Offer.Application.filterOffers.FilterOffers;
 import com.javeriana.web.project.Properties.Property.Application.FilterProperties.FilterProperties;
 import com.javeriana.web.project.Properties.Property.Application.FilterProperties.FilterPropertiesResponse;
@@ -32,7 +33,7 @@ public class FilterPropertiesGetController {
                                            @RequestParam  int bathRoomNumber,
                                            @RequestParam  String action,
                                            @RequestParam  String propertyCondition
-    ){
+    ) throws JsonProcessingException {
         //System.out.println(propertyType+priceLowerLimit+priceUpperLimit+city+bedRoomsNumber+bathRoomNumber+action+propertyCondition);
         List<String> propiedades = filterOffers.execute(priceLowerLimit,priceUpperLimit,action);
         FilterPropertiesResponse response = new FilterPropertiesResponse(filterProperties.execute(propiedades, propertyType,city,
