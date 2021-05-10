@@ -37,6 +37,7 @@ public class AssignAppointmentPutController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<HashMap> handleException(Exception exception){
         HashMap<String,String> response = new HashMap<>(){{
+            exception.printStackTrace();
             put("error",exception.getMessage());
         }};
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
