@@ -16,7 +16,6 @@ public final class UpdateSerializedOfferOnOfferModified {
 
     @EventListener
     public void on(OfferModifierDomainEvent event){
-        System.out.println("NP:"+event.getPrice());
         updateSerializedOffer.execute(event.aggregateId(),event.getPropertyID(),event.getPrice(),event.getAction());
     }
 }

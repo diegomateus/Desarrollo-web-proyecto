@@ -60,7 +60,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     public Optional<List<Appointment>> findAssignedAppointmets(String employeeId) {
         ArrayList<Appointment> todos = (ArrayList<Appointment>) all().get();
         if(todos.isEmpty()){
-            return Optional.empty();
+            return Optional.of(new ArrayList<>());
         }
         ArrayList<Appointment> assigned = new ArrayList<>();
         for(Appointment a : todos){
@@ -127,7 +127,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
     public Optional<List<Appointment>> findByProperty(String propertyId) {
         ArrayList<Appointment> todos = (ArrayList<Appointment>) all().get();
         if(todos.isEmpty()){
-            return Optional.empty();
+            return Optional.of(new ArrayList<>());
         }
         ArrayList<Appointment> updates = new ArrayList<>();
         for(Appointment a : todos){
