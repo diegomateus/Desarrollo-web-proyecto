@@ -44,7 +44,8 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         List<Property> todas = all().get();
         List<Property> res;
 
-
+        //System.out.println(propertyType+city+bedRoomsNumber+bathRoomNumber+propertyCondition+idPropiedades.size());
+        //System.out.println(idPropiedades);
         if(!idPropiedades.isEmpty()){
             for(Property p : todas ){
                 if(idPropiedades.contains(p.getPropertyId().value())){
@@ -56,19 +57,23 @@ public class HibernatePropertyRepository  implements PropertyRepository {
         }
 
 
+
+
         if(!propertyType.equals("")){
             prop =  prop.stream().filter(property -> property.getPropertyType().value().equals(propertyType)).collect(Collectors.toList());
-
         }
+
 
         if(!propertyCondition.equals("")) {
             prop = prop.stream().filter(property -> property.getCondition().value().equals(propertyCondition)).collect(Collectors.toList());
         }
 
+
         res =  prop.stream().filter(property -> property.getCity().value().equals(city))
         .filter(property -> property.getBedroomsNumber().value() >= bedRoomsNumber)
         .filter(property -> property.getBathroomsNumber().value() >= bathRoomNumber).collect(Collectors.toList());
 
+        System.out.println(res.size());
         return Optional.ofNullable(res);
     }
 

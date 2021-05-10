@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/appointments")
-public class GetAssignedAppointmetsController {
+public class GetAssignedAppointmentsGetController {
 
     @Autowired
     FindAssignedAppointments findAssignedAppointments;

@@ -1,5 +1,6 @@
-package com.javeriana.web.project.Properties.Property.Application.UpdateSerializedQuestion;
+package com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers;
 
+import com.javeriana.web.project.Properties.Property.Application.UpdateSerializedQuestion.UpdateSerializedQuestion;
 import com.javeriana.web.project.Shared.Bus.Event.DomainEventSubscriber;
 import com.javeriana.web.project.Shared.Domain.Questions.QuestionAnsweredDomainEvent;
 import org.springframework.context.event.EventListener;

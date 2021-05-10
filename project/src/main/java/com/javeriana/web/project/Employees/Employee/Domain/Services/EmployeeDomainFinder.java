@@ -1,5 +1,6 @@
-package com.javeriana.web.project.Employees.Employee.Domain;
+package com.javeriana.web.project.Employees.Employee.Domain.Services;
 
+import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
 

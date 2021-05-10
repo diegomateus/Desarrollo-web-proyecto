@@ -1,7 +1,8 @@
-package com.javeriana.web.project.Appointments.Appointment.Application.Delete;
+package com.javeriana.web.project.Appointments.Appointment.Infrastructure.DomainEventSubscribers;
 
 import com.javeriana.web.project.Appointments.Appointment.Application.Book.AppointmentBooker;
 import com.javeriana.web.project.Appointments.Appointment.Application.Cancel.CancelAppointment;
+import com.javeriana.web.project.Appointments.Appointment.Application.Delete.AppointmentsDeleter;
 import com.javeriana.web.project.Shared.Bus.Event.DomainEventSubscriber;
 import com.javeriana.web.project.Shared.Domain.Properties.PropertyDeleterDomainEvent;
 import org.springframework.context.event.EventListener;

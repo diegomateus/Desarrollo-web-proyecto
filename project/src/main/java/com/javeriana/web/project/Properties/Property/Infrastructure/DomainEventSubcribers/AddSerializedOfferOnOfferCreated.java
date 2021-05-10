@@ -1,5 +1,6 @@
-package com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer;
+package com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers;
 
+import com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOffer;
 import com.javeriana.web.project.Shared.Bus.Event.DomainEventSubscriber;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferCreatorDomainEvent;
 import org.springframework.context.event.EventListener;

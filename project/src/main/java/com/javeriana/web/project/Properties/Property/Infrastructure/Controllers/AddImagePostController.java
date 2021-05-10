@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
-import com.javeriana.web.project.Properties.Property.Application.DeleteImage.ImageDeleter;
-import com.javeriana.web.project.Properties.Property.Domain.Exceptions.ImageNotFoundException;
+
+import com.javeriana.web.project.Properties.Property.Application.AddImage.ImageAdditive;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,14 +12,14 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/properties")
-public class DeleteImageController {
+public class AddImagePostController {
 
     @Autowired
-    private ImageDeleter imageDeleter;
+    private ImageAdditive imageAdditive;
 
-    @DeleteMapping(value = "/{propertyId}/images/{indexInList}")
-    public ResponseEntity execute(@PathVariable("propertyId") String propertyId,@PathVariable("indexInList") String indexInList){
-        imageDeleter.execute(propertyId,indexInList);
+    @PostMapping(value = "/{propertyId}/images")
+    public ResponseEntity execute(@RequestBody AddImageRequest request,@PathVariable("propertyId") String propertyId){
+        imageAdditive.execute(propertyId,request.getImageId());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -31,11 +31,23 @@ public class DeleteImageController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-    @ExceptionHandler(ImageNotFoundException.class)
-    public ResponseEntity<HashMap> imageNotFoundException(ImageNotFoundException exception){
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
         HashMap<String,String> response = new HashMap<>(){{
             put("error",exception.getMessage());
         }};
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+}
+
+class AddImageRequest {
+    private String imageId;
+
+    public String getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 }

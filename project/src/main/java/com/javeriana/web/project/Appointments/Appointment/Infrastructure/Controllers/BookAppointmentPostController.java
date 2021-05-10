@@ -33,8 +33,6 @@ public class BookAppointmentPostController {
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
-
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<HashMap> handleException(Exception exception){
         HashMap<String,String> response = new HashMap<>(){{

@@ -1,5 +1,6 @@
-package com.javeriana.web.project.Properties.Property.Application.UpdateSerializedOffer;
+package com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers;
 
+import com.javeriana.web.project.Properties.Property.Application.UpdateSerializedOffer.UpdateSerializedOffer;
 import com.javeriana.web.project.Shared.Bus.Event.DomainEventSubscriber;
 import com.javeriana.web.project.Shared.Domain.Offers.OfferModifierDomainEvent;
 import org.springframework.context.event.EventListener;
@@ -15,7 +16,6 @@ public final class UpdateSerializedOfferOnOfferModified {
 
     @EventListener
     public void on(OfferModifierDomainEvent event){
-        System.out.println("NP:"+event.getPrice());
         updateSerializedOffer.execute(event.aggregateId(),event.getPropertyID(),event.getPrice(),event.getAction());
     }
 }
