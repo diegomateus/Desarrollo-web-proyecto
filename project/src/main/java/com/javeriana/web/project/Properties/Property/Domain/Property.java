@@ -1,5 +1,7 @@
 package com.javeriana.web.project.Properties.Property.Domain;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javeriana.web.project.Properties.Property.Domain.ValueObjects.*;
 import com.javeriana.web.project.Shared.Bus.Aggregate.AggregateRoot;
 import com.javeriana.web.project.Shared.Domain.Properties.PropertyDeleterDomainEvent;
@@ -101,7 +103,7 @@ public class Property extends AggregateRoot {
 
     }
 
-    public HashMap<String,String> data(){
+    public HashMap<String,String> data() throws JsonProcessingException {
         HashMap<String,String> data = new HashMap<String,String>(){{
 
             put("address",address.value());
@@ -116,7 +118,8 @@ public class Property extends AggregateRoot {
             put("deliveryDate",deliveryDate.value().toString());
             put("latitude",String.valueOf(latitude.value()));
             put("longitude",String.valueOf(longitude.value()));
-
+            put("questions", new ObjectMapper().writeValueAsString(getSerializedQuestionsData()));
+            put("offers", new ObjectMapper().writeValueAsString(getSerializedOffersData()));
         }};
 
         return data;
@@ -208,6 +211,28 @@ public class Property extends AggregateRoot {
         SerializedOffer serializedOfferActual=offersList.stream().
                 filter(offer->offer.getOfferId().equals(offerId)).findFirst().get();
         offersList.remove(serializedOfferActual);
+    }
+
+    public List<HashMap<String, Object>> getSerializedQuestionsData() {
+        if (this.serializedQuestions.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<HashMap<String, Object>> result = new ArrayList<>();
+        for (SerializedQuestion q : this.serializedQuestions.get()) {
+            result.add(q.data());
+        }
+        return result;
+    }
+
+    public List<HashMap<String, Object>> getSerializedOffersData() {
+        if (this.serializedOffers.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<HashMap<String, Object>> result = new ArrayList<>();
+        for (SerializedOffer o : this.serializedOffers.get()) {
+            result.add(o.data());
+        }
+        return result;
     }
 
     public PropertyId getPropertyId() {

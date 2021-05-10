@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Property.Infrastructure.Controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinder;
 import com.javeriana.web.project.Properties.Property.Application.Find.PropertyFinderResponse;
 import com.javeriana.web.project.Properties.Property.Domain.Exceptions.PropertyNotExist;
@@ -18,7 +19,7 @@ public class ViewPropertyGetController {
     private PropertyFinder finder;
 
     @GetMapping(value="/{propertyId}")
-    public ResponseEntity<HashMap> execute(@PathVariable("propertyId") String id){
+    public ResponseEntity<HashMap> execute(@PathVariable("propertyId") String id) throws JsonProcessingException {
         PropertyFinderResponse response = new PropertyFinderResponse(finder.execute(id));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }
