@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/properties")
-public class FilterPropertiesController {
+public class FilterPropertiesGetController {
 
     @Autowired
     FilterProperties filterProperties;
@@ -22,20 +22,18 @@ public class FilterPropertiesController {
     @Autowired
     FilterOffers filterOffers;
 
-    @GetMapping (value = "/search/{propertyType}/{priceLowerLimit}/{priceUpperLimit}/{city}/{bedRoomsNumber}/{bathRoomNumber}/{action}/{propertyCondition}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HashMap> execute(
-                                           @PathVariable("propertyType") String propertyType,
-                                           @PathVariable("priceLowerLimit") int priceLowerLimit,
-                                           @PathVariable("priceUpperLimit") int priceUpperLimit,
-                                           @PathVariable("city") String city,
-                                           @PathVariable("bedRoomsNumber") int bedRoomsNumber,
-                                           @PathVariable("bathRoomNumber") int bathRoomNumber,
-                                           @PathVariable("action") String action,
-                                           @PathVariable("propertyCondition") String propertyCondition
+                                           @RequestParam String propertyType,
+                                           @RequestParam int priceLowerLimit,
+                                           @RequestParam  int priceUpperLimit,
+                                           @RequestParam  String city,
+                                           @RequestParam  int bedRoomsNumber,
+                                           @RequestParam  int bathRoomNumber,
+                                           @RequestParam  String action,
+                                           @RequestParam  String propertyCondition
     ){
-        //Se filtran las ofertas
         List<String> propiedades = filterOffers.execute(priceLowerLimit,priceUpperLimit,action);
-        //Se filtran las propiedades obtenidas de filtrar por ofertas
         FilterPropertiesResponse response = new FilterPropertiesResponse(filterProperties.execute(propiedades, propertyType,city,
                 bedRoomsNumber,bathRoomNumber,propertyCondition));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());

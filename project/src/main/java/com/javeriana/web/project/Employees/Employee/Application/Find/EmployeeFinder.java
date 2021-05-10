@@ -1,7 +1,7 @@
 package com.javeriana.web.project.Employees.Employee.Application.Find;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
-import com.javeriana.web.project.Employees.Employee.Domain.EmployeeDomainFinder;
+import com.javeriana.web.project.Employees.Employee.Domain.Services.EmployeeDomainFinder;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeRepository;
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;

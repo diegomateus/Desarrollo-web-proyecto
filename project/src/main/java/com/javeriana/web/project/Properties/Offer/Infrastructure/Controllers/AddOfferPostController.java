@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/properties")
-public class AddOfferController {
+public class AddOfferPostController {
 
     @Autowired
     private OfferCreator offerCreator;
@@ -41,7 +41,13 @@ public class AddOfferController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
-    //TODO: Handle exceptions
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
 }
 
 class Request {

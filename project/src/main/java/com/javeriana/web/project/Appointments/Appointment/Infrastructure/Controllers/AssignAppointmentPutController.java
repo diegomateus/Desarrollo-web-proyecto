@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/appointments")
-public class AssignAppointmentController {
+public class AssignAppointmentPutController {
 
     @Autowired
     AppointmentAssigner assigner;
@@ -25,7 +25,6 @@ public class AssignAppointmentController {
 
     @PutMapping(value = "/{appointmentId}")
     public ResponseEntity execute(@PathVariable("appointmentId") String id) {
-        //Se debe buscar el empleado que hace la solicitud
         String employeeId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Employee assignedEmploye = employeeFinder.execute(employeeId);
         HashMap<String, String> datosEmpleado = assignedEmploye.data();

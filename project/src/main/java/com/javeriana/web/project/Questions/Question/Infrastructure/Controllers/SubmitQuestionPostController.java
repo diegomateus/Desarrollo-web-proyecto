@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/questions")
-public class SubmitQuestionController {
+public class SubmitQuestionPostController {
 
     @Autowired
     QuestionCreator creator;

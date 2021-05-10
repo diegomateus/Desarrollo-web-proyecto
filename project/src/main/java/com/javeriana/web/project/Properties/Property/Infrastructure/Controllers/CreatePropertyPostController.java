@@ -31,8 +31,13 @@ public final class CreatePropertyPostController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
-    //TODO:AGREGAR LOS ERRORES
-
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
 
 }
 

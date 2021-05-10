@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/questions")
-public class ViewUnAnsweredQuestionsController {
+public class ViewUnAnsweredQuestionsGetController {
 
     @Autowired
     FindUnAnsweredQuestions findUnAnsweredQuestions;

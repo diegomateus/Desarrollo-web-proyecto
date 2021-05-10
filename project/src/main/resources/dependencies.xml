@@ -80,11 +80,11 @@
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
 
-    <bean id="updateAppointmentOnPropertyModifier" class="com.javeriana.web.project.Appointments.Appointment.Application.Update.UpdateAppointmentOnPropertyModifier">
+    <bean id="updateAppointmentOnPropertyModifier" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.DomainEventSubscribers.UpdateAppointmentOnPropertyModifier">
         <constructor-arg ref="appointmentModifier"/>
     </bean>
 
-    <bean id="deleteAppointmentOnPropertyDeleter" class="com.javeriana.web.project.Appointments.Appointment.Application.Delete.DeleteAppointmentOnPropertyDeleter">
+    <bean id="deleteAppointmentOnPropertyDeleter" class="com.javeriana.web.project.Appointments.Appointment.Infrastructure.DomainEventSubscribers.DeleteAppointmentOnPropertyDeleter">
         <constructor-arg ref="appointmentsDeleter"/>
     </bean>
 
@@ -99,7 +99,7 @@
 
 
 
-    <bean id="addSerializedOfferOnOfferCreated" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOfferOnOfferCreated">
+    <bean id="addSerializedOfferOnOfferCreated" class="com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers.AddSerializedOfferOnOfferCreated">
         <constructor-arg ref="addSerializedOffer"/>
     </bean>
 
@@ -107,7 +107,7 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="deleteSerializedOfferOnOfferDeleted" class="com.javeriana.web.project.Properties.Property.Application.DeleteSerializedOffer.DeleteSerializedOfferOnOfferDeleted">
+    <bean id="deleteSerializedOfferOnOfferDeleted" class="com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers.DeleteSerializedOfferOnOfferDeleted">
         <constructor-arg ref="deleteSerializedOffer"/>
     </bean>
 
@@ -115,7 +115,7 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="updateSerializedOfferOnOfferModified" class="com.javeriana.web.project.Properties.Property.Application.UpdateSerializedOffer.UpdateSerializedOfferOnOfferModified">
+    <bean id="updateSerializedOfferOnOfferModified" class="com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers.UpdateSerializedOfferOnOfferModified">
         <constructor-arg ref="updateSerializedOffer"/>
     </bean>
 
@@ -202,7 +202,7 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="AddSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedQuestion.AddSerializedQuestionOnQuestionCreated">
+    <bean id="AddSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers.AddSerializedQuestionOnQuestionCreated">
         <constructor-arg ref="AddSerializedQuestion"/>
     </bean>
 
@@ -210,7 +210,7 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
-    <bean id="UpdateSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Application.UpdateSerializedQuestion.UpdateSerializedQuestionOnQuestionModified">
+    <bean id="UpdateSerializedQuestionOnQuestionCreated" class="com.javeriana.web.project.Properties.Property.Infrastructure.DomainEventSubcribers.UpdateSerializedQuestionOnQuestionModified">
         <constructor-arg ref="UpdateSerializedQuestion"/>
     </bean>
 

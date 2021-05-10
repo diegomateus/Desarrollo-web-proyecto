@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 
 @RestController
 @RequestMapping(value = "/questions")
-public class SubmitAnswerController {
+public class SubmitAnswerPutController {
     @Autowired
     QuestionAnswerer answerer;
 
@@ -21,6 +23,13 @@ public class SubmitAnswerController {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
 
     static class Request{
         private String text;
