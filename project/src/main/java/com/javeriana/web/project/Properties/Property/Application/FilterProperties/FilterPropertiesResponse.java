@@ -1,5 +1,6 @@
 package com.javeriana.web.project.Properties.Property.Application.FilterProperties;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javeriana.web.project.Properties.Property.Domain.Property;
 import com.javeriana.web.project.Properties.Shared.Application.Response;
 
@@ -14,7 +15,7 @@ public class FilterPropertiesResponse implements Response {
         this.properties = properties;
     }
 
-    public HashMap response(){
+    public HashMap response() throws JsonProcessingException {
         HashMap<String,HashMap<String,String>> response = new HashMap<>();
         HashMap<String,String> responseItem = new HashMap<>();
         int index = 0;
