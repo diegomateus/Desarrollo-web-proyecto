@@ -19,7 +19,7 @@ public class AddImagePostController {
 
     @PostMapping(value = "/{propertyId}/images")
     public ResponseEntity execute(@RequestBody AddImageRequest request,@PathVariable("propertyId") String propertyId){
-        imageAdditive.execute(propertyId,request.getImageId());
+        imageAdditive.execute(propertyId,request.getImage());
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
@@ -41,13 +41,13 @@ public class AddImagePostController {
 }
 
 class AddImageRequest {
-    private String imageId;
+    private String image;
 
-    public String getImageId() {
-        return imageId;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

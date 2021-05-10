@@ -147,7 +147,7 @@ public class Property extends AggregateRoot {
 
     public void addImage(String image){
         List<Image> imageList=this.images.isEmpty() ? new ArrayList<>():this.images.get();
-        imageList.add(new Image(image,Integer.toString(imageList.size())));
+        imageList.add(new Image(Integer.toString(imageList.size()),image));
         this.images=Optional.ofNullable(imageList);
     }
 
