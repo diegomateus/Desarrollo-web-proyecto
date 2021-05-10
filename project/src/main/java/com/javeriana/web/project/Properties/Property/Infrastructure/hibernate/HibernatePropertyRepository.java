@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional("transactional-manager")
 public class HibernatePropertyRepository  implements PropertyRepository {
@@ -36,12 +37,12 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(List<String> idPropiedades, String propertyType, String city,
+    public Optional<List<Property>> filter(List<String> idPropiedades, String propertyType, String city,
                                  int bedRoomsNumber, int bathRoomNumber, String propertyCondition) {
 
         List<Property> prop = new ArrayList<>();
         List<Property> todas = all().get();
-        List<Property> res = new ArrayList<>();
+        List<Property> res;
 
 
         if(!idPropiedades.isEmpty()){
@@ -54,46 +55,21 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             prop = todas;
         }
 
-        prop = todas;
-        if(!city.equals("")){
-            for(Property p : prop){
-                if(!city.equals(p.getCity().value())){
-                    prop.remove(p);
-                }
-
-            }
-        }
 
         if(!propertyType.equals("")){
-            for(Property p : prop){
-                if(!propertyType.equals(p.getPropertyType().value())){
-                    prop.remove(p);
-                }
-            }
-        }
-        if(!propertyCondition.equals("")){
-            for(Property p : prop){
-                if(!propertyCondition.equals(p.getCondition().value())){
-                    prop.remove(p);
-                }
-            }
-        }
-        if(bedRoomsNumber != 0){
-            for(Property p : prop){
-                if(p.getBedroomsNumber().value() < bedRoomsNumber){
-                    prop.remove(p);
-                }
-            }
-        }
-        if(bathRoomNumber != 0){
-            for(Property p : prop){
-                if(p.getBathroomsNumber().value() < bathRoomNumber){
-                    prop.remove(p);
-                }
-            }
+            prop =  prop.stream().filter(property -> property.getPropertyType().value().equals(propertyType)).collect(Collectors.toList());
+
         }
 
-        return res;
+        if(!propertyCondition.equals("")) {
+            prop = prop.stream().filter(property -> property.getCondition().value().equals(propertyCondition)).collect(Collectors.toList());
+        }
+
+        res =  prop.stream().filter(property -> property.getCity().value().equals(city))
+        .filter(property -> property.getBedroomsNumber().value() >= bedRoomsNumber)
+        .filter(property -> property.getBathroomsNumber().value() >= bathRoomNumber).collect(Collectors.toList());
+
+        return Optional.ofNullable(res);
     }
 
     @Override

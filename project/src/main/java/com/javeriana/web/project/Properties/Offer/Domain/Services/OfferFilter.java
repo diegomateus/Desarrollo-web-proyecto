@@ -1,8 +1,11 @@
 package com.javeriana.web.project.Properties.Offer.Domain.Services;
 
+import com.javeriana.web.project.Properties.Offer.Domain.Exeptions.NoOffersFoundException;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
 
+
 import java.util.List;
+import java.util.Optional;
 
 public class OfferFilter {
 
@@ -12,8 +15,13 @@ public class OfferFilter {
         this.repository = repository;
     }
 
-    public List<String> execute(int priceLowerLimit, int priceUpperLimit, String action) {
-        List<String> propiedades = repository.filter(priceLowerLimit,priceUpperLimit, action);
+    public Optional<List<String>> execute(int priceLowerLimit, int priceUpperLimit, String action) {
+
+            Optional<List<String>> propiedades = repository.filter(priceLowerLimit,priceUpperLimit, action);
+
+            if(propiedades.isEmpty()){
+                throw new NoOffersFoundException("No se encontraron propiedades con los parametros de oferta especificados");
+            }
 
         return propiedades;
     }

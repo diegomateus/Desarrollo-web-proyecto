@@ -12,7 +12,7 @@ public interface OfferRepository {
     Optional<Offer> find(String offerId);
     Offer update(String offerId,Offer offer);
     void delete(Offer offer);
-    List<String> filter(int priceLowerLimit, int priceUpperLimit, String action);
+    Optional<List<String>> filter(int priceLowerLimit, int priceUpperLimit, String action);
     Optional<List<Offer>> all();
 
     //TODO: Add other methods

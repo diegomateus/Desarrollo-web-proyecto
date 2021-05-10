@@ -24,14 +24,23 @@ public class AssignAppointmentController {
     EmployeeFinder employeeFinder;
 
     @PutMapping(value = "/{appointmentId}")
-    public ResponseEntity execute(@PathVariable("appointmentId") String id){
+    public ResponseEntity execute(@PathVariable("appointmentId") String id) {
+        //Se debe buscar el empleado que hace la solicitud
         String employeeId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         Employee assignedEmploye = employeeFinder.execute(employeeId);
-        HashMap<String,String> datosEmpleado = assignedEmploye.data();
-        assigner.execute(id,datosEmpleado.get("id"),datosEmpleado.get("email"),
-                datosEmpleado.get("name"),datosEmpleado.get("lastName"));
+        HashMap<String, String> datosEmpleado = assignedEmploye.data();
+
+        assigner.execute(id, datosEmpleado.get("id"), datosEmpleado.get("email"),
+                datosEmpleado.get("name"), datosEmpleado.get("lastName"));
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 
 

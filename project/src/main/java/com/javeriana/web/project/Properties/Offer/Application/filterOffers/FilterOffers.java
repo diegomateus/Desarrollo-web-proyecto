@@ -17,6 +17,6 @@ public class FilterOffers {
 
 
     public List<String> execute(int priceLowerLimit, int priceUpperLimit, String action) {
-        return filter.execute(priceLowerLimit,priceUpperLimit,action);
+        return filter.execute(priceLowerLimit,priceUpperLimit,action).get();
     }
 }

@@ -51,7 +51,7 @@ public class HibernateOfferRepository implements OfferRepository {
     }
 
     @Override
-    public List<String> filter(int priceLowerLimit, int priceUpperLimit, String action) {
+    public Optional<List<String>> filter(int priceLowerLimit, int priceUpperLimit, String action) {
         List<String> ids = new ArrayList<>();
         List<Offer> offers = all().get();
         if(!action.equals("")){
@@ -63,7 +63,7 @@ public class HibernateOfferRepository implements OfferRepository {
                 }
             }
         }
-        return ids;
+        return Optional.ofNullable(ids);
     }
 
     @Override

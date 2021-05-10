@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface PropertyRepository {
     void save(Property property);
     Optional<Property> find(String propertyId);
-    List<Property> filter(List<String> idPropiedades, String propertyType, String city,
+    Optional<List<Property>> filter(List<String> idPropiedades, String propertyType, String city,
                           int bedRoomsNumber, int bathRoomNumber, String propertyCondition);
     Optional<List<Property>> all();
 

@@ -6,6 +6,7 @@ import com.javeriana.web.project.Shared.Domain.Questions.QuestionAnsweredDomainE
 import com.javeriana.web.project.Shared.Domain.Questions.QuestionCreatorDomainEvent;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Question extends AggregateRoot implements Serializable {
 
@@ -71,5 +72,16 @@ public class Question extends AggregateRoot implements Serializable {
     public void answerQuestion(Answer answer){
         this.answer = answer;
         this.record(new QuestionAnsweredDomainEvent(questionId.value(),propertyId.value(),text.value(),date.value(),""));
+    }
+
+    public HashMap<String, String> data() {
+        HashMap<String,String> data = new HashMap<String,String>(){{
+            put("id",getQuestionId().value());
+            put("propertyid",getPropertyId().value());
+            put("text",getText().value());
+            put("date",getDate().value().toString());
+            put("answer",getAnswer().toString());
+        }};
+        return data;
     }
 }

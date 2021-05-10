@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +35,13 @@ public class GetAssignedAppointmetsController {
         HashMap<String,String> datosEmpleado = assignedEmploye.data();
         FindAssignedAppointmetsResponse response = new FindAssignedAppointmetsResponse(findAssignedAppointments.execute(datosEmpleado.get("id")));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HashMap> handleException(Exception exception){
+        HashMap<String,String> response = new HashMap<>(){{
+            put("error: ",exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
