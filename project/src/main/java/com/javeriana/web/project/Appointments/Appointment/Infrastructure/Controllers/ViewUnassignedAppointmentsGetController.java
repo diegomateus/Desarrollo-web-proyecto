@@ -2,6 +2,7 @@ package com.javeriana.web.project.Appointments.Appointment.Infrastructure.Contro
 
 import com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsGetter;
 import com.javeriana.web.project.Appointments.Appointment.Application.Unassigned.UnassignedAppointmentsResponse;
+import com.javeriana.web.project.Employees.Employee.Application.Find.EmployeeFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class ViewUnassignedAppointmentsGetController {
 
     @Autowired
     UnassignedAppointmentsGetter unassignedAppointmentsGetter;
+
 
     @GetMapping (value = "/unassigned")
     public ResponseEntity<List<HashMap>> execute() {

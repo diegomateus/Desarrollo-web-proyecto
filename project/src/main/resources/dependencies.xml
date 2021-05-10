@@ -61,6 +61,8 @@
         <constructor-arg ref="HibernateAppointmentRepository"/>
     </bean>
 
+
+
     <bean id="EmployeeDeleter" class="com.javeriana.web.project.Employees.Employee.Application.DeleteEmployee.EmployeeDeleter">
         <constructor-arg ref="hibernateEmployeeRepository"/>
         <constructor-arg ref="springApplicationEventBus"/>
@@ -95,6 +97,8 @@
         <constructor-arg ref="hibernatePropertyRepository"/>
     </bean>
 
+
+
     <bean id="addSerializedOfferOnOfferCreated" class="com.javeriana.web.project.Properties.Property.Application.AddSerializedOffer.AddSerializedOfferOnOfferCreated">
         <constructor-arg ref="addSerializedOffer"/>
     </bean>
@@ -116,6 +120,10 @@
     </bean>
 
     <bean id="hibernateOfferRepository" class="com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate.HibernateOfferRepository"/>
+
+    <bean id="FilterOffers" class="com.javeriana.web.project.Properties.Offer.Application.filterOffers.FilterOffers">
+        <constructor-arg ref="hibernateOfferRepository"/>
+    </bean>
 
     <bean id="HibernateQuestionRepository" class="com.javeriana.web.project.Questions.Question.Infrastructure.hibernate.HibernateQuestionRepository"/>
 

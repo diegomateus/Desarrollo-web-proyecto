@@ -3,10 +3,14 @@ package com.javeriana.web.project.Properties.Offer.Infrastructure.Hibernate;
 import com.javeriana.web.project.Properties.Offer.Domain.Offer;
 import com.javeriana.web.project.Properties.Offer.Domain.Ports.OfferRepository;
 import com.javeriana.web.project.Properties.Offer.Domain.ValueObjects.OfferId;
+import com.javeriana.web.project.Properties.Property.Domain.Property;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional("transactional-manager")
@@ -44,6 +48,28 @@ public class HibernateOfferRepository implements OfferRepository {
     @Override
     public void delete(Offer offer) {
         sessionFactory.getCurrentSession().delete(offer);
+    }
+
+    @Override
+    public List<String> filter(int priceLowerLimit, int priceUpperLimit, String action) {
+        List<String> ids = new ArrayList<>();
+        List<Offer> offers = all().get();
+        if(!action.equals("")){
+            for(Offer o : offers){
+                if(o.getAction().value().equals(action)){
+                    if( priceLowerLimit < o.getPrice().value() && o.getPrice().value() < priceUpperLimit){
+                        ids.add(o.getOfferId().value());
+                    }
+                }
+            }
+        }
+        return ids;
+    }
+
+    @Override
+    public Optional<List<Offer>> all() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Offer");
+        return Optional.ofNullable(query.list());
     }
 
 }

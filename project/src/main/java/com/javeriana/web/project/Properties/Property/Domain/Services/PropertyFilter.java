@@ -16,10 +16,10 @@ public class PropertyFilter {
         this.repository = repository;
     }
 
-    public List<Property> execute(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
-                                  int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition){
-        List<Property> properties = repository.filter(propertyType,priceLowerLimit,priceUpperLimit,city,
-                bedRoomsNumber,bathRoomNumber,action,propertyCondition);
+    public List<Property> execute(List<String> propiedades,String propertyType,  String city,
+                                  int bedRoomsNumber, int bathRoomNumber, String propertyCondition){
+        List<Property> properties = repository.filter(propiedades ,propertyType,city,
+                bedRoomsNumber,bathRoomNumber,propertyCondition);
         if(properties.isEmpty()){
             //TO DO
             //Crear throw de no hay

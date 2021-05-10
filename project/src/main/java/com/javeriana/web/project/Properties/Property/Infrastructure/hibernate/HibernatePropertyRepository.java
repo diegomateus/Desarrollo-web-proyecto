@@ -36,13 +36,15 @@ public class HibernatePropertyRepository  implements PropertyRepository {
     }
 
     @Override
-    public List<Property> filter(String propertyType, int priceLowerLimit, int priceUpperLimit, String city,
-                                 int bedRoomsNumber, int bathRoomNumber, String action, String propertyCondition) {
-        //sessionFactory.getCurrentSession()
+    public List<Property> filter(List<String> idPropiedades, String propertyType, String city,
+                                 int bedRoomsNumber, int bathRoomNumber, String propertyCondition) {
+
         List<Property> prop = new ArrayList<>();
         List<Property> todas = all().get();
+        List<Property> res = new ArrayList<>();
 
-        /*if(!idPropiedades.isEmpty()){
+
+        if(!idPropiedades.isEmpty()){
             for(Property p : todas ){
                 if(idPropiedades.contains(p.getPropertyId().value())){
                     prop.add(p);
@@ -50,18 +52,28 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             }
         }else{
             prop = todas;
-        }*/
+        }
+
         prop = todas;
-        if(propertyType != null){
+        if(!city.equals("")){
             for(Property p : prop){
-                if(!propertyType.equals(p.getPropertyType())){
+                if(!city.equals(p.getCity().value())){
+                    prop.remove(p);
+                }
+
+            }
+        }
+
+        if(!propertyType.equals("")){
+            for(Property p : prop){
+                if(!propertyType.equals(p.getPropertyType().value())){
                     prop.remove(p);
                 }
             }
         }
-        if(propertyCondition != null){
+        if(!propertyCondition.equals("")){
             for(Property p : prop){
-                if(!propertyCondition.equals(p.getCondition())){
+                if(!propertyCondition.equals(p.getCondition().value())){
                     prop.remove(p);
                 }
             }
@@ -81,12 +93,12 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             }
         }
 
-        return prop;
+        return res;
     }
 
     @Override
     public Optional<List<Property>> all() {
-        Query query = sessionFactory.getCurrentSession().createQuery("From property");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Property");
         return Optional.ofNullable(query.list());
     }
 

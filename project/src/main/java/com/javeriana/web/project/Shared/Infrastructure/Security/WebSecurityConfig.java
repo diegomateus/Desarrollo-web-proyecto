@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/properties").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/properties").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/properties").permitAll()
+                .antMatchers(HttpMethod.GET, "/properties/search/{propertyType}/{priceLowerLimit}/{priceUpperLimit}/{city}/{bedRoomsNumber}/{bathRoomNumber}/{action}/{propertyCondition}").permitAll()
                 .antMatchers(HttpMethod.POST, "/properties/{propertyId}/offers").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.PUT, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
@@ -36,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/appointments/{appointmentId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/questions").permitAll()
                 .antMatchers(HttpMethod.PUT, "/questions/{questionId}").permitAll()
+                .antMatchers(HttpMethod.GET, "/appointments/assigned").hasRole("EMPLOYEE")
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("ADMIN")
                 //.antMatchers(HttpMethod.POST, "/employees/test").hasRole("EMPLOYEE")
                 .anyRequest().authenticated();
