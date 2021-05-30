@@ -1,4 +1,4 @@
-# frontwebproject
+# frontproject
 
 ## Project setup
 ```
