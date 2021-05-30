@@ -31,7 +31,10 @@ public class Question extends AggregateRoot implements Serializable {
         this.questionId = questionId;
         this.text = text;
         this.answer = answer;
-        this.record(new QuestionCreatorDomainEvent(questionId.value(),propertyId.value(),text.value(),date.value(),answer.value()));
+    }
+
+    public void createQuestionEvent(){
+        this.record(new QuestionCreatorDomainEvent(this.questionId.value(),this.propertyId.value(),this.text.value(),this.date.value(),this.answer.value()));
     }
 
     public Question(QuestionId questionId, PropertyId propertyId, Text text, QuestionDate date) {

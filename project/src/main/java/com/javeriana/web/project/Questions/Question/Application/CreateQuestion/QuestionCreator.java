@@ -23,6 +23,7 @@ public class QuestionCreator {
 
     public void execute(String questionId, String propertyId, String text, LocalDate date){
         Question question = new Question(new QuestionId(questionId),new PropertyId(propertyId),new Text(text),new QuestionDate(date),new Answer(""));
+        question.createQuestionEvent();
         repository.save(question);
         this.eventBus.publish(question.pullDomainEvents());
     }

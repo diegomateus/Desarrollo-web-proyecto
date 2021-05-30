@@ -24,7 +24,10 @@ public class Offer extends AggregateRoot{
         this.propertyId = propertyId;
         this.price = price;
         this.action = action;
-        this.record(new OfferCreatorDomainEvent(offerId.value(),price.value(),action.value(),propertyId.value()));
+    }
+
+    public void crateOfferEvent(){
+        this.record(new OfferCreatorDomainEvent(this.offerId.value(),this.price.value(),this.action.value(),this.propertyId.value()));
     }
 
     public void updateOffer(Price price) {

@@ -32,6 +32,7 @@ public class OfferCreator {
     public void execute(String offerId, String propertyId, int price, String action){
         validate(offerId,propertyId);
         Offer offer=new Offer(new OfferId(offerId),new PropertyId(propertyId), new Price(price),new Action(action));
+        offer.crateOfferEvent();
         repository.save(offer);
         this.eventBus.publish(offer.pullDomainEvents());
     }
