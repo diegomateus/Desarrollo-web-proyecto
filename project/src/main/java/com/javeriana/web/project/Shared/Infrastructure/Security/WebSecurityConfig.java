@@ -30,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/offers/{offerId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/appointments").permitAll()
-                .antMatchers(HttpMethod.PUT, "/appointments/{appointmentId}").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/appointments/unassigned").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/properties/{propertyId}/images").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/properties/{propertyId}/images/{indexInList}").hasRole("EMPLOYEE")
@@ -42,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/appointments/unassigned").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/appointments/{appointmentId}").permitAll()
                 .antMatchers(HttpMethod.GET, "/questions/unanswered").hasRole("EMPLOYEE")
-                .anyRequest().denyAll();
+                .anyRequest().permitAll();
     }
 
 }
