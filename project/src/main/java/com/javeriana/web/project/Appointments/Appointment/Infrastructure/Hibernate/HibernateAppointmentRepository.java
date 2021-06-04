@@ -100,6 +100,7 @@ public class HibernateAppointmentRepository implements AppointmentRepository {
 
     @Override
     public void delete(Appointment appointment) {
+        appointment = (Appointment) sessionFactory.getCurrentSession().merge(appointment);
         sessionFactory.getCurrentSession().delete(appointment);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
