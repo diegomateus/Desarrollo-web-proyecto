@@ -53,12 +53,8 @@ public class HibernateOfferRepository implements OfferRepository {
     @Override
     public Optional<List<String>> filter(int priceLowerLimit, int priceUpperLimit, String action) {
         List<String> ids = new ArrayList<>();
-        List<Offer> offers = allAscending().get();
+        List<Offer> offers = all().get();
         //System.out.println(action);
-        if(priceUpperLimit == 0 && priceLowerLimit == 0){
-            priceUpperLimit = offers.get(0).getPrice().value();
-            System.out.println(priceUpperLimit);
-        }
         if(!action.equals("")){
             for(Offer o : offers){
                 if(o.getAction().value().equals(action)){
@@ -68,19 +64,7 @@ public class HibernateOfferRepository implements OfferRepository {
                     //System.out.println(priceLowerLimit + " " + o.getPrice().value() + " " + priceUpperLimit);
                 }
             }
-        }else{
-            for(Offer o : offers){
-
-                    if( priceLowerLimit <= o.getPrice().value() && o.getPrice().value() <= priceUpperLimit){
-                        ids.add(o.getPropertyId().value());
-                    }
-                    //System.out.println(priceLowerLimit + " " + o.getPrice().value() + " " + priceUpperLimit);
-
-            }
         }
-
-
-
 
         return Optional.ofNullable(ids);
     }
@@ -88,11 +72,6 @@ public class HibernateOfferRepository implements OfferRepository {
     @Override
     public Optional<List<Offer>> all() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Offer");
-        return Optional.ofNullable(query.list());
-    }
-
-    private Optional<List<Offer>> allAscending(){
-        Query query = sessionFactory.getCurrentSession().createQuery("FROM Offer o ORDER BY o.price");
         return Optional.ofNullable(query.list());
     }
 

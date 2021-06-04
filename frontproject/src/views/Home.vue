@@ -1,25 +1,18 @@
 <template>
   <div class="home">
-    
-      <initial-search>
-
-    </initial-search>
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
- 
-  
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-//import InitialSearch from "@/components/search/InitialSearch.vue";
-import initialSearch from "@/components/search/InitialSearch.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
     HelloWorld,
-    initialSearch,
   },
 });
 </script>

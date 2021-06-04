@@ -38,8 +38,6 @@
         <option value="admin">Administrador</option>
         <option value="employee">Empleado</option>
       </select>
-    <button class="button button1">Aceptar</button>
-    <button class="button button3" @click="handleReturn">Cancelar</button>
     </form>
   </div>
 </template>
