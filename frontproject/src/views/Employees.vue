@@ -1,21 +1,26 @@
 <template>
-  <div id="all" v-if="all">
   <section class="employeesSection">
     <h2 class="title">Empleados</h2>
-    <EmployeeSearch @search="setSearchQuery" @add="addEmployee"></EmployeeSearch>
-    <div class="collection">
-      <EmployeeCard
-        v-for="employee in filteredEmployees"
-        :key="employee.id"
-        :employee="employee"
-      ></EmployeeCard>
+    <div id="all" v-if="all">
+      <EmployeeSearch
+        @search="setSearchQuery"
+        @add="addEmployee"
+      ></EmployeeSearch>
+      <div class="collection">
+        <EmployeeCard
+          v-for="employee in filteredEmployees"
+          :key="employee.id"
+          :employee="employee"
+          @click="editEmployee(employee)"
+        ></EmployeeCard>
+      </div>
+    </div>
+    <div id="add" v-if="add">
+    </div>
+    <div id="edit" v-if="edit">
+      <p>EDIT</p>
     </div>
   </section>
-  </div>
-  <div id="add" v-if="add">
-  </div>
-  <div id="edit" v-if="edit">
-  </div>
 </template>
 
 <script lang="ts">
@@ -32,7 +37,15 @@ export default defineComponent({
     EmployeeCard,
   },
   setup() {
-    const { employees, all, add, edit, allEmployee, addEmployee, editEmployee } = useEmployees();
+    const {
+      employees,
+      all,
+      add,
+      edit,
+      allEmployee,
+      addEmployee,
+      editEmployee,
+    } = useEmployees();
     const { setSearchQuery, searchByName } = useSearchEmployee();
 
     const filteredEmployees = computed(() => {
@@ -40,7 +53,16 @@ export default defineComponent({
       return finalEmployees;
     });
 
-    return { all, add, edit, setSearchQuery, filteredEmployees, addEmployee };
+    return {
+      all,
+      add,
+      edit,
+      setSearchQuery,
+      filteredEmployees,
+      allEmployee,
+      addEmployee,
+      editEmployee,
+    };
   },
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <article class="card" @click="handleAssign(selectEmployee)">
+  <article class="card">
     <div class="container">
       <h2><b>{{ actualEmployee.name }} {{ actualEmployee.lastName }}</b></h2>
     </div>
@@ -25,7 +25,7 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, context) {
     const employee: Ref<Employee | null> = ref(null);
     const admin: Ref<boolean>=ref(false);
 
@@ -36,9 +36,13 @@ export default defineComponent({
       }
     });
 
+    function handleAssign(event: any){
+      alert("event")
+      context.emit("add",event.target.value)
+    }
 
 
-    return { admin,actualEmployee: employee };
+    return { admin,actualEmployee: employee, handleAssign };
   },
 });
 </script>
