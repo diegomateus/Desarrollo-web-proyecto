@@ -15,6 +15,7 @@ import { defineComponent, onMounted, Ref, ref, computed } from "vue";
 import EmployeeSearch from "@/components/Employees/EmployeeSearch.vue";
 import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
 import { Employee } from "@/types/Employee";
+import { useGetAllEmployees } from "@/uses/useGetAllEmployees"
 
 export default defineComponent({
   name: "Employees",
@@ -23,12 +24,8 @@ export default defineComponent({
     EmployeeCard,
   },
   setup() {
-    const employees: Ref<Employee[]> = ref([]);
+    const { employees } = useGetAllEmployees();
     const search: Ref<string> = ref("");
-
-    onMounted(async () => {
-      employees.value = await getEmployees();
-    });
 
     const filteredEmployees = computed(() => {
       let finalEmployees = employees.value;
