@@ -12,11 +12,6 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
 
-  {
-    path: "/properties",
-    name: "Property",
-    component: PropertyManagement,
-  },
 
   {
     path: "/properties/prueba/offer",
@@ -52,7 +47,19 @@ const routes: Array<RouteRecordRaw> = [
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Login.vue"),
-  }
+  },
+  {
+    path: "/properties",
+    name: "Properties",
+    component: () =>
+      import(/* webpackChunkName: "template" */ "../views/Properties.vue"),
+  },
+  {
+    path: "/properties/:id",
+    name: "PropertyPage",
+    component: () =>
+      import(/* webpackChunkName: "template" */ "../views/PropertyPage.vue"),
+  },
 ];
 
 const router = createRouter({

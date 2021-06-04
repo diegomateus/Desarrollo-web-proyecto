@@ -1,5 +1,5 @@
 import { Appointment } from "@/types/Appointment";
-import { assigned_appointments, unassigned_appointments, assign_appointment } from "@/config/urls";
+import { assigned_appointments, unassigned_appointments, assign_appointment , book_appointment } from "@/config/urls";
 
 export const apiAppointments = {
   getAssignedAppointments(): Promise<Appointment[]> {
@@ -90,4 +90,21 @@ export const apiAppointments = {
         throw error;
       });
   },
+  book(appointment: Appointment) {
+    const url = process.env.VUE_APP_BASE_URL.concat(book_appointment)
+    const config = {
+      method: "POST",
+      body: JSON.stringify(appointment)
+    };
+
+    return fetch(url, config)
+      .then((response) => {
+        if(!response.ok) {
+          throw new Error("Ha fallado la reservación")
+        }
+      })
+      .catch((error) => {
+        throw error
+      });
+  }
 };

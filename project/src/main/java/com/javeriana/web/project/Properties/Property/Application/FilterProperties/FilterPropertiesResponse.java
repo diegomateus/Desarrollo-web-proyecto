@@ -16,12 +16,11 @@ public class FilterPropertiesResponse implements Response {
     }
 
     public HashMap response() throws JsonProcessingException {
-        HashMap<String,HashMap<String,String>> response = new HashMap<>();
-        HashMap<String,String> responseItem = new HashMap<>();
+        HashMap<String, HashMap<String, Object>> response = new HashMap<>();
+        HashMap<String, Object> responseItem = new HashMap<>();
         int index = 0;
         for(Property p : properties){
             responseItem = p.data();
-            responseItem.remove("id");
             response.put(String.valueOf(index),responseItem);
             index++;
         }
