@@ -2,6 +2,7 @@ package com.javeriana.web.project.Employees.Employee.Domain.Ports;
 
 import com.javeriana.web.project.Employees.Employee.Domain.Employee;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeRepository {
@@ -15,4 +16,5 @@ public interface EmployeeRepository {
     
     void update (String employeeId,Employee employee);
     void delete (Employee employee);
+    Optional<List<Employee>> getAll ();
 }

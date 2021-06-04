@@ -7,10 +7,12 @@ import com.javeriana.web.project.Employees.Employee.Domain.Ports.EmployeeReposit
 import com.javeriana.web.project.Employees.Employee.Domain.ValueObjects.EmployeeId;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional("transactional-manager")
@@ -78,6 +80,14 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
         sessionFactory.getCurrentSession().delete(employee);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
+    }
+
+    @Override
+    public Optional<List<Employee>> getAll() {
+        String sql = "SELECT * FROM employees";
+        NativeQuery query =sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(Employee.class);
+        return Optional.ofNullable(query.list());
     }
 }
 

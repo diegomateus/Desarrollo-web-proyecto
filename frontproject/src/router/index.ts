@@ -3,6 +3,8 @@ import Home from "../views/Home.vue";
 import PropertyManagement from "../views/PropertyManagement.vue";
 import OfferManagement from "../views/OfferManagement.vue";
 
+import Employees from "@/views/Employees.vue";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -32,11 +34,24 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Template.vue"),
   },
+
+  {
+    path: "/employees",
+    name: "Employees",
+    component: Employees,
+  },
+
   {
     path: "/appointments",
     name: "Appointments",
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Appointments.vue"),
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "template" */ "../views/Login.vue"),
   }
 ];
 

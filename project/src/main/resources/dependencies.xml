@@ -25,6 +25,10 @@
     <bean id="employeeModifier" class="com.javeriana.web.project.Employees.Employee.Application.Update.EmployeeModifier">
         <constructor-arg ref="hibernateEmployeeRepository"/>
     </bean>
+
+    <bean id="employeesObtainer" class="com.javeriana.web.project.Employees.Employee.Application.GetAll.EmployeesObtainer">
+        <constructor-arg ref="hibernateEmployeeRepository"/>
+    </bean>
     
     <bean id ="hibernatePropertyRepository" class="com.javeriana.web.project.Properties.Property.Infrastructure.hibernate.HibernatePropertyRepository"/>
 
