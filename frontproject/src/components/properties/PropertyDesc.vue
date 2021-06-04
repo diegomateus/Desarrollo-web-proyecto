@@ -3,7 +3,7 @@
     
       <div class="card-info">
         
-        <img :src="actualProperty.images[0].image" alt="" class="card-img" />
+        
         <h3> {{ actualProperty.propertyType }} in {{ actualProperty.city }}, {{ actualProperty.address }} </h3>
         
       </div>

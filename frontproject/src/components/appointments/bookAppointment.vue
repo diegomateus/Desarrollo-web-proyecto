@@ -26,12 +26,12 @@ import { Calendar, DatePicker } from 'v-calendar';
 export default defineComponent({
      name: "Properties",
   components: {
-      Calendar,
-      DatePicker,
+      
   },
   setup(context) {
    
     function handleBooking(nombre :string, apellido : string, correo : string, celular : string, date : Date){
+        window.alert(nombre + apellido + correo + celular + date);
         //context.emit("book", nombre, apellido, correo, celular, date.toString, date.getMonth, date.getFullYear, date.getDay, date.getHours);
     }
 

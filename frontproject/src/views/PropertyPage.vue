@@ -5,7 +5,9 @@
         <Property-desc>
             :Property="property"
         </Property-desc>
-
+        <book-appointment>
+          
+        </book-appointment>
       
     </div>
   </section>
@@ -18,11 +20,12 @@ import PropertyCard from "@/components/properties/PropertyCard.vue";
 import { useGetProperty } from "@/uses/useGetProperty";
 import PropertyDesc from "@/components/properties/PropertyDesc.vue"
 import { useRoute } from "vue-router"
+import bookAppointment from "@/components/appointments/bookAppointment.vue";
 
 export default defineComponent({
   name: "PropertyPage",
   components: {
-
+    bookAppointment,
     PropertyDesc,
   },
   setup() {
