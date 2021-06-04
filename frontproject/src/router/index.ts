@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 
+import Employees from "@/views/Employees.vue";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -17,7 +19,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "Template",
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Template.vue"),
-  }
+  },
+
+
+  {
+    path: "/employees",
+    name: "Employees",
+    component: Employees,
+  },
 ];
 
 const router = createRouter({
