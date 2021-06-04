@@ -1,0 +1,1 @@
+export const update_property_path = "/properties";

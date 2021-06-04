@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import PropertyManagement from "../views/PropertyManagement.vue";
+import OfferManagement from "../views/OfferManagement.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,6 +9,19 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: Home,
   },
+
+  {
+    path: "/properties",
+    name: "Property",
+    component: PropertyManagement,
+  },
+
+  {
+    path: "/properties/prueba/offer",
+    name: "Offer",
+    component: OfferManagement,
+  },
+
   {
     path: "/about",
     name: "About",
