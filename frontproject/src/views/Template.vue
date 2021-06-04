@@ -12,25 +12,21 @@
     </nav>
     <br>
   </div>
-  <v-select multiple v-model="selected" :options="['Canada','United States']" />
-  <h4>que pasa</h4>
   
   <div>
-    <initial-search>
-
-    </initial-search>
+   
   </div>
   
 </template>
 
 <script lang="ts">
 import { defineComponent, Ref, ref, computed } from "vue";
-import initialSearch from "@/components/search/InitialSearch.vue";
+
 
 export default({
   name: "Template",
   components: {
-    initialSearch
+   
   }
 });
 </script>

@@ -2,36 +2,35 @@
      <section class="search">
     <h2>Encuentra apartamentos y casas</h2>
 
-    <div id="v-model-select" class="demo">
-        <select v-model="selected">
-            <option disabled value="">Please select one</option>
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-        </select>
-        <span>Selected: {{ selected }}</span>
-        </div>
-
-
-        
-
-<select name="tipoOferta" class="searchSelect">
-      <option value="Ambas">Arriendo</option>
-      <option value="Compra">Compra nuevo</option>
-      <option value="Arriendo">Compra usado</option>
-      <option value="Arriendo">Compra nuevo y usado</option>
-    </select>
-
-    <select name="ciudad" class="searchSelect">
-      <option value="Bogota">Bogotá</option>
-      <option value="Medellin">Medellin</option>
-      <option value="Cali">Cali</option>
-      <option value="Bucaramanga">Bucaramanga</option>
-    </select>
+    
+        <select v-model="selectedType" name="pType" class="searchSelect">
+            <option disabled value="">Propiedad</option>
+            <option>Casa</option>
+            <option>Apartamento</option>
+        </select>  
+    
 
     
+        <select v-model="selectedOffer" name="offerType" class="searchSelect">
+            <option disabled value="">Tipo oferta</option>
+            <option value="Ambas">RENT</option>
+            <option value="Compra">SALE</option>
+            
+        </select>  
+    
+
      
-     <button class="searchSelect" @click="handleSearch(selected)">Buscar</button>
+        <select v-model="selectedCity" name="city" class="searchSelect">
+            <option disabled value="">Ciudad</option>
+            <option value="Bogota">Bogota</option>
+            <option value="Medellin">Medellin</option>
+            <option value="Cali">Cali</option>
+            <option value="Bucaramanga">Bucaramanga</option>
+        </select>  
+    
+    
+     
+     <button class="searchSelect" @click="handleSearch(selectedType, selectedOffer, selectedCity)">Buscar</button>
      
   </section>
 
@@ -44,6 +43,7 @@
 </template>
 
 <script lang="ts">
+import router from '@/router';
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -62,10 +62,11 @@ export default defineComponent({
     setup(props, context) {
         const foo: string[] = ['can','us','ok'];
         
-        function handleSearch(a: string){
-            window.alert(a);
+        function handleSearch(a: string, offer: string, city: string){
+           router.push({ path: 'properties', query: { city: city, action: offer, propertyType: a } })
+            
         }
-        return "";
+        return {handleSearch};
     },
 })
 </script>
@@ -84,5 +85,7 @@ export default defineComponent({
   height: 3rem;
   width: 30rem;
 }
+
+
 
 </style>

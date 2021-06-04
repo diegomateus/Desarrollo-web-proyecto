@@ -9,12 +9,12 @@
       ></PropertyCard>
     </div>
   </section>
-  <p>Esta es la vista de productos, en construcción.</p>
+  <p>Esta es la vista de propiedades.</p>
 </template>
 
 <script lang="ts">
 import { defineComponent, Ref, ref, computed } from "vue";
-import PropertyCard from "@/components/products/PropertyCard.vue";
+import PropertyCard from "@/components/properties/PropertyCard.vue";
 import { useProducts } from "@/uses/useProperties";
 
 export default defineComponent({
@@ -26,10 +26,6 @@ export default defineComponent({
   setup() {
     const { properties } = useProducts();
     
-    
-
-   
-
     return { properties };
   },
 });

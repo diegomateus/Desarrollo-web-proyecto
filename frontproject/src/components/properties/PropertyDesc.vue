@@ -1,20 +1,14 @@
 <template>
-  <div v-for="offer of actualProperty.offers" :key="offer.id">
-    <article class="card">
-      <a href="#">
-        <div class="card-info">
-            <img :src="actualProperty.images[0].image" alt="" class="card-img" />
-            <h3> {{ actualProperty.propertyType }} in {{ actualProperty.city }} {{ actualProperty.address }}</h3>
-            <h3>{{ offer.action }} price: {{ offer.price }} </h3>
-            <p class="card-lead">  Rooms: {{ actualProperty.bedroomsNumber }} </p>
-            <p class="card-lead">  Bathrooms: {{ actualProperty.bathsroomsNumber }} </p>
-          </div>
-          
-      </a>
-      <router-link :to="'/properties/' + actualProperty.propertyId"></router-link>
-      
-    </article>
-  </div>
+  <article class="card">
+    
+      <div class="card-info">
+        
+        <img :src="actualProperty.images[0].image" alt="" class="card-img" />
+        <h3> {{ actualProperty.propertyType }} in {{ actualProperty.city }}, {{ actualProperty.address }} </h3>
+        
+      </div>
+    
+  </article>
 </template>
 
 <script lang="ts">
@@ -23,7 +17,7 @@ import { Property } from "@/types/Property";
 import { Offer } from "@/types/Offer";
 
 export default defineComponent({
-  name: "PropertyCard",
+  name: "PropertyDesc",
   props: {
     property: {
       type: Object as () => Property,
@@ -31,14 +25,14 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const propertyCard: Ref<Property | null> = ref(null);
+    const propertyDesc: Ref<Property | null> = ref(null);
 
     onBeforeMount(() => {
-      propertyCard.value = Object.assign({}, props.property);
+      propertyDesc.value = Object.assign({}, props.property);
       //propertyOffers.value = Object.assign({}, props.property.offers[0]);
     });
 
-    return { actualProperty: propertyCard};
+    return { actualProperty: propertyDesc};
   },
 });
 </script>

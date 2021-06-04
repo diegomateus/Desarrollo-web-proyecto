@@ -23,7 +23,19 @@ const routes: Array<RouteRecordRaw> = [
     name: "Appointments",
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Appointments.vue"),
-  }
+  },
+  {
+    path: "/properties",
+    name: "Properties",
+    component: () =>
+      import(/* webpackChunkName: "template" */ "../views/Properties.vue"),
+  },
+  {
+    path: "/properties/:id",
+    name: "PropertyPage",
+    component: () =>
+      import(/* webpackChunkName: "template" */ "../views/PropertyPage.vue"),
+  },
 ];
 
 const router = createRouter({
