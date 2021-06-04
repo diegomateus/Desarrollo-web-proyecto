@@ -12,7 +12,7 @@ export const apiEmployees={
     return fetch(url,config)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Error al cargar empleados");
+        throw new Error("Error al cargar las citas");
       }
       return response.json();
     })

@@ -1,9 +1,13 @@
 <template>
   <section class="employeesSection">
     <h2 class="title">Empleados</h2>
-    <EmployeeSearch v-model:search="search"></EmployeeSearch>
+    <EmployeeSearch @search="setSearchQuery"></EmployeeSearch>
     <div class="collection">
-      <EmployeeCard v-for="employee in filteredEmployees" :key="employee.id" :employee="employee"></EmployeeCard>
+      <EmployeeCard
+        v-for="employee in filteredEmployees"
+        :key="employee.id"
+        :employee="employee"
+      ></EmployeeCard>
     </div>
   </section>
   <p>{{ search }}</p>
@@ -11,11 +15,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref, computed } from "vue";
+import { defineComponent, computed } from "vue";
 import EmployeeSearch from "@/components/Employees/EmployeeSearch.vue";
 import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
 import { Employee } from "@/types/Employee";
-import { useGetAllEmployees } from "@/uses/useGetAllEmployees"
+import { useGetAllEmployees } from "@/uses/Employees/useGetAllEmployees";
+import { useSearchEmployee } from "@/uses/Employees/useSearchEmployee";
 
 export default defineComponent({
   name: "Employees",
@@ -25,18 +30,10 @@ export default defineComponent({
   },
   setup() {
     const { employees } = useGetAllEmployees();
-    const search: Ref<string> = ref("");
+    const { setSearchQuery, searchByName } = useSearchEmployee();
 
     const filteredEmployees = computed(() => {
-      let finalEmployees = employees.value;
-      if (search.value !== "") {
-        finalEmployees = finalEmployees.filter((employee) => {
-          return employee.employeeFirstName
-            .toLowerCase()
-            .includes(search.value);
-        });
-      }
-
+      let finalEmployees = searchByName(employees.value);
       return finalEmployees;
     });
 
@@ -45,7 +42,7 @@ export default defineComponent({
         resolve([]);
       });
     }
-    return { search, filteredEmployees };
+    return { setSearchQuery, filteredEmployees };
   },
 });
 </script>
