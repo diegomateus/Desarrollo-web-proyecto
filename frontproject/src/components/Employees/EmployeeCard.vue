@@ -13,7 +13,7 @@
 </template>
 
 <script  lang="ts">
-import { defineComponent, Ref, ref } from "vue";
+import { defineComponent, onBeforeMount, Ref, ref } from "vue";
 import { Employee } from "@/types/Employee";
 
 export default defineComponent({
@@ -26,7 +26,12 @@ export default defineComponent({
   },
 
   setup(props) {
-    const employeeCard: Ref<Employee> = ref(props.employee);
+    const employeeCard: Ref<Employee | null> = ref(null);
+
+    onBeforeMount(()=>{
+        employeeCard.value=Object.assign({},props.employee);
+    });
+
     return { actualEmployee: employeeCard };
   },
 });
@@ -34,11 +39,11 @@ export default defineComponent({
 
 <style scoped>
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 30%;
   border-radius: 5px;
-  color:#333;
+  color: #333;
   flex-direction: column;
   align-content: center;
   justify-items: center;
@@ -48,7 +53,7 @@ export default defineComponent({
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transform: translateY(-0.5rem);
 }
 
@@ -56,8 +61,8 @@ export default defineComponent({
   padding: 2px 16px;
 }
 
-.card-info{
-    padding: 0 1rem 1rem;
-    text-align: justify;
+.card-info {
+  padding: 0 1rem 1rem;
+  text-align: justify;
 }
 </style>

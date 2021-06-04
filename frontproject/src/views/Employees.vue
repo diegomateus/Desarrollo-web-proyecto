@@ -1,10 +1,9 @@
 <template>
   <section class="employeesSection">
     <h2 class="title">Empleados</h2>
-    <EmployeeFilters 
-    v-model:search="search"></EmployeeFilters>
+    <EmployeeSearch v-model:search="search"></EmployeeSearch>
     <div class="collection">
-        <EmployeeCard v-for="employee in employees" :key="employee.id" :employee="employee"></EmployeeCard>
+      <EmployeeCard v-for="employee in filteredEmployees" :key="employee.id" :employee="employee"></EmployeeCard>
     </div>
   </section>
   <p>{{ search }}</p>
@@ -13,53 +12,57 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, Ref, ref, computed } from "vue";
-import EmployeeFilters from "@/components/Employees/EmployeeFilters.vue";
+import EmployeeSearch from "@/components/Employees/EmployeeSearch.vue";
 import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
 import { Employee } from "@/types/Employee";
 
 export default defineComponent({
   name: "Employees",
   components: {
-    EmployeeFilters,
-    EmployeeCard
+    EmployeeSearch,
+    EmployeeCard,
   },
-  setup(){
-    const employees : Ref<Employee[]> = ref([]);
-    const search : Ref<string> = ref("");
+  setup() {
+    const employees: Ref<Employee[]> = ref([]);
+    const search: Ref<string> = ref("");
 
-    onMounted(async()=>{
-      employees.value=await getEmployees();
+    onMounted(async () => {
+      employees.value = await getEmployees();
     });
 
-    const filteredEmployees = computed( () => {
-      let finalEmployees = employees;
-      if(search.value !== ""){
-        finalEmployees = finalEmployees.filter(employee =>{
-          return employee.employeeFirstName.toLowerCase().includes(search) ;
-        })
+    const filteredEmployees = computed(() => {
+      let finalEmployees = employees.value;
+      if (search.value !== "") {
+        finalEmployees = finalEmployees.filter((employee) => {
+          return employee.employeeFirstName
+            .toLowerCase()
+            .includes(search.value);
+        });
       }
+
+      return finalEmployees;
     });
 
-    async function getEmployees() : Promise<Employee[]>{
-      return new Promise(resolve=>{
+    async function getEmployees(): Promise<Employee[]> {
+      return new Promise((resolve) => {
         resolve([]);
-      })
+      });
     }
-    return { search };
+    return { search, filteredEmployees };
   },
 });
 </script>
 
 <style scoped>
-.employeesSection{
+.employeesSection {
   max-width: 90rem;
   margin: 0 auto;
   padding: 4rem 1rem;
 }
-.title{
+.title {
   font-size: 2rem;
 }
-.collection{
+.collection {
   display: grid;
   gap: 1.5rem;
 }

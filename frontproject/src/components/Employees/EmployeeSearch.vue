@@ -14,7 +14,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "EmployeeFilters",
+  name: "EmployeeSearch",
   setup(props, context) {
     function handleSearch(event: any) {
       context.emit("update:search", event.target.value);
