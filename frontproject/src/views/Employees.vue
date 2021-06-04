@@ -1,7 +1,8 @@
 <template>
+  <div id="all" v-if="all">
   <section class="employeesSection">
     <h2 class="title">Empleados</h2>
-    <EmployeeSearch @search="setSearchQuery"></EmployeeSearch>
+    <EmployeeSearch @search="setSearchQuery" @add="addEmployee"></EmployeeSearch>
     <div class="collection">
       <EmployeeCard
         v-for="employee in filteredEmployees"
@@ -10,16 +11,18 @@
       ></EmployeeCard>
     </div>
   </section>
-  <p>{{ search }}</p>
-  <p>Vista de empleados en producción</p>
+  </div>
+  <div id="add" v-if="add">
+  </div>
+  <div id="edit" v-if="edit">
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import EmployeeSearch from "@/components/Employees/EmployeeSearch.vue";
 import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
-import { Employee } from "@/types/Employee";
-import { useGetAllEmployees } from "@/uses/Employees/useGetAllEmployees";
+import { useEmployees } from "@/uses/Employees/useEmployees";
 import { useSearchEmployee } from "@/uses/Employees/useSearchEmployee";
 
 export default defineComponent({
@@ -29,7 +32,7 @@ export default defineComponent({
     EmployeeCard,
   },
   setup() {
-    const { employees } = useGetAllEmployees();
+    const { employees, all, add, edit, allEmployee, addEmployee, editEmployee } = useEmployees();
     const { setSearchQuery, searchByName } = useSearchEmployee();
 
     const filteredEmployees = computed(() => {
@@ -37,12 +40,7 @@ export default defineComponent({
       return finalEmployees;
     });
 
-    async function getEmployees(): Promise<Employee[]> {
-      return new Promise((resolve) => {
-        resolve([]);
-      });
-    }
-    return { setSearchQuery, filteredEmployees };
+    return { all, add, edit, setSearchQuery, filteredEmployees, addEmployee };
   },
 });
 </script>

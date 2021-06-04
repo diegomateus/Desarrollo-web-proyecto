@@ -1,8 +1,8 @@
 export interface Employee{
-    employeeId: string;
-    employeeEmail: string;
-    employeePassword: string;
-    employeeFirstName: string;
-    employeeLastName: string;
-    employeeIsAdministrator: boolean;
+    id: string;
+    email: string;
+    password: string;
+    name: string;
+    lastName: string;
+    is_admin: string;
 }

@@ -7,6 +7,9 @@
       class="search"
       @input="handleSearch"
     />
+    <button id="add" type="add" class="button addButton" @click="handleAdd">
+      Agregar Empleado
+    </button>
   </section>
 </template>
 
@@ -19,7 +22,12 @@ export default defineComponent({
     function handleSearch(event: any) {
       context.emit("search", event.target.value);
     }
-    return { handleSearch };
+
+    function handleAdd(event: any){
+      context.emit("add",event.target.value)
+    }
+
+    return { handleSearch, handleAdd };
   },
 });
 </script>
@@ -46,5 +54,31 @@ export default defineComponent({
   color: #737373;
   letter-spacing: 1px;
   text-indent: 2rem;
+}
+
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.addButton {
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
+  border-radius: 28px;
+}
+
+.addButton:hover {
+  background-color: #008cba;
+  color: white;
 }
 </style>

@@ -85,7 +85,8 @@ public class HibernateEmployeeRepository implements EmployeeRepository {
     @Override
     public Optional<List<Employee>> getAll() {
         String sql = "SELECT * FROM employees";
-        Query query =sessionFactory.getCurrentSession().createSQLQuery(sql);
+        NativeQuery query =sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(Employee.class);
         return Optional.ofNullable(query.list());
     }
 }

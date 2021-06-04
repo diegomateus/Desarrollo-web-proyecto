@@ -11,9 +11,12 @@ export function useSearchEmployee(){
     function searchByName(employees: Employee[]):Employee[]{
         if (searchQuery.value) {
             return employees.filter((employee) => {
-                return employee.employeeFirstName
+                return employee.name
                   .toLowerCase()
-                  .includes(searchQuery.value.toLowerCase());
+                  .includes(searchQuery.value.toLowerCase()) ||
+                  employee.lastName
+                  .toLowerCase()
+                  .includes(searchQuery.value.toLowerCase())  ;
               });
         }
         return employees;

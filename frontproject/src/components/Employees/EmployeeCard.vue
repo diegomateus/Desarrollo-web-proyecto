@@ -1,18 +1,18 @@
 <template>
-  <article class="card">
+  <article class="card" @click="handleAssign(selectEmployee)">
     <div class="container">
-      <h2><b>Prueba</b></h2>
+      <h2><b>{{ actualEmployee.name }} {{ actualEmployee.lastName }}</b></h2>
     </div>
     <div class="card-info">
-      <p>id</p>
-      <p>correo</p>
-      <p>administrador</p>
+      <p>{{ actualEmployee.email }}</p>
+      <p>{{ actualEmployee.is_Administrator }}</p>
+      <p v-if="admin">Administrador</p>
+      <p v-else>Empleado</p>
     </div>
   </article>
-  <p>Objeto empleados en producción</p>
 </template>
 
-<script  lang="ts">
+<script lang="ts">
 import { defineComponent, onBeforeMount, Ref, ref } from "vue";
 import { Employee } from "@/types/Employee";
 
@@ -26,13 +26,19 @@ export default defineComponent({
   },
 
   setup(props) {
-    const employeeCard: Ref<Employee | null> = ref(null);
+    const employee: Ref<Employee | null> = ref(null);
+    const admin: Ref<boolean>=ref(false);
 
     onBeforeMount(()=>{
-        employeeCard.value=Object.assign({},props.employee);
+      employee.value=Object.assign({},props.employee);
+      if(employee.value.is_admin=="true"){
+        admin.value=true;
+      }
     });
 
-    return { actualEmployee: employeeCard };
+
+
+    return { admin,actualEmployee: employee };
   },
 });
 </script>
@@ -63,6 +69,5 @@ export default defineComponent({
 
 .card-info {
   padding: 0 1rem 1rem;
-  text-align: justify;
 }
 </style>
