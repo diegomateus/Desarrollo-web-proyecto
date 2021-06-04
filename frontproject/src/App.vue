@@ -1,25 +1,32 @@
 <template>
   <div id="nav">
-      <router-link to="/">Inicio</router-link> |
-      <router-link to="/login">Iniciar sesion</router-link> |
-      <router-link to="/appointments">Citas</router-link> | 
-      <button v-on:click="handleLogout"> Cerrar sesion </button>
-    </div>
-  <router-view />
-  
+    <router-link to="/">Inicio</router-link> 
+    <router-link v-if="!authenticated" to="/login"> Iniciar sesion </router-link> 
+    <router-link v-if="authenticated" to="/appointments"> Citas </router-link> 
+    <button v-if="authenticated" @click="handleLogout"> Cerrar sesion </button>
+  </div>
+  <router-view @authenticate="handleLogin"/>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, Ref } from "vue";
 import { useLogout } from "@/uses/useLogout";
 
 export default defineComponent({
   setup() {
+    const authenticated: Ref<boolean> = ref(false);
     const { logout } = useLogout();
+
     function handleLogout(){
+      authenticated.value = false;
       logout();
     }
-    return {handleLogout};
+
+    function handleLogin(){
+      authenticated.value = true;
+    }
+
+    return {handleLogout,handleLogin,authenticated};
   },
 })
 </script>
