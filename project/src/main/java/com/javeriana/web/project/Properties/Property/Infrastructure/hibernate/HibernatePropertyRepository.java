@@ -68,11 +68,10 @@ public class HibernatePropertyRepository  implements PropertyRepository {
             prop = prop.stream().filter(property -> property.getCondition().value().equals(propertyCondition)).collect(Collectors.toList());
         }
 
-        System.out.println(prop.size());
+
         res =  prop.stream().filter(property -> property.getCity().value().equals(city))
         .filter(property -> property.getBedroomsNumber().value() >= bedRoomsNumber)
         .filter(property -> property.getBathroomsNumber().value() >= bathRoomNumber).collect(Collectors.toList());
-
 
         System.out.println(res.size());
         return Optional.ofNullable(res);

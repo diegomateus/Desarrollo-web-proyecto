@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-import PropertyManagement from "../views/PropertyManagement.vue";
-import OfferManagement from "../views/OfferManagement.vue";
 
 import Employees from "@/views/Employees.vue";
 
@@ -10,13 +8,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Home",
     component: Home,
-  },
-
-
-  {
-    path: "/properties/prueba/offer",
-    name: "Offer",
-    component: OfferManagement,
   },
   {
     path: "/about",
@@ -47,19 +38,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Login.vue"),
-  },
-  {
-    path: "/properties",
-    name: "Properties",
-    component: () =>
-      import(/* webpackChunkName: "template" */ "../views/Properties.vue"),
-  },
-  {
-    path: "/properties/:id",
-    name: "PropertyPage",
-    component: () =>
-      import(/* webpackChunkName: "template" */ "../views/PropertyPage.vue"),
-  },
+  }
 ];
 
 const router = createRouter({

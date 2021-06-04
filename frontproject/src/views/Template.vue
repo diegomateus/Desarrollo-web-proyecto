@@ -13,21 +13,11 @@
     <br>
   </div>
   
-  <div>
-   
-  </div>
-  
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, computed } from "vue";
-
-
 export default({
   name: "Template",
-  components: {
-   
-  }
 });
 </script>
 
@@ -78,16 +68,7 @@ nav {
   }
 }
 
-
-
 .content {
   text-align: center;
 }
-
-.search {
-  max-width: 90rem;
-  margin: 0 auto;
-  padding: 4rem 1rem;
-}
-
 </style>

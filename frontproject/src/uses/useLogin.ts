@@ -8,13 +8,13 @@ export function useLogin() {
     const user: Ref<User> = ref({ email: "", password: "" });
     const router = useRouter()
 
-    async function login(): Promise<boolean> {
+    async function login() {
         const token: TokenResponse = await apiAuthentication.authenticate(user.value);
+        console.log('token ' + token.token);
         if (token.token != 'error') {
             localStorage.setItem('user', token.token);
-            return true;
+            router.push('/appointments');
         }
-        return false;
     }
 
     return {
