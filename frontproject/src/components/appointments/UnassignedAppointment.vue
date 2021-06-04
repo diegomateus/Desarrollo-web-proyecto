@@ -2,7 +2,7 @@
     <div>
         <h3> {{ actualAppointment.day }}/{{ actualAppointment.month }}/{{ actualAppointment.year }} - {{ actualAppointment.hour }}:{{ actualAppointment.minute }}</h3>
         <h4> {{actualAppointment.propertyCity}}, {{actualAppointment.propertyAddress}} </h4>
-        <button> Asignar </button>
+        <button @click="handleAssign(actualAppointment)"> Asignar </button>
     </div>
 </template>
 
@@ -18,14 +18,18 @@ export default defineComponent({
             required: true,
         },
     },
-    setup(props) {
+    setup(props, context) {
         const appointment: Ref<Appointment | null> = ref(null);
 
         onBeforeMount(() => {
             appointment.value = Object.assign({}, props.appointment);
         });
 
-        return { actualAppointment: appointment };
+        function handleAssign(selectedAppointment: Appointment) {
+            context.emit("assign", selectedAppointment);
+        }
+
+        return { actualAppointment: appointment, handleAssign};
     },
 });
 </script>

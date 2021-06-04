@@ -9,5 +9,15 @@ export function useAssignedAppointments() {
     assignedAppointments.value = await apiAppointments.getAssignedAppointments();
   });
 
-  return { assignedAppointments };
+  function removeAssignedAppointment(selectedAppointment: Appointment){
+    apiAppointments.deleteAppointment(selectedAppointment.id);
+    assignedAppointments.value = assignedAppointments.value.filter(a => a.id !== selectedAppointment.id);
+  }
+
+  function addAssignedAppointment(selectedAppointment: Appointment){
+    apiAppointments.assignAppointment(selectedAppointment.id);
+    assignedAppointments.value.push(selectedAppointment);
+  }
+
+  return { assignedAppointments, removeAssignedAppointment, addAssignedAppointment};
 }

@@ -9,5 +9,9 @@ export function useUnassignedAppointments() {
     unassignedAppointments.value = await apiAppointments.getUnassignedAppointments();
   });
 
-  return { unassignedAppointments };
+  function removeUnassignedAppointment(selectedAppointment: Appointment){
+    unassignedAppointments.value = unassignedAppointments.value.filter(a => a.id !== selectedAppointment.id);
+  }
+
+  return { unassignedAppointments, removeUnassignedAppointment};
 }

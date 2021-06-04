@@ -2,6 +2,7 @@
     <section class="assigned-appointments">
         <h2 class="assigned-appointments-title">Citas asignadas</h2>
         <AssignedAppointment
+            @cancel="cancelAppointment"
             v-for="appointment in assignedAppointments"
             :key="appointment.id"
             :appointment="appointment"
@@ -11,6 +12,7 @@
     <section class="unassigned-appointments">
         <h2 class="unassigned-appointments-title">Citas sin asignar</h2>
         <UnassignedAppointment
+            @assign="assignAppointment"
             v-for="appointment in unassignedAppointments"
             :key="appointment.id"
             :appointment="appointment"
@@ -24,6 +26,7 @@
     import AssignedAppointment from "@/components/appointments/AssignedAppointment.vue";
     import { useUnassignedAppointments } from "@/uses/useUnassignedAppointments";
     import { useAssignedAppointments } from "@/uses/useAssignedAppointments";
+import { Appointment } from "@/types/Appointment";
 
     export default defineComponent({
         name: "Appointments",
@@ -32,9 +35,19 @@
             UnassignedAppointment
         },
         setup(){
-            const { assignedAppointments } = useAssignedAppointments();
-            const { unassignedAppointments } = useUnassignedAppointments();
-            return { assignedAppointments, unassignedAppointments };
+            const { assignedAppointments, removeAssignedAppointment, addAssignedAppointment } = useAssignedAppointments();
+            const { unassignedAppointments, removeUnassignedAppointment } = useUnassignedAppointments();
+
+            function cancelAppointment(selectedAppointment: Appointment) {
+                removeAssignedAppointment(selectedAppointment);
+            }
+
+            function assignAppointment(selectedAppointment: Appointment) {
+                removeUnassignedAppointment(selectedAppointment);
+                addAssignedAppointment(selectedAppointment);
+            }
+
+            return { assignedAppointments, unassignedAppointments, cancelAppointment, assignAppointment};
         }
     });
 </script>
