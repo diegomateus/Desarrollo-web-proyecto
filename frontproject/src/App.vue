@@ -1,11 +1,29 @@
 <template>
-  <router-view />
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> | 
-    <router-link to="/template">Template</router-link>
-  </div>
+      <router-link to="/">Inicio</router-link> |
+      <router-link to="/login">Iniciar sesion</router-link> |
+      <router-link to="/appointments">Citas</router-link> | 
+      <button v-on:click="handleLogout"> Cerrar sesion </button>
+    </div>
+  <router-view />
+  
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useLogout } from "@/uses/useLogout";
+
+export default defineComponent({
+  setup() {
+    const { logout } = useLogout();
+    function handleLogout(){
+      logout();
+    }
+    return {handleLogout};
+  },
+})
+</script>
+
 
 <style lang="scss">
 #app {
