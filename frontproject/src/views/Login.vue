@@ -20,7 +20,7 @@
         :disabled="submitEnabled"
         class="login-button"
         :class="[submitEnabled ? 'disabled' : 'enabled']"
-        @click="login"
+        @click="handleLogin()"
       />
     </form>
   </article>
@@ -29,16 +29,26 @@
 <script>
 import { useLogin } from "@/uses/useLogin";
 import { computed, defineComponent } from "vue";
+import { useRouter } from "vue-router";
 export default defineComponent({
   name: "Login",
-  setup() {
+  setup(props, context) {
     const { user, login } = useLogin();
+    const router = useRouter();
     const submitEnabled = computed(() => {
       let emailValidate = user.value.email !== null && user.value.email !== "";
       let passwordValidate = user.value.password !== null && user.value.password !== "";
       return !(emailValidate && passwordValidate);
     });
-    return { user, login, submitEnabled };
+
+    function handleLogin(){
+          if(login()){
+            context.emit("authenticate");
+            router.push('/');
+          }
+        }
+
+    return { user, handleLogin, submitEnabled };
   },
 });
 </script>

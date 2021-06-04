@@ -25,16 +25,16 @@ public class FilterPropertiesGetController {
 
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HashMap> execute(
-                                           @RequestParam String propertyType,
-                                           @RequestParam int priceLowerLimit,
-                                           @RequestParam  int priceUpperLimit,
-                                           @RequestParam  String city,
-                                           @RequestParam  int bedRoomsNumber,
-                                           @RequestParam  int bathRoomNumber,
-                                           @RequestParam  String action,
-                                           @RequestParam  String propertyCondition
+                                           @RequestParam(defaultValue = "") String propertyType,
+                                           @RequestParam(defaultValue = "0") int priceLowerLimit,
+                                           @RequestParam(defaultValue = "0")  int priceUpperLimit,
+                                           @RequestParam(defaultValue = "Bogota")  String city,
+                                           @RequestParam(defaultValue = "0")  int bedRoomsNumber,
+                                           @RequestParam(defaultValue = "0")  int bathRoomNumber,
+                                           @RequestParam(defaultValue = "")  String action,
+                                           @RequestParam(defaultValue = "") String propertyCondition
     ) throws JsonProcessingException {
-        //System.out.println(propertyType+priceLowerLimit+priceUpperLimit+city+bedRoomsNumber+bathRoomNumber+action+propertyCondition);
+
         List<String> propiedades = filterOffers.execute(priceLowerLimit,priceUpperLimit,action);
         FilterPropertiesResponse response = new FilterPropertiesResponse(filterProperties.execute(propiedades, propertyType,city,
                 bedRoomsNumber,bathRoomNumber,propertyCondition));

@@ -1,3 +1,6 @@
+import { Offer } from "./Offer";
+import { Image } from "./image";
+
 export interface Property{
     propertyId: string;
     address: string;
@@ -13,7 +16,7 @@ export interface Property{
     deliveryDate: string;
     latitude: number;
     longtiude: number;
-    images: string[];
-    serializedQuestions: string[];
-    serializedOffers: string[];
+    images: Image[];
+    questions: string[];
+    offers: Offer[];
 }
