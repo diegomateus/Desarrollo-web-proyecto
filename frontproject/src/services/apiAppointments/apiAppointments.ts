@@ -1,6 +1,5 @@
 import { Appointment } from "@/types/Appointment";
 import { assigned_appointments, unassigned_appointments, assign_appointment } from "@/config/urls";
-import axios from "axios";
 
 export const apiAppointments = {
   getAssignedAppointments(): Promise<Appointment[]> {
