@@ -26,6 +26,7 @@ public class AssignAppointmentPutController {
     @PutMapping(value = "/{appointmentId}")
     public ResponseEntity execute(@PathVariable("appointmentId") String id) {
         String employeeId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(employeeId);
         Employee assignedEmploye = employeeFinder.execute(employeeId);
         HashMap<String, String> datosEmpleado = assignedEmploye.data();
 
