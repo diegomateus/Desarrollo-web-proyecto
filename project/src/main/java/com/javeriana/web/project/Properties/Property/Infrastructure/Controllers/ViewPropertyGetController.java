@@ -20,7 +20,6 @@ public class ViewPropertyGetController {
 
     @GetMapping(value="/{propertyId}")
     public ResponseEntity<HashMap> execute(@PathVariable("propertyId") String id) throws JsonProcessingException {
-        System.out.println("Propiedad solicitdad");
         PropertyFinderResponse response = new PropertyFinderResponse(finder.execute(id));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }

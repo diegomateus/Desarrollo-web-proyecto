@@ -103,15 +103,14 @@ public class Property extends AggregateRoot {
 
     }
 
-    public HashMap<String,Object> data() throws JsonProcessingException {
-        HashMap<String,Object> data = new HashMap<String,Object>(){{
+    public HashMap<String,String> data() throws JsonProcessingException {
+        HashMap<String,String> data = new HashMap<String,String>(){{
 
-            put("propertyId",propertyId.value());
             put("address",address.value());
-            put("propertyType",propertyType.value());
+            put("type",propertyType.value());
             put("city",city.value());
-            put("bedRoomsNumber",String.valueOf(bedroomsNumber.value()));
-            put("badRoomsNumber",String.valueOf(bathroomsNumber.value()));
+            put("bedRooms",String.valueOf(bedroomsNumber.value()));
+            put("badRooms",String.valueOf(bathroomsNumber.value()));
             put("privateArea",String.valueOf(privateArea.value()));
             put("builtArea",String.valueOf(builtArea.value()));
             put("serviceLevel",String.valueOf(serviceLevel.value()));
@@ -119,9 +118,8 @@ public class Property extends AggregateRoot {
             put("deliveryDate",deliveryDate.value().toString());
             put("latitude",String.valueOf(latitude.value()));
             put("longitude",String.valueOf(longitude.value()));
-            put("questions", getSerializedQuestionsData());
-            put("offers", getSerializedOffersData());
-            put("images",images.get());
+            put("questions", new ObjectMapper().writeValueAsString(getSerializedQuestionsData()));
+            put("offers", new ObjectMapper().writeValueAsString(getSerializedOffersData()));
         }};
 
         return data;
