@@ -50,6 +50,11 @@ public class Appointment {
             put("propertyLatitude", "" + appointmentProperty.getLatitude());
             put("propertyLongitude", "" + appointmentProperty.getLongitude());
             put("dateTime", appointmentDateTime.value().toString());
+            put("day", "" + appointmentDateTime.value().getDayOfMonth());
+            put("month", "" + appointmentDateTime.value().getMonthValue());
+            put("year", "" + appointmentDateTime.value().getYear());
+            put("hour", "" + appointmentDateTime.value().getHour());
+            put("minute", "" + appointmentDateTime.value().getMinute());
             put("customerFirstName", appointmentCustomerFirstName.value());
             put("customerLastName", appointmentCustomerLastName.value());
             put("customerEmail", appointmentCustomerEmail.value());

@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/appointments/unassigned").hasRole("EMPLOYEE")
                 .antMatchers(HttpMethod.DELETE, "/appointments/{appointmentId}").permitAll()
                 .antMatchers(HttpMethod.GET, "/questions/unanswered").hasRole("EMPLOYEE")
-                .anyRequest().denyAll();
+                .anyRequest().permitAll();
     }
 
 }
