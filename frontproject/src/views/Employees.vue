@@ -4,7 +4,7 @@
     <EmployeeFilters 
     v-model:search="search"></EmployeeFilters>
     <div class="collection">
-        <EmployeeCard></EmployeeCard>
+        <EmployeeCard v-for="employee in employees" :key="employee.id" :employee="employee"></EmployeeCard>
     </div>
   </section>
   <p>{{ search }}</p>
@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref } from "vue";
-import EmployeeFilters from "@/components/Employees/EmployeeFilters.vue"
-import EmployeeCard from "@/components/Employees/EmployeeCard.vue"
-import { Employee } from "@/types/Employee"
+import { defineComponent, onMounted, Ref, ref, computed } from "vue";
+import EmployeeFilters from "@/components/Employees/EmployeeFilters.vue";
+import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
+import { Employee } from "@/types/Employee";
 
 export default defineComponent({
   name: "Employees",
@@ -28,15 +28,24 @@ export default defineComponent({
     const search : Ref<string> = ref("");
 
     onMounted(async()=>{
-      employees.value=await getEMployees();
-    })
+      employees.value=await getEmployees();
+    });
 
-    async function getEMployees() : Promise<Employee[]>{
+    const filteredEmployees = computed( () => {
+      let finalEmployees = employees;
+      if(search.value !== ""){
+        finalEmployees = finalEmployees.filter(employee =>{
+          return employee.employeeFirstName.toLowerCase().includes(search) ;
+        })
+      }
+    });
+
+    async function getEmployees() : Promise<Employee[]>{
       return new Promise(resolve=>{
         resolve([]);
       })
     }
-    return { employees, search };
+    return { search };
   },
 });
 </script>
