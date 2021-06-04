@@ -34,7 +34,13 @@ public class FilterPropertiesGetController {
                                            @RequestParam  String action,
                                            @RequestParam  String propertyCondition
     ) throws JsonProcessingException {
-        //System.out.println(propertyType+priceLowerLimit+priceUpperLimit+city+bedRoomsNumber+bathRoomNumber+action+propertyCondition);
+        /*if(propertyType == null && priceLowerLimit == 0 && priceUpperLimit == 0 &&
+            city == null && bedRoomsNumber == 0 && bathRoomNumber == 0 && action == null && propertyCondition == null
+        ){
+
+        }else{
+
+        }*/
         List<String> propiedades = filterOffers.execute(priceLowerLimit,priceUpperLimit,action);
         FilterPropertiesResponse response = new FilterPropertiesResponse(filterProperties.execute(propiedades, propertyType,city,
                 bedRoomsNumber,bathRoomNumber,propertyCondition));
