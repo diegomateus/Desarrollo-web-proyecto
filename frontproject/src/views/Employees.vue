@@ -11,14 +11,20 @@
           v-for="employee in filteredEmployees"
           :key="employee.id"
           :employee="employee"
-          @click="editEmployee(employee)"
+          @click="editEmployee(employee.id)"
         ></EmployeeCard>
       </div>
     </div>
     <div id="add" v-if="add">
+      <AddEmployee></AddEmployee>
+      <button class="button button1">Aceptar</button>
+      <button class="button button3" @click="allEmployee">Cancelar</button>
     </div>
     <div id="edit" v-if="edit">
-      <p>EDIT</p>
+      <EditEmployee></EditEmployee>
+      <button class="button button1">Guardar</button>
+      <button class="button button3" @click="allEmployee">Cancelar</button>
+      <button class="button button4" >Eliminar</button>
     </div>
   </section>
 </template>
@@ -29,12 +35,16 @@ import EmployeeSearch from "@/components/Employees/EmployeeSearch.vue";
 import EmployeeCard from "@/components/Employees/EmployeeCard.vue";
 import { useEmployees } from "@/uses/Employees/useEmployees";
 import { useSearchEmployee } from "@/uses/Employees/useSearchEmployee";
+import AddEmployee from "@/components/Employees/EmployeeAddForm.vue";
+import EditEmployee from "@/components/Employees/EmployeeEditForm.vue";
 
 export default defineComponent({
   name: "Employees",
   components: {
     EmployeeSearch,
     EmployeeCard,
+    AddEmployee,
+    EditEmployee,
   },
   setup() {
     const {
@@ -79,5 +89,52 @@ export default defineComponent({
 .collection {
   display: grid;
   gap: 1.5rem;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #f44336;
+}
+
+.button3:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.button4 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #660066;
+}
+
+.button4:hover {
+  background-color: #660066;
+  color: white;
 }
 </style>

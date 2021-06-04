@@ -4,6 +4,7 @@ import { apiEmployees } from "@/services/apiEmployees/apiEmployees"
 
 export function useEmployees(){
     const employees: Ref<Employee[]> = ref([]);
+    const employee: Ref<Employee | null> = ref(null);
     const all:Ref<boolean> = ref(true);
     const add:Ref<boolean> = ref(false);
     const edit:Ref<boolean> = ref(false);
@@ -30,5 +31,11 @@ export function useEmployees(){
         edit.value=true;
     }
 
-    return { employees, all, add, edit, allEmployee, addEmployee, editEmployee};
+    async function createEmployee(){
+        all.value=true;
+        add.value=false;
+        edit.value=false;
+    }
+
+    return { employees, all, add, edit, allEmployee, addEmployee, editEmployee, employee, createEmployee};
 }

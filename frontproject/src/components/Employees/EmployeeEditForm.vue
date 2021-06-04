@@ -4,7 +4,7 @@
       <label for="fname">Nombre</label>
       <input
         type="text"
-        v-model="name"
+        id="name"
         name="firstname"
         placeholder="Nombre.."
       />
@@ -12,7 +12,7 @@
       <label for="lname">Apellido</label>
       <input
         type="text"
-        v-model="lastName"
+        id="lastName"
         name="lastname"
         placeholder="Apellido.."
       />
@@ -20,7 +20,7 @@
       <label for="lname">Email</label>
       <input
         type="text"
-        v-model="email"
+        id="email"
         name="lastname"
         placeholder="Correo electronico.."
       />
@@ -34,12 +34,11 @@
       />
 
       <label for="country">Rol</label>
-      <select v-model="rol" name="country">
+      <select id="rol" name="country">
         <option value="admin">Administrador</option>
         <option value="employee">Empleado</option>
       </select>
-    <button class="button button1">Aceptar</button>
-    <button class="button button3" @click="handleReturn">Cancelar</button>
+
     </form>
   </div>
 </template>
@@ -47,15 +46,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "AddEmployee",
-   setup(props, context) {
-    
-    function handleReturn(event: any){
-      context.emit("all",event.target.value)
-    }
-
-    return { handleReturn};
-  },
+  name: "EditEmployee",
+  
 });
 </script>
 
@@ -80,45 +72,22 @@ textarea {
   resize: vertical;
 }
 
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-}
-
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
-.button1 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button1:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button3 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #f44336;
-}
-
-.button3:hover {
-  background-color: #f44336;
-  color: white;
 }
 </style>
