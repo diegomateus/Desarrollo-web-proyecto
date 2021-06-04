@@ -1,11 +1,27 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import PropertyManagement from "../views/PropertyManagement.vue";
+import OfferManagement from "../views/OfferManagement.vue";
+
+import Employees from "@/views/Employees.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+
+  {
+    path: "/properties",
+    name: "Property",
+    component: PropertyManagement,
+  },
+
+  {
+    path: "/properties/prueba/offer",
+    name: "Offer",
+    component: OfferManagement,
   },
   {
     path: "/about",
@@ -18,6 +34,13 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "template" */ "../views/Template.vue"),
   },
+
+  {
+    path: "/employees",
+    name: "Employees",
+    component: Employees,
+  },
+
   {
     path: "/appointments",
     name: "Appointments",

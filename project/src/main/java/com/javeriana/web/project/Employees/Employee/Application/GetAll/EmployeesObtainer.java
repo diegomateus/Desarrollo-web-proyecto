@@ -16,6 +16,7 @@ public class EmployeesObtainer {
 
     public List<Employee> execute (){
         Optional<List<Employee>> employees=repository.getAll();
+
         if(employees.isEmpty()){
             throw new EmployeeNotExist("No se han encontrado empleados");
         }

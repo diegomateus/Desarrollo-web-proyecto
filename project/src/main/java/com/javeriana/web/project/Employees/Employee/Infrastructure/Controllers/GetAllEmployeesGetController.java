@@ -1,6 +1,8 @@
 package com.javeriana.web.project.Employees.Employee.Infrastructure.Controllers;
 
+import com.javeriana.web.project.Appointments.Appointment.Application.FindAssigned.FindAssignedAppointmetsResponse;
 import com.javeriana.web.project.Employees.Employee.Application.GetAll.EmployeesObtainer;
+import com.javeriana.web.project.Employees.Employee.Application.GetAll.GetAllEmployeesResponse;
 import com.javeriana.web.project.Employees.Employee.Domain.Exceptions.EmployeeNotExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,8 @@ public class GetAllEmployeesGetController {
 
     @GetMapping()
     public ResponseEntity execute(){
-        return ResponseEntity.status(HttpStatus.OK).body(employeesObtainer.execute());
+        GetAllEmployeesResponse response = new GetAllEmployeesResponse(employeesObtainer.execute());
+        return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }
 
     @ExceptionHandler(EmployeeNotExist.class)
